@@ -364,6 +364,7 @@
       grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
       gap: 18px;
       margin-top: 6px;
+      align-items: start; /* let columns be different heights */
     }
 
     .about-text {
@@ -387,8 +388,9 @@
 
     .about-photo img {
       width: 100%;
-      height: 100%;
+      height: auto;       /* only as tall as needed */
       object-fit: cover;
+      max-height: 420px;  /* optional safety cap */
     }
 
     /* WHAT I SHOOT */
@@ -783,7 +785,7 @@
           </div>
 
           <p class="section-subtitle" style="margin-top:14px;">
-            Want to see something specific (studio work, editorial concepts, or a full gallery)? Mention it in your inquiry and I’ll send over a curated set.
+            Want to see something specific (such as a full gallery)? Mention it in your inquiry and I’ll send over a curated set.
           </p>
         </section>
 
@@ -797,16 +799,13 @@
           <div class="about-layout">
             <div class="about-text">
               <p>
-                I’m a <strong>photographer and educator based in Dallas, Texas</strong>, who believes photography is less about perfection and more about honoring what’s real. My work leans warm, nostalgic, and people-first — the kind of images that still feel true when you look back years from now.
+                I’m a <strong>photographer and educator based in Dallas, Texas</strong>, who believes photography is less about perfection and more about honoring what’s real. My work leans warm, nostalgic, and people-first — the kind of images that still feel true when you pull them out of a shoebox years from now.
               </p>
               <p>
-                Since 2017, I’ve photographed hundreds of portraits, couples, live music, and events, always with the same goal: help people feel seen with dignity and intention, not staged into someone else’s trend.
+                Since 2017, I’ve photographed hundreds of portraits, couples, live music, and events, always with the same goal: help people feel seen, not staged into someone else’s trend.
               </p>
               <p>
-                When I’m not shooting, I’m writing and teaching other creatives how to stay deeply curious behind the lens, and spending time with my wife, Hanna, and our daughter, Birdie — my most patient test subjects.
-              </p>
-              <p>
-                If you’re looking for stiff poses and airbrushed perfection, I’m probably not your photographer. If you want images that feel like <em>you</em>, I’d love to work together.
+                If you’re looking for stiff poses and retouched perfection, I’m probably not your photographer. If you want images that feel like you, I’d love to work together.
               </p>
             </div>
 
