@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Matthew Norton Photos | Dallas Photographer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Dallas-based portrait and brand photographer. View portfolio and book a session." />
+
+  <style>
+    :root {
+      /* ==== BRAND COLORS (FROM YOUR STYLE GUIDE) ==== */
+      --color-bg: #302F2B;          /* deep charcoal background   */
+      --color-bg-soft: #262320;     /* cards / soft panels        */
+      --color-accent: #DA6049;      /* main accent (buttons, links) */
+      --color-accent-soft: rgba(218, 96, 73, 0.12);
+      --color-text: #F6E1D0;        /* primary text (cream)       */
+      --color-muted: #C0AA97;       /* subtle text                */
+      --color-border: #4A4038;      /* borders / dividers         */
+
+      /* secondary accents from your guide */
+      --color-accent-warm: #8E6249;
+      --color-accent-blue: #324A56;
+
+      /* FONTS – Hesland for headings if/when you add the webfont */
+      --font-heading: "Hesland", system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      --font-body: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.6);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --max-width: 1080px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #37322C 0, #302F2B 45%, #181512 100%);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 24px 18px 64px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: var(--max-width);
+    }
+
+    /* NAV */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(
+        to bottom,
+        rgba(24, 21, 18, 0.96),
+        rgba(24, 21, 18, 0.8),
+        transparent
+      );
+      margin-bottom: 16px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0 10px;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      border: 1px solid var(--color-border);
+      background: radial-gradient(
+        circle at 30% 10%,
+        #DA6049,
+        #8E6249 55%,
+        #302F2B 100%
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: #302F2B;
+      overflow: hidden;
+    }
+
+    /* TODO: later you can replace MN text with a logo image if you want */
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .brand-text-main {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-text);
+    }
+
+    .brand-text-sub {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--color-muted);
+      opacity: 0.9;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .nav-links a {
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--color-muted);
+      transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+    }
+
+    .nav-links a:hover {
+      background: var(--color-accent-soft);
+      color: var(--color-text);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      border-radius: 999px;
+      padding: 6px 14px;
+      background: var(--color-accent);
+      color: #302F2B;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.9);
+      background: #e7755f;
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 30px;
+      margin-top: 22px;
+      margin-bottom: 40px;
+    }
+
+    .hero-main {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px 6px 6px;
+      border-radius: 999px;
+      background: var(--color-bg-soft);
+      border: 1px solid rgba(218, 96, 73, 0.3);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--color-muted);
+    }
+
+    .pill-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      background: radial-gradient(
+        circle at 30% 0,
+        #DA6049,
+        #8E6249 65%,
+        #302F2B 100%
+      );
+      box-shadow: 0 0 24px rgba(218, 96, 73, 0.7);
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: clamp(32px, 5vw, 44px);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.25;
+    }
+
+    .hero-title span {
+      display: block;
+      color: var(--color-muted);
+      font-size: 13px;
+      letter-spacing: 0.26em;
+      margin-bottom: 8px;
+    }
+
+    .hero-body {
+      color: var(--color-muted);
+      font-size: 14px;
+      max-width: 460px;
+    }
+
+    .hero-body strong {
+      color: var(--color-text);
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .btn-primary {
+      border-radius: 999px;
+      padding: 10px 18px;
+      background: var(--color-accent);
+      color: #302F2B;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.9);
+      background: #e7755f;
+    }
+
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 10px 16px;
+      background: transparent;
+      color: var(--color-text);
+      border: 1px solid var(--color-border);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.16s ease, border-color 0.16s ease, transform 0.16s ease;
+    }
+
+    .btn-ghost span {
+      font-size: 16px;
+    }
+
+    .btn-ghost:hover {
+      background: var(--color-bg-soft);
+      border-color: rgba(218, 96, 73, 0.6);
+      transform: translateY(-1px);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 6px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--color-muted);
+    }
+
+    .hero-meta strong {
+      color: var(--color-text);
+      font-weight: 500;
+    }
+
+    .hero-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      background: radial-gradient(circle at top, #37322C 0, #262320 55%);
+      padding: 16px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .hero-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .hero-thumbnail {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .hero-thumbnail img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .badge-stack {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .badge {
+      border-radius: 999px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      padding: 4px 8px;
+      border: 1px solid rgba(218, 96, 73, 0.3);
+      background: rgba(24, 21, 18, 0.8);
+      color: var(--color-muted);
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 11px;
+      color: var(--color-muted);
+    }
+
+    .stat-row strong {
+      color: var(--color-text);
+      font-weight: 500;
+    }
+
+    .stat-row span {
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    /* SECTIONS */
+    section {
+      margin-bottom: 52px;
+    }
+
+    .section-header {
+      margin-bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .section-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .section-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--color-muted);
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--color-muted);
+      max-width: 360px;
+    }
+
+    /* PORTFOLIO GRID */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .portfolio-item {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      background: var(--color-bg-soft);
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      transition: transform 0.22s ease, opacity 0.22s ease;
+    }
+
+    .portfolio-item:hover img {
+      transform: scale(1.03);
+      opacity: 0.9;
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.85);
+      border-color: rgba(218, 96, 73, 0.5);
+    }
+
+    .portfolio-label {
+      position: absolute;
+      inset: auto 10px 10px 10px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: linear-gradient(
+        to right,
+        rgba(24, 21, 18, 0.95),
+        rgba(24, 21, 18, 0.4)
+      );
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--color-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .portfolio-label span {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-text);
+    }
+
+    /* FEATURED SHOOTS */
+    .shoots-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .shoot-card {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      background: var(--color-bg-soft);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 13px;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      cursor: pointer;
+    }
+
+    .shoot-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8);
+      border-color: rgba(218, 96, 73, 0.5);
+    }
+
+    .shoot-tag {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--color-muted);
+    }
+
+    .shoot-title {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .shoot-meta {
+      font-size: 11px;
+      color: var(--color-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    /* ABOUT */
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 26px;
+    }
+
+    .about-text {
+      font-size: 14px;
+      color: var(--color-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .about-text p strong {
+      color: var(--color-text);
+      font-weight: 500;
+    }
+
+    .about-highlights {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      background: radial-gradient(circle at top, #37322C 0, #262320 55%);
+      padding: 16px;
+      box-shadow: var(--shadow-soft);
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .about-highlights h3 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .about-highlights ul {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .about-highlights li {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--color-muted);
+    }
+
+    .about-highlights li span:first-child {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--color-text);
+      font-size: 11px;
+    }
+
+    /* CONTACT */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 26px;
+    }
+
+    .contact-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      background: var(--color-bg-soft);
+      padding: 16px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-card form {
+      display: grid;
+      gap: 10px;
+    }
+
+    label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--color-muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+      background: rgba(32, 29, 25, 0.9);
+      padding: 9px 10px;
+      font-size: 13px;
+      color: var(--color-text);
+      outline: none;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: rgba(218, 96, 73, 0.7);
+      box-shadow: 0 0 0 1px rgba(218, 96, 73, 0.4);
+      background: rgba(39, 36, 31, 0.95);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .helper-text {
+      font-size: 11px;
+      color: var(--color-muted);
+      margin-top: 4px;
+    }
+
+    .contact-side {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--color-muted);
+    }
+
+    .contact-email {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-text);
+      word-break: break-all;
+    }
+
+    .social-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .social-pill {
+      border-radius: 999px;
+      padding: 6px 10px;
+      border: 1px solid var(--color-border);
+      background: rgba(32, 29, 25, 0.8);
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--color-muted);
+      transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+    }
+
+    .social-pill span {
+      font-size: 16px;
+    }
+
+    .social-pill:hover {
+      border-color: rgba(218, 96, 73, 0.7);
+      background: rgba(39, 36, 31, 0.95);
+      transform: translateY(-1px);
+      color: var(--color-text);
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 30px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 11px;
+      color: var(--color-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-card {
+        order: -1;
+      }
+
+      .portfolio-grid,
+      .shoots-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .about-layout,
+      .contact-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+
+      .portfolio-grid,
+      .shoots-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-thumbnail img {
+        height: 200px;
+      }
+
+      .page {
+        padding-inline: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="shell">
+
+      <!-- NAV -->
+      <header>
+        <nav class="nav">
+          <div class="brand">
+            <div class="brand-mark">
+              MN
+            </div>
+            <div class="brand-text">
+              <div class="brand-text-main">Matthew Norton Photos</div>
+              <div class="brand-text-sub">Dallas · Portrait &amp; Brand</div>
+            </div>
+          </div>
+          <div class="nav-links">
+            <a href="#portfolio">Portfolio</a>
+            <a href="#shoots">Stories</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+              Book a Session
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      <!-- MAIN -->
+      <main>
+        <!-- HERO -->
+        <section class="hero" id="top">
+          <div class="hero-main">
+            <div class="pill">
+              <div class="pill-dot"></div>
+              Dallas · Fort Worth · Beyond
+            </div>
+
+            <h1 class="hero-title">
+              <span>Photography</span>
+              Honest, nostalgic images for people who don’t like stiff photos.
+            </h1>
+
+            <p class="hero-body">
+              I’m <strong>Matthew Norton</strong>—a portrait &amp; brand photographer in Dallas. I make relaxed, story-driven images for creatives, couples, and brands who want their people to actually recognize themselves in the photos.
+            </p>
+
+            <div class="hero-actions">
+              <button class="btn-primary" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">
+                View Portfolio
+              </button>
+              <button class="btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                <span>→</span> Book a Shoot
+              </button>
+            </div>
+
+            <div class="hero-meta">
+              <div><strong>Portraits · Couples · Events</strong></div>
+              <div>Based in Dallas, TX</div>
+            </div>
+          </div>
+
+          <aside class="hero-card" aria-label="Featured preview">
+            <div class="hero-card-top">
+              <div class="hero-thumbnail">
+                <!-- TODO: later replace with an actual image from /images -->
+                <img src="images/featured-hero.jpg" alt="Sample portrait by Matthew Norton" />
+              </div>
+            </div>
+            <div class="badge-stack">
+              <div class="badge">Portrait Sessions</div>
+              <div class="badge">Brand Stories</div>
+              <div class="badge">Live Events</div>
+            </div>
+            <div class="stat-row">
+              <div>
+                <span>Focus</span>
+                <strong>Real expressions · Clean light</strong>
+              </div>
+              <div>
+                <span>Location</span>
+                <strong>Dallas · DFW · Travel</strong>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <!-- PORTFOLIO -->
+        <section id="portfolio">
+          <div class="section-header">
+            <div class="section-title-wrap">
+              <span class="section-kicker">Portfolio</span>
+              <h2 class="section-title">Selected work</h2>
+            </div>
+            <p class="section-subtitle">
+              A mix of portraits, couples, live events, and branded stories. Click any image to view it full size in your browser.
+            </p>
+          </div>
+
+          <div class="portfolio-grid">
+            <!-- TODO: later replace src paths with your real images -->
+            <article class="portfolio-item" onclick="openImage('images/portrait-01.jpg')" aria-label="Portrait session example">
+              <img src="images/portrait-01.jpg" alt="Portrait photography by Matthew Norton" />
+              <div class="portfolio-label">
+                Portrait
+                <span>Studio · Natural light</span>
+              </div>
+            </article>
+
+            <article class="portfolio-item" onclick="openImage('images/couple-01.jpg')" aria-label="Couples session example">
+              <img src="images/couple-01.jpg" alt="Couple photography by Matthew Norton" />
+              <div class="portfolio-label">
+                Couples
+                <span>Golden hour</span>
+              </div>
+            </article>
+
+            <article class="portfolio-item" onclick="openImage('images/event-01.jpg')" aria-label="Event photography example">
+              <img src="images/event-01.jpg" alt="Event photography by Matthew Norton" />
+              <div class="portfolio-label">
+                Event
+                <span>Live worship · Candid</span>
+              </div>
+            </article>
+
+            <article class="portfolio-item" onclick="openImage('images/brand-01.jpg')" aria-label="Brand photography example">
+              <img src="images/brand-01.jpg" alt="Brand photography by Matthew Norton" />
+              <div class="portfolio-label">
+                Brand
+                <span>Small business</span>
+              </div>
+            </article>
+
+            <article class="portfolio-item" onclick="openImage('images/street-01.jpg')" aria-label="Street photography example">
+              <img src="images/street-01.jpg" alt="Street photography by Matthew Norton" />
+              <div class="portfolio-label">
+                Street
+                <span>Dallas · Everyday scenes</span>
+              </div>
+            </article>
+
+            <article class="portfolio-item" onclick="openImage('images/portrait-02.jpg')" aria-label="Portrait photography example">
+              <img src="images/portrait-02.jpg" alt="Portrait photography by Matthew Norton" />
+              <div class="portfolio-label">
+                Portrait
+                <span>On-location</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- FEATURED SHOOTS -->
+        <section id="shoots">
+          <div class="section-header">
+            <div class="section-title-wrap">
+              <span class="section-kicker">Recent shoots</span>
+              <h2 class="section-title">Stories &amp; sessions</h2>
+            </div>
+            <p class="section-subtitle">
+              A few full sessions so you can see how a story unfolds from first frame to last.
+            </p>
+          </div>
+
+          <div class="shoots-grid">
+            <article class="shoot-card">
+              <div class="shoot-tag">Portrait · Dallas</div>
+              <h3 class="shoot-title">Rooftop golden hour session</h3>
+              <div class="shoot-meta">Deep Ellum · Dallas, TX</div>
+              <p>
+                A laid-back evening on a downtown rooftop—minimal posing, lots of movement, and a playlist loud enough to forget about the camera.
+              </p>
+            </article>
+
+            <article class="shoot-card">
+              <div class="shoot-tag">Brand · Creative</div>
+              <h3 class="shoot-title">Artist brand refresh</h3>
+              <div class="shoot-meta">Studio &amp; on-location</div>
+              <p>
+                Updated portraits and detail shots for a local creative, built around how they actually spend their day—not just a white backdrop.
+              </p>
+            </article>
+
+            <article class="shoot-card">
+              <div class="shoot-tag">Event · Live</div>
+              <h3 class="shoot-title">Worship &amp; conference</h3>
+              <div class="shoot-meta">Live event coverage</div>
+              <p>
+                Candid, documentary-style coverage of a live worship night—capturing the atmosphere, not just the stage.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about">
+          <div class="section-header">
+            <div class="section-title-wrap">
+              <span class="section-kicker">About</span>
+              <h2 class="section-title">Who’s behind the camera</h2>
+            </div>
+          </div>
+
+          <div class="about-layout">
+            <div class="about-text">
+              <p>
+                I’m <strong>Matthew Norton</strong>, a Dallas-based photographer who cares more about how a moment lives in your memory than how perfect it looks on a screen.
+              </p>
+              <p>
+                Most of my work lives in the worlds of <strong>portraits, brands, events, and street photography</strong>—real people, real light, real expressions. I’ll give you direction when you need it and disappear into the background when you don’t.
+              </p>
+              <p>
+                My goal is simple: images that feel like you were there, not like you were performing. Whether it’s a brand refresh, a creative project, or a once-in-a-lifetime moment, I’m here to help you remember it well.
+              </p>
+              <p>
+                When I’m not behind the camera, I’m usually nerding out over prints, nostalgic cameras, or working with creative brands that care about story just as much as aesthetic.
+              </p>
+            </div>
+
+            <aside class="about-highlights">
+              <h3>What I shoot</h3>
+              <ul>
+                <li>
+                  <span>Portraits</span>
+                  <span>Individuals, creatives, musicians, founders</span>
+                </li>
+                <li>
+                  <span>Couples</span>
+                  <span>Engagements, anniversaries, just-because sessions</span>
+                </li>
+                <li>
+                  <span>Brands</span>
+                  <span>Small businesses, personal brands, campaigns</span>
+                </li>
+                <li>
+                  <span>Events</span>
+                  <span>Conferences, worship nights, live gatherings</span>
+                </li>
+              </ul>
+            </aside>
+          </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+          <div class="section-header">
+            <div class="section-title-wrap">
+              <span class="section-kicker">Contact</span>
+              <h2 class="section-title">Book a session</h2>
+            </div>
+            <p class="section-subtitle">
+              Share a few details below and I’ll get back to you with next steps, pricing, and timing. No pressure, no weird sales pitch.
+            </p>
+          </div>
+
+          <div class="contact-layout">
+            <div class="contact-card">
+              <!-- TODO: later replace YOUR_EMAIL_HERE with your real email -->
+              <form action="mailto:YOUR_EMAIL_HERE@matthewnortonphotos.com?subject=New%20Photo%20Inquiry" method="POST" enctype="text/plain">
+                <div>
+                  <label for="name">Name</label>
+                  <input type="text" id="name" name="Name" required />
+                </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="Email" required />
+                </div>
+                <div>
+                  <label for="type">What are you looking to book?</label>
+                  <input type="text" id="type" name="Session Type" placeholder="Portraits, couples, brand, event..." required />
+                </div>
+                <div>
+                  <label for="message">Message</label>
+                  <textarea id="message" name="Message" placeholder="Tell me a bit about what you’re dreaming up. Dates, location, etc."></textarea>
+                </div>
+                <button class="btn-primary" type="submit">Send Inquiry</button>
+                <p class="helper-text">
+                  This will open your email app with the details filled in. If that doesn’t work, you can email me directly.
+                </p>
+              </form>
+            </div>
+
+            <aside class="contact-side">
+              <p>
+                Prefer to email directly? Reach out at:
+              </p>
+              <p class="contact-email">
+                hello@matthewnortonphotos.com
+              </p>
+              <p>
+                You can also find more of my work and day-to-day life here:
+              </p>
+              <div class="social-row">
+                <a href="https://www.instagram.com/matthewnortonphotos" class="social-pill" target="_blank" rel="noreferrer">
+                  <span>◎</span> Instagram
+                </a>
+                <a href="https://www.tiktok.com/@matthewnortonphotos" class="social-pill" target="_blank" rel="noreferrer">
+                  <span>▶</span> TikTok
+                </a>
+                <a href="https://www.threads.net/@matthewnortonphotos" class="social-pill" target="_blank" rel="noreferrer">
+                  <span>#</span> Threads
+                </a>
+                <a href="https://direct.me/matthewnortonphotos" class="social-pill" target="_blank" rel="noreferrer">
+                  <span>✶</span> Link hub
+                </a>
+              </div>
+              <p class="helper-text">
+                If you don’t see your platform of choice here, just mention it in your message—I’m probably there too.
+              </p>
+            </aside>
+          </div>
+        </section>
+      </main>
+
+      <!-- FOOTER -->
+      <footer>
+        <div>© <span id="year"></span> Matthew Norton Photos</div>
+        <div>Built with a camera, a laptop, and too much coffee.</div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // Keep year up to date
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple image "lightbox" using new tab
+    function openImage(src) {
+      window.open(src, '_blank');
+    }
+  </script>
+</body>
+</html>
