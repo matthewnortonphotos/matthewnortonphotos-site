@@ -7,8 +7,7 @@
   <meta name="description" content="Warm, honest, nostalgic photography based in Dallas, TX. Portraits, couples, brands, and events by Matthew Norton." />
 
   <style>
-    /* 1. LOAD HESLAND FONT
-       Make sure you have fonts/hesland-sans.otf uploaded to your repo. */
+    /* Load Hesland (upload fonts/hesland-sans.otf) */
     @font-face {
       font-family: "Hesland";
       src: url("fonts/hesland-sans.otf") format("opentype");
@@ -18,16 +17,14 @@
     }
 
     :root {
-      /* BRAND COLORS (from your style guide) */
-      --color-bg: #302F2B;
-      --color-bg-soft: #262320;
-      --color-accent: #DA6049;
+      /* Brand palette */
+      --color-page: #F6E1D0;   /* cream */
+      --color-ink: #302F2B;    /* deep charcoal */
+      --color-accent: #DA6049; /* warm red */
       --color-accent-soft: rgba(218, 96, 73, 0.12);
-      --color-text: #F6E1D0;
-      --color-muted: #C0AA97;
-      --color-border: #4A4038;
-      --color-accent-warm: #8E6249;
-      --color-accent-blue: #324A56;
+      --color-muted: #8C7463;
+      --color-border: #D6C3B3;
+      --color-tag-bg: #FDF7F1;
 
       --font-heading: "Hesland", system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
       --font-body: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
@@ -36,7 +33,7 @@
       --radius-lg: 18px;
       --radius-md: 12px;
       --radius-sm: 8px;
-      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.6);
+      --shadow-soft: 0 14px 35px rgba(0, 0, 0, 0.08);
     }
 
     * {
@@ -46,8 +43,8 @@
     }
 
     body {
-      background: radial-gradient(circle at top, #37322C 0, #302F2B 45%, #181512 100%);
-      color: var(--color-text);
+      background: var(--color-page);
+      color: var(--color-ink);
       font-family: var(--font-body);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
@@ -75,27 +72,23 @@
       max-width: var(--max-width);
     }
 
-    /* HEADER / NAV */
+    /* HEADER / NAV – minimal & editorial */
 
     header {
       position: sticky;
       top: 0;
       z-index: 50;
-      backdrop-filter: blur(16px);
-      background: linear-gradient(
-        to bottom,
-        rgba(24, 21, 18, 0.96),
-        rgba(24, 21, 18, 0.8),
-        transparent
-      );
-      margin-bottom: 18px;
+      backdrop-filter: blur(10px);
+      background: rgba(246, 225, 208, 0.92);
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--color-border);
     }
 
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 8px 0 10px;
+      padding: 10px 0;
       gap: 16px;
     }
 
@@ -106,12 +99,12 @@
     }
 
     .brand-logo {
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       border-radius: 999px;
       overflow: hidden;
       border: 1px solid var(--color-border);
-      background: var(--color-bg-soft);
+      background: #FFF7F0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -125,7 +118,7 @@
 
     .brand-text-main {
       font-family: var(--font-heading);
-      font-size: 15px;
+      font-size: 14px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
     }
@@ -140,49 +133,46 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 14px;
-      font-size: 12px;
+      gap: 16px;
+      font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       font-family: var(--font-heading);
     }
 
     .nav-links a {
-      padding: 6px 9px;
+      padding: 4px 6px;
       border-radius: 999px;
       color: var(--color-muted);
-      transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+      transition: background 0.18s ease, color 0.18s ease;
     }
 
     .nav-links a:hover {
       background: var(--color-accent-soft);
-      color: var(--color-text);
-      transform: translateY(-1px);
+      color: var(--color-ink);
     }
 
     .nav-cta {
       border-radius: 999px;
       padding: 7px 14px;
-      border: none;
+      border: 1px solid var(--color-ink);
       cursor: pointer;
-      background: var(--color-accent);
-      color: #302F2B;
+      background: transparent;
+      color: var(--color-ink);
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      font-weight: 600;
-      box-shadow: 0 14px 32px rgba(0,0,0,0.8);
-      transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+      font-weight: 500;
       font-family: var(--font-heading);
+      transition: background 0.18s ease, color 0.18s ease;
     }
 
     .nav-cta:hover {
-      background: #e7755f;
-      transform: translateY(-1px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+      background: var(--color-ink);
+      color: #FDF7F1;
     }
 
-    /* HERO */
+    /* HERO – editorial, airy */
 
     main {
       display: flex;
@@ -193,8 +183,10 @@
     .hero {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: 26px;
-      margin-top: 16px;
+      gap: 28px;
+      margin-top: 10px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--color-border);
     }
 
     .hero-text {
@@ -206,17 +198,17 @@
     .hero-kicker {
       font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       color: var(--color-muted);
       font-family: var(--font-heading);
     }
 
     .hero-title {
       font-family: var(--font-heading);
-      font-size: clamp(30px, 5vw, 40px);
+      font-size: clamp(32px, 5vw, 46px);
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      line-height: 1.3;
+      line-height: 1.2;
     }
 
     .hero-tagline {
@@ -226,7 +218,7 @@
     }
 
     .hero-tagline strong {
-      color: var(--color-text);
+      color: var(--color-ink);
       font-weight: 500;
     }
 
@@ -249,30 +241,30 @@
       border-radius: 999px;
       padding: 10px 18px;
       background: var(--color-accent);
-      color: #302F2B;
+      color: #FDF7F1;
       border: none;
       cursor: pointer;
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.18em;
+      font-family: var(--font-heading);
       box-shadow: var(--shadow-soft);
       transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
-      font-family: var(--font-heading);
     }
 
     .btn-primary:hover {
       background: #e7755f;
       transform: translateY(-1px);
-      box-shadow: 0 22px 60px rgba(0,0,0,0.9);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.15);
     }
 
     .btn-ghost {
       border-radius: 999px;
       padding: 10px 16px;
-      border: 1px solid var(--color-border);
+      border: 1px solid var(--color-ink);
       background: transparent;
-      color: var(--color-text);
+      color: var(--color-ink);
       cursor: pointer;
       font-size: 12px;
       text-transform: uppercase;
@@ -280,20 +272,19 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
       font-family: var(--font-heading);
+      transition: background 0.18s ease, color 0.18s ease;
     }
 
     .btn-ghost:hover {
-      background: var(--color-bg-soft);
-      border-color: rgba(218, 96, 73, 0.7);
-      transform: translateY(-1px);
+      background: var(--color-ink);
+      color: #FDF7F1;
     }
 
     .hero-gallery {
       border-radius: var(--radius-lg);
       border: 1px solid var(--color-border);
-      background: var(--color-bg-soft);
+      background: #FBF3EB;
       padding: 10px;
       box-shadow: var(--shadow-soft);
       display: flex;
@@ -308,7 +299,7 @@
     }
 
     .hero-gallery img {
-      height: 140px;
+      height: 150px;
       object-fit: cover;
       border-radius: var(--radius-md);
     }
@@ -326,8 +317,8 @@
     section {
       border-radius: var(--radius-lg);
       border: 1px solid var(--color-border);
-      background: var(--color-bg-soft);
-      padding: 20px 18px 22px;
+      background: #FDF7F1;
+      padding: 22px 18px 22px;
       box-shadow: var(--shadow-soft);
     }
 
@@ -348,7 +339,7 @@
       font-size: 18px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-top: 2px;
+      margin-top: 4px;
     }
 
     .section-subtitle {
@@ -364,7 +355,7 @@
       grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
       gap: 18px;
       margin-top: 6px;
-      align-items: start; /* let columns be different heights */
+      align-items: start;
     }
 
     .about-text {
@@ -376,21 +367,22 @@
     }
 
     .about-text strong {
-      color: var(--color-text);
+      color: var(--color-ink);
       font-weight: 500;
     }
 
     .about-photo {
       border-radius: var(--radius-md);
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--color-border);
+      background: #FDF7F1;
     }
 
     .about-photo img {
       width: 100%;
-      height: auto;       /* only as tall as needed */
+      height: auto;
       object-fit: cover;
-      max-height: 420px;  /* optional safety cap */
+      max-height: 420px;
     }
 
     /* WHAT I SHOOT */
@@ -407,7 +399,7 @@
       border-radius: var(--radius-md);
       border: 1px solid var(--color-border);
       padding: 10px 11px;
-      background: rgba(24,21,18,0.85);
+      background: #FFFDF9;
     }
 
     .shoot-item h3 {
@@ -434,7 +426,7 @@
     .collection-card {
       border-radius: var(--radius-md);
       border: 1px solid var(--color-border);
-      background: rgba(24, 21, 18, 0.9);
+      background: #FFFDF9;
       overflow: hidden;
       cursor: pointer;
       transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
@@ -442,8 +434,8 @@
 
     .collection-card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.85);
-      border-color: rgba(218, 96, 73, 0.6);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+      border-color: rgba(218, 96, 73, 0.5);
     }
 
     .collection-card img {
@@ -481,8 +473,9 @@
     .feature-pill {
       border-radius: 999px;
       padding: 9px 16px;
-      background: #f5f5f5;
-      color: #222;
+      background: #FFFFFF;
+      color: var(--color-ink);
+      border: 1px solid var(--color-border);
       font-size: 13px;
       display: inline-flex;
       align-items: center;
@@ -491,6 +484,12 @@
       min-height: 40px;
       font-family: var(--font-heading);
       letter-spacing: 0.06em;
+      transition: background 0.18s ease, border-color 0.18s ease;
+    }
+
+    .feature-pill:hover {
+      background: var(--color-tag-bg);
+      border-color: var(--color-accent);
     }
 
     /* CONTACT */
@@ -523,10 +522,10 @@
       width: 100%;
       border-radius: var(--radius-sm);
       border: 1px solid var(--color-border);
-      background: rgba(32, 29, 25, 0.9);
+      background: #FFFDF9;
       padding: 9px 10px;
       font-size: 13px;
-      color: var(--color-text);
+      color: var(--color-ink);
       outline: none;
       transition: border-color 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
       font-family: var(--font-body);
@@ -535,8 +534,8 @@
     input:focus,
     textarea:focus {
       border-color: rgba(218, 96, 73, 0.7);
-      box-shadow: 0 0 0 1px rgba(218, 96, 73, 0.4);
-      background: rgba(39, 36, 31, 0.95);
+      box-shadow: 0 0 0 1px rgba(218, 96, 73, 0.25);
+      background: #FFFFFF;
     }
 
     textarea {
@@ -561,7 +560,7 @@
     .contact-email {
       font-size: 14px;
       font-weight: 500;
-      color: var(--color-text);
+      color: var(--color-ink);
       word-break: break-all;
     }
 
@@ -576,15 +575,15 @@
       border-radius: 999px;
       padding: 6px 10px;
       border: 1px solid var(--color-border);
-      background: rgba(24, 21, 18, 0.9);
+      background: #FFFDF9;
       font-size: 12px;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       color: var(--color-muted);
-      transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
       font-family: var(--font-heading);
       letter-spacing: 0.08em;
+      transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
     }
 
     .social-pill span {
@@ -593,9 +592,8 @@
 
     .social-pill:hover {
       border-color: rgba(218, 96, 73, 0.8);
-      background: rgba(39, 36, 31, 0.96);
-      color: var(--color-text);
-      transform: translateY(-1px);
+      background: var(--color-tag-bg);
+      color: var(--color-ink);
     }
 
     /* FOOTER */
@@ -608,7 +606,7 @@
       justify-content: space-between;
       gap: 8px;
       flex-wrap: wrap;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      border-top: 1px solid var(--color-border);
       padding-top: 16px;
     }
 
@@ -645,7 +643,7 @@
       }
 
       .hero-gallery img {
-        height: 180px;
+        height: 170px;
       }
     }
   </style>
@@ -681,12 +679,13 @@
       <main>
 
         <!-- HERO -->
-        <section class="hero" id="top" style="border:none; background:transparent; box-shadow:none; padding:0;">
+        <section class="hero" id="top" style="background:transparent; box-shadow:none; padding:0;">
           <div class="hero-text">
             <div class="hero-kicker">Dallas, TX · Available for travel</div>
             <h1 class="hero-title">Honest, nostalgic photographs<br>for people who care more about connection than perfection.</h1>
             <p class="hero-tagline">
-              I believe a meaningful photograph doesn’t just capture a moment — it connects one. My work is about <strong>truth over perfection, curiosity over trends, and images that still matter years from now</strong>.
+              I believe a meaningful photograph doesn’t just capture a moment — it connects one. My work is about
+              <strong>truth over perfection, curiosity over trends, and images that still matter years from now</strong>.
             </p>
             <div class="hero-actions">
               <button class="btn-primary" type="button" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">
@@ -709,9 +708,9 @@
               <img src="images/featured-02.jpg" alt="Featured photo 2 by Matthew Norton">
               <img src="images/featured-03.jpg" alt="Featured photo 3 by Matthew Norton">
             </div>
-           <div class="hero-gallery-caption">
+            <div class="hero-gallery-caption">
               A few of my favorite frames.
-          </div>
+            </div>
           </aside>
         </section>
 
@@ -858,7 +857,7 @@
 
           <div class="contact-layout">
             <div class="contact-card">
-              <!-- NOTE: this opens the visitor's email client with your email + form details -->
+              <!-- This opens the visitor's email client with your email + form details -->
               <form action="mailto:matthewnortonphotos@gmail.com?subject=New%20Photo%20Inquiry" method="POST" enctype="text/plain">
                 <div>
                   <label for="name">Name</label>
@@ -878,7 +877,8 @@
                 </div>
                 <button class="btn-primary" type="submit">Send Inquiry</button>
                 <p class="helper-text">
-                  This will open your email app with the details filled in. If it doesn’t work, you can email me directly at <strong>matthewnortonphotos@gmail.com</strong>.
+                  This will open your email app with the details filled in. If it doesn’t work, you can email me directly at
+                  <strong>matthewnortonphotos@gmail.com</strong>.
                 </p>
               </form>
             </div>
