@@ -475,11 +475,13 @@
       background: #111;
     }
 
+    /* Force 2:3 vertical orientation for Matthew portrait */
     .about-photo img {
       width: 100%;
-      height: auto;
-      max-height: 460px;
+      aspect-ratio: 2 / 3;
       object-fit: cover;
+      object-position: center;
+      display: block;
     }
 
     /* ===== TESTIMONIALS ===== */
@@ -849,7 +851,7 @@
         <section id="about">
           <div class="section-header">
             <div class="section-kicker">About</div>
-            <h2 class="section-title">Hi, I’m Matthew</h2>
+            <h2 class="section-title">Hello, I’m Matthew.</h2>
           </div>
 
           <div class="about-layout">
@@ -866,7 +868,7 @@
             </div>
 
             <aside class="about-photo">
-              <img src="images/matthew-portrait-small.jpg" alt="Portrait of Matthew Norton">
+              <img src="images/matthew-portrait-2.JPG" alt="Portrait of Matthew Norton">
             </aside>
           </div>
         </section>
@@ -987,4 +989,5 @@
   </div>
 </body>
 </html>
+
 
