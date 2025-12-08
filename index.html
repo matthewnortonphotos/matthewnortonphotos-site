@@ -541,6 +541,70 @@
       max-width: 520px;
     }
 
+    /* ===== MODAL GALLERY ===== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 60;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-gallery {
+      background: #111;
+      border-radius: var(--radius-xl);
+      padding: 14px 14px 18px;
+      max-width: min(960px, 100% - 40px);
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-gallery-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      color: #FDF7F1;
+      font-family: var(--font-heading);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: #FDF7F1;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .modal-gallery-track {
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .modal-gallery-images {
+      display: flex;
+      gap: 8px;
+    }
+
+    .modal-gallery-images img {
+      height: 70vh;
+      max-height: 640px;
+      width: auto;
+      border-radius: var(--radius-lg);
+      flex-shrink: 0;
+    }
+
     /* ===== ABOUT ===== */
     .about-layout {
       display: grid;
@@ -646,6 +710,12 @@
       text-transform: uppercase;
       letter-spacing: 0.18em;
       color: var(--color-ink);
+    }
+
+    .testimonial-name a {
+      text-transform: none;
+      letter-spacing: 0.04em;
+      font-size: 11px;
     }
 
     .testimonial-meta {
@@ -827,6 +897,10 @@
         max-width: none;
         justify-self: stretch;
       }
+
+      .modal-gallery-images img {
+        height: 60vh;
+      }
     }
   </style>
 </head>
@@ -871,7 +945,7 @@
             <div class="hero-kicker">Dallas, TX · Available for travel</div>
 
             <h1 class="hero-title">
-              Honest, nostalgic photographs.<br>
+              Honest, nostalgic photography.<br>
             </h1>
 
             <p class="hero-tagline">
@@ -981,13 +1055,13 @@
           </div>
 
           <div class="portfolio-collections">
-            <div class="collection-card image-hover">
+            <div class="collection-card image-hover" data-gallery="portraits">
               <img src="images/rachel-1.JPG" alt="Portraits collection preview">
             </div>
-            <div class="collection-card image-hover">
+            <div class="collection-card image-hover" data-gallery="couples">
               <img src="images/jo-sandy-1.jpg" alt="Couples collection preview">
             </div>
-            <div class="collection-card image-hover">
+            <div class="collection-card image-hover" data-gallery="events">
               <img src="images/naomi-1.JPG" alt="Events collection preview">
             </div>
           </div>
@@ -1077,7 +1151,11 @@
               <div class="testimonial-quote">
                 "Working with Matthew was so fun! He's such a kind person and makes you feel comfortable and confident during the shoot. I would totally recommend working with him."
               </div>
-              <div class="testimonial-name">Dawson Shorman | @dawson_shorman | @musicbyoaks</div>
+              <div class="testimonial-name">
+                Dawson Shorman |
+                <a href="https://instagram.com/dawson_shorman" target="_blank" rel="noreferrer">@dawson_shorman</a> |
+                <a href="https://instagram.com/musicbyoak" target="_blank" rel="noreferrer">@musicbyoak</a>
+              </div>
               <div class="testimonial-meta">Musician</div>
             </div>
 
@@ -1085,7 +1163,10 @@
               <div class="testimonial-quote">
                 “When I met up with Matthew, right of the bat, he showed me love and respect. And to be honest, we hit it right off!! Not only are his photos phenomenal, but his personality and character aligns right with it!!”
               </div>
-              <div class="testimonial-name">ASAP Preach | @asappreach</div>
+              <div class="testimonial-name">
+                ASAP Preach |
+                <a href="https://instagram.com/asappreach" target="_blank" rel="noreferrer">@asappreach</a>
+              </div>
               <div class="testimonial-meta">Musician</div>
             </div>
 
@@ -1093,7 +1174,10 @@
               <div class="testimonial-quote">
                 “One of the very few creators on my radar with unmatched positive energy and good vibes! In the dictionary, right next to the word AUTHENTICITY, is your smiling portrait.”
               </div>
-              <div class="testimonial-name">Evgenii "Jay" Vlasenko | @j.vlass</div>
+              <div class="testimonial-name">
+                Evgenii "Jay" Vlasenko |
+                <a href="https://instagram.com/j.vlass" target="_blank" rel="noreferrer">@j.vlass</a>
+              </div>
               <div class="testimonial-meta">Photographer</div>
             </div>
 
@@ -1101,7 +1185,10 @@
               <div class="testimonial-quote">
                 “Best shooter in Dallas!”
               </div>
-              <div class="testimonial-name">1K Phew | @1kphew</div>
+              <div class="testimonial-name">
+                1K Phew |
+                <a href="https://instagram.com/1kphew" target="_blank" rel="noreferrer">@1kphew</a>
+              </div>
               <div class="testimonial-meta">Musician</div>
             </div>
           </div>
@@ -1121,10 +1208,10 @@
             <div class="contact-card">
               <form action="mailto:matthewnortonphotos@gmail.com?subject=New%20Photo%20Inquiry" method="POST" enctype="text/plain">
                 <label>Name</label>
-                <input type="text" name="Name" required>
+                <input type="text" name="Name" placeholder="Your name" required>
 
                 <label>Email</label>
-                <input type="email" name="Email" required>
+                <input type="email" name="Email" placeholder="Your email" required>
 
                 <label>Session Type</label>
                 <input type="text" name="Type" placeholder="Portraits, couples, brand, event…" required>
@@ -1176,7 +1263,74 @@
 
     </div>
   </div>
+
+  <!-- ===== MODAL GALLERY OVERLAY ===== -->
+  <div id="galleryModal" class="modal-backdrop">
+    <div class="modal-gallery">
+      <div class="modal-gallery-header">
+        <span>Gallery</span>
+        <button class="modal-close" type="button" aria-label="Close gallery">&times;</button>
+      </div>
+      <div class="modal-gallery-track">
+        <div class="modal-gallery-images" id="modalGalleryImages">
+          <!-- Images injected by JavaScript -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===== PORTFOLIO GALLERIES =====
+    // When you're ready, add up to ~20 image paths for each gallery here.
+    // Example: "images/portraits/portrait-01.jpg"
+    const galleryImages = {
+      portraits: [
+        // 'images/portraits/portrait-01.jpg',
+        // 'images/portraits/portrait-02.jpg',
+        // ...
+      ],
+      couples: [
+        // 'images/couples/couples-01.jpg',
+        // ...
+      ],
+      events: [
+        // 'images/events/event-01.jpg',
+        // ...
+      ]
+    };
+
+    const modal = document.getElementById('galleryModal');
+    const modalImages_container = document.getElementById('modalGalleryImages');
+    const closeBtn = document.querySelector('.modal-close');
+
+    document.querySelectorAll('.collection-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const key = card.dataset.gallery;
+        const images = galleryImages[key] || [];
+
+        // Clear previous images
+        modalImages_container.innerHTML = '';
+
+        images.forEach(src => {
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = '';
+          modalImages_container.appendChild(img);
+        });
+
+        modal.classList.add('active');
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+  </script>
 </body>
 </html>
-
-
