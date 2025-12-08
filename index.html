@@ -278,22 +278,14 @@
       transition: opacity 0.25s ease-out;
     }
 
-    .image-hover:hover img {
+    /* Zoom only the image being hovered (prevents neighbor slides from peeking) */
+    .image-hover img:hover {
       transform: scale(1.02);
       filter: saturate(1.03);
     }
 
     .image-hover:hover::after {
       opacity: 1;
-    }
-
-    /* Disable zoom effect for hero carousel to prevent edge bleed */
-    .hero-right.image-hover:hover img {
-      transform: none;
-      filter: none;
-    }
-    .hero-right.image-hover:hover::after {
-      opacity: 0;
     }
 
     /* ===== HERO ===== */
@@ -723,12 +715,27 @@
       border: 1px solid var(--color-border-soft);
       background: #fff;
       padding: 16px 16px 18px;
+      cursor: pointer;
+      transition: background 0.2s ease-out, transform 0.2s ease-out;
+    }
+
+    .testimonial-card:hover {
+      background: #f6f0e8;
+      transform: translateY(-1px);
     }
 
     .testimonial-quote {
       font-size: 13px;
       color: var(--color-ink-soft);
       margin-bottom: 10px;
+      transition: font-weight 0.2s ease-out;
+    }
+
+    /* Bold ONLY the quote inside the hovered/clicked card */
+    .testimonial-card:hover .testimonial-quote,
+    .testimonial-card.active .testimonial-quote {
+      font-weight: 600;
+      color: var(--color-ink);
     }
 
     .testimonial-name {
@@ -1316,21 +1323,15 @@
 
   <script>
     // ===== PORTFOLIO GALLERIES =====
-    // When you're ready, add up to ~20 image paths for each gallery here.
-    // Example: "images/portraits/portrait-01.jpg"
     const galleryImages = {
       portraits: [
         // 'images/portraits/portrait-01.jpg',
-        // 'images/portraits/portrait-02.jpg',
-        // ...
       ],
       couples: [
         // 'images/couples/couples-01.jpg',
-        // ...
       ],
       events: [
         // 'images/events/event-01.jpg',
-        // ...
       ]
     };
 
@@ -1367,26 +1368,57 @@
       }
     });
 
-    // ===== HERO IMAGE CAROUSEL =====
+    // ===== TESTIMONIAL CLICK TOGGLE (bold on click as well as hover) =====
+    document.querySelectorAll('.testimonial-card').forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('active');
+      });
+    });
+
+    // ===== HERO IMAGE CAROUSEL (looping, pause on hover) =====
     document.addEventListener('DOMContentLoaded', function () {
       const track = document.querySelector('.hero-carousel-track');
       const heroCarousel = document.querySelector('.hero-carousel');
       if (!track || !heroCarousel) return;
 
-      const slides = track.querySelectorAll('.hero-carousel-image');
-      const total = slides.length;
+      let slides = Array.from(track.children);
+      const originalSlideCount = slides.length;
+
+      // Clone first slide and append to the end for seamless looping
+      const firstClone = slides[0].cloneNode(true);
+      track.appendChild(firstClone);
+
       let currentIndex = 0;
       let carouselInterval = null;
+      let isTransitioning = false;
 
-      function showSlide(index) {
+      function goToSlide(index) {
+        isTransitioning = true;
+        track.style.transition = 'transform 0.7s ease-in-out';
         track.style.transform = 'translateX(-' + (index * 100) + '%)';
       }
 
+      function handleTransitionEnd() {
+        isTransitioning = false;
+        // If we've reached the clone (index === originalSlideCount), snap back to real first slide
+        if (currentIndex === originalSlideCount) {
+          track.style.transition = 'none';
+          currentIndex = 0;
+          track.style.transform = 'translateX(0%)';
+          // Force reflow so the browser applies the non-animated state
+          void track.offsetWidth;
+          track.style.transition = 'transform 0.7s ease-in-out';
+        }
+      }
+
+      track.addEventListener('transitionend', handleTransitionEnd);
+
       function startCarousel() {
-        if (carouselInterval !== null || total <= 1) return;
+        if (carouselInterval !== null || originalSlideCount <= 1) return;
         carouselInterval = setInterval(function () {
-          currentIndex = (currentIndex + 1) % total;
-          showSlide(currentIndex);
+          if (isTransitioning) return;
+          currentIndex += 1;
+          goToSlide(currentIndex);
         }, 5000);
       }
 
