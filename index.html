@@ -7,7 +7,6 @@
   <meta name="description" content="Warm, honest, nostalgic photography based in Dallas, TX. Portraits, couples, brands, and events by Matthew Norton." />
 
   <style>
-    /* Load Hesland (upload fonts/hesland-sans.otf) */
     @font-face {
       font-family: "Hesland";
       src: url("fonts/hesland-sans.otf") format("opentype");
@@ -17,30 +16,25 @@
     }
 
     :root {
-      /* Brand palette */
-      --color-page: #F6E1D0;   /* cream */
-      --color-ink: #302F2B;    /* deep charcoal */
-      --color-accent: #DA6049; /* warm red */
+      --color-page: #F6E1D0;
+      --color-ink: #302F2B;
+      --color-accent: #DA6049;
       --color-accent-soft: rgba(218, 96, 73, 0.12);
       --color-muted: #8C7463;
       --color-border: #D6C3B3;
       --color-tag-bg: #FDF7F1;
 
-      --font-heading: "Hesland", system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-      --font-body: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      --font-heading: "Hesland", system-ui, sans-serif;
+      --font-body: system-ui, sans-serif;
 
       --max-width: 1080px;
       --radius-lg: 18px;
       --radius-md: 12px;
       --radius-sm: 8px;
-      --shadow-soft: 0 14px 35px rgba(0, 0, 0, 0.08);
+      --shadow-soft: 0 14px 35px rgba(0,0,0,0.08);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background: var(--color-page);
@@ -50,15 +44,9 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
+    img { max-width: 100%; display: block; }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
     .page {
       min-height: 100vh;
@@ -72,24 +60,22 @@
       max-width: var(--max-width);
     }
 
-    /* HEADER / NAV – minimal & editorial */
-
+    /* HEADER */
     header {
       position: sticky;
       top: 0;
       z-index: 50;
       backdrop-filter: blur(10px);
-      background: rgba(246, 225, 208, 0.92);
+      background: rgba(246,225,208,0.92);
       margin-bottom: 24px;
       border-bottom: 1px solid var(--color-border);
     }
 
     .nav {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       padding: 10px 0;
-      gap: 16px;
     }
 
     .brand {
@@ -104,7 +90,7 @@
       border-radius: 999px;
       overflow: hidden;
       border: 1px solid var(--color-border);
-      background: #FFF7F0;
+      background: #FFF;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -132,7 +118,6 @@
 
     .nav-links {
       display: flex;
-      align-items: center;
       gap: 16px;
       font-size: 11px;
       text-transform: uppercase;
@@ -140,49 +125,12 @@
       font-family: var(--font-heading);
     }
 
-    .nav-links a {
-      padding: 4px 6px;
-      border-radius: 999px;
-      color: var(--color-muted);
-      transition: background 0.18s ease, color 0.18s ease;
-    }
+    main { display: flex; flex-direction: column; gap: 44px; }
 
-    .nav-links a:hover {
-      background: var(--color-accent-soft);
-      color: var(--color-ink);
-    }
-
-    .nav-cta {
-      border-radius: 999px;
-      padding: 7px 14px;
-      border: 1px solid var(--color-ink);
-      cursor: pointer;
-      background: transparent;
-      color: var(--color-ink);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-weight: 500;
-      font-family: var(--font-heading);
-      transition: background 0.18s ease, color 0.18s ease;
-    }
-
-    .nav-cta:hover {
-      background: var(--color-ink);
-      color: #FDF7F1;
-    }
-
-    /* HERO – editorial, airy */
-
-    main {
-      display: flex;
-      flex-direction: column;
-      gap: 44px;
-    }
-
+    /* HERO */
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      grid-template-columns: 1.1fr 0.9fr;
       gap: 28px;
       margin-top: 10px;
       padding-bottom: 4px;
@@ -217,46 +165,22 @@
       max-width: 480px;
     }
 
-    .hero-tagline strong {
-      color: var(--color-ink);
-      font-weight: 500;
-    }
-
-    .hero-meta {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--color-muted);
-      font-family: var(--font-heading);
-    }
-
     .hero-actions {
       display: flex;
-      flex-wrap: wrap;
       gap: 12px;
-      margin-top: 4px;
+      margin-top: 6px;
     }
 
     .btn-primary {
       border-radius: 999px;
       padding: 10px 18px;
       background: var(--color-accent);
-      color: #FDF7F1;
+      color: #fff;
       border: none;
       cursor: pointer;
       font-size: 12px;
-      font-weight: 500;
-      text-transform: uppercase;
       letter-spacing: 0.18em;
       font-family: var(--font-heading);
-      box-shadow: var(--shadow-soft);
-      transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    .btn-primary:hover {
-      background: #e7755f;
-      transform: translateY(-1px);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.15);
     }
 
     .btn-ghost {
@@ -267,18 +191,8 @@
       color: var(--color-ink);
       cursor: pointer;
       font-size: 12px;
-      text-transform: uppercase;
       letter-spacing: 0.18em;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
       font-family: var(--font-heading);
-      transition: background 0.18s ease, color 0.18s ease;
-    }
-
-    .btn-ghost:hover {
-      background: var(--color-ink);
-      color: #FDF7F1;
     }
 
     .hero-gallery {
@@ -286,7 +200,6 @@
       border: 1px solid var(--color-border);
       background: #FBF3EB;
       padding: 10px;
-      box-shadow: var(--shadow-soft);
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -294,7 +207,7 @@
 
     .hero-gallery-row {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(3,1fr);
       gap: 6px;
     }
 
@@ -304,27 +217,16 @@
       border-radius: var(--radius-md);
     }
 
-    .hero-gallery-caption {
-      font-size: 11px;
-      color: var(--color-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-family: var(--font-heading);
-    }
-
-    /* SECTION BASE */
-
+    /* WHAT I SHOOT */
     section {
       border-radius: var(--radius-lg);
       border: 1px solid var(--color-border);
       background: #FDF7F1;
-      padding: 22px 18px 22px;
+      padding: 22px;
       box-shadow: var(--shadow-soft);
     }
 
-    .section-header {
-      margin-bottom: 14px;
-    }
+    .section-header { margin-bottom: 14px; }
 
     .section-kicker {
       font-size: 11px;
@@ -348,34 +250,73 @@
       margin-top: 6px;
     }
 
-    /* ABOUT */
+    .shoot-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
 
+    .shoot-item {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      padding: 10px;
+      background: #fff;
+    }
+
+    .shoot-item h3 {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 12px;
+      margin-bottom: 6px;
+      font-family: var(--font-heading);
+    }
+
+    /* PORTFOLIO */
+    .portfolio-collections {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .collection-card {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      background: #fff;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .collection-card img {
+      height: 150px;
+      object-fit: cover;
+    }
+
+    /* ABOUT */
     .about-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+      grid-template-columns: 1.2fr 0.8fr;
       gap: 18px;
-      margin-top: 6px;
       align-items: start;
     }
 
     .about-text {
-      font-size: 14px;
-      color: var(--color-muted);
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 16px;
+      color: var(--color-muted);
+      font-size: 14px;
     }
 
     .about-text strong {
       color: var(--color-ink);
-      font-weight: 500;
     }
 
     .about-photo {
       border-radius: var(--radius-md);
       overflow: hidden;
       border: 1px solid var(--color-border);
-      background: #FDF7F1;
     }
 
     .about-photo img {
@@ -385,269 +326,57 @@
       max-height: 420px;
     }
 
-    /* WHAT I SHOOT */
-
-    .shoot-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 10px;
-      font-size: 13px;
-    }
-
-    .shoot-item {
-      border-radius: var(--radius-md);
-      border: 1px solid var(--color-border);
-      padding: 10px 11px;
-      background: #FFFDF9;
-    }
-
-    .shoot-item h3 {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      margin-bottom: 4px;
-      font-family: var(--font-heading);
-    }
-
-    .shoot-item p {
-      color: var(--color-muted);
-    }
-
-    /* PORTFOLIO COLLECTIONS */
-
-    .portfolio-collections {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .collection-card {
-      border-radius: var(--radius-md);
-      border: 1px solid var(--color-border);
-      background: #FFFDF9;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-    }
-
-    .collection-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
-      border-color: rgba(218, 96, 73, 0.5);
-    }
-
-    .collection-card img {
-      height: 150px;
-      object-fit: cover;
-      width: 100%;
-    }
-
-    .collection-body {
-      padding: 10px 11px 12px;
-      font-size: 13px;
-    }
-
-    .collection-title {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      margin-bottom: 4px;
-      font-family: var(--font-heading);
-    }
-
-    .collection-note {
-      font-size: 12px;
-      color: var(--color-muted);
-    }
-
-    /* FEATURES / PRESS */
-
-    .features-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .feature-pill {
-      border-radius: 999px;
-      padding: 9px 16px;
-      background: #FFFFFF;
-      color: var(--color-ink);
-      border: 1px solid var(--color-border);
-      font-size: 13px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      min-height: 40px;
-      font-family: var(--font-heading);
-      letter-spacing: 0.06em;
-      transition: background 0.18s ease, border-color 0.18s ease;
-    }
-
-    .feature-pill:hover {
-      background: var(--color-tag-bg);
-      border-color: var(--color-accent);
-    }
-
     /* CONTACT */
-
     .contact-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      grid-template-columns: 1fr 1fr;
       gap: 18px;
-      margin-top: 8px;
     }
 
     .contact-card form {
       display: grid;
       gap: 10px;
-      font-size: 13px;
     }
 
     label {
       font-size: 11px;
-      text-transform: uppercase;
       letter-spacing: 0.18em;
+      text-transform: uppercase;
       color: var(--color-muted);
-      display: block;
-      margin-bottom: 4px;
       font-family: var(--font-heading);
     }
 
-    input,
-    textarea {
+    input, textarea {
       width: 100%;
       border-radius: var(--radius-sm);
       border: 1px solid var(--color-border);
-      background: #FFFDF9;
-      padding: 9px 10px;
+      background: #fff;
+      padding: 9px;
       font-size: 13px;
-      color: var(--color-ink);
-      outline: none;
-      transition: border-color 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
-      font-family: var(--font-body);
     }
 
-    input:focus,
-    textarea:focus {
-      border-color: rgba(218, 96, 73, 0.7);
-      box-shadow: 0 0 0 1px rgba(218, 96, 73, 0.25);
-      background: #FFFFFF;
-    }
-
-    textarea {
-      min-height: 110px;
-      resize: vertical;
-    }
-
-    .helper-text {
-      font-size: 11px;
-      color: var(--color-muted);
-      margin-top: 4px;
-    }
-
-    .contact-side {
-      font-size: 13px;
-      color: var(--color-muted);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .contact-email {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--color-ink);
-      word-break: break-all;
-    }
-
-    .social-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 4px;
-    }
-
-    .social-pill {
-      border-radius: 999px;
-      padding: 6px 10px;
-      border: 1px solid var(--color-border);
-      background: #FFFDF9;
-      font-size: 12px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--color-muted);
-      font-family: var(--font-heading);
-      letter-spacing: 0.08em;
-      transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
-    }
-
-    .social-pill span {
-      font-size: 16px;
-    }
-
-    .social-pill:hover {
-      border-color: rgba(218, 96, 73, 0.8);
-      background: var(--color-tag-bg);
-      color: var(--color-ink);
-    }
+    textarea { min-height: 110px; }
 
     /* FOOTER */
-
     footer {
       margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--color-border);
       font-size: 11px;
       color: var(--color-muted);
       display: flex;
       justify-content: space-between;
-      gap: 8px;
-      flex-wrap: wrap;
-      border-top: 1px solid var(--color-border);
-      padding-top: 16px;
     }
 
-    /* RESPONSIVE */
-
-    @media (max-width: 900px) {
-      .hero,
-      .about-layout,
-      .contact-layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-gallery {
-        order: -1;
-      }
-
-      .portfolio-collections {
-        grid-template-columns: repeat(2, minmax(0,1fr));
+    @media(max-width:900px) {
+      .hero, .about-layout, .contact-layout {
+        grid-template-columns: 1fr;
       }
     }
 
-    @media (max-width: 640px) {
-      .page {
-        padding-inline: 16px;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .portfolio-collections,
-      .shoot-grid {
-        grid-template-columns: minmax(0,1fr);
-      }
-
-      .hero-gallery img {
-        height: 170px;
-      }
-    }
   </style>
 </head>
+
 <body>
   <div class="page">
     <div class="shell">
@@ -657,21 +386,18 @@
         <nav class="nav">
           <div class="brand">
             <div class="brand-logo">
-              <!-- BLACK LOGO IN HEADER -->
-              <img src="images/matthew-logo-black-border.png" alt="Matthew Norton Photos logo">
+              <img src="images/matthew-logo-black-border.png" alt="Matthew Norton Logo">
             </div>
             <div>
               <div class="brand-text-main">Matthew Norton Photos</div>
-              <div class="brand-text-sub">Dallas, Texas · Portrait &amp; Brand</div>
+              <div class="brand-text-sub">Dallas, Texas · Portrait & Brand</div>
             </div>
           </div>
+
           <div class="nav-links">
             <a href="#portfolio">Portfolio</a>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
-            <button class="nav-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-              Book a Session
-            </button>
           </div>
         </nav>
       </header>
@@ -679,46 +405,39 @@
       <main>
 
         <!-- HERO -->
-        <section class="hero" id="top" style="background:transparent; box-shadow:none; padding:0;">
+        <section class="hero">
           <div class="hero-text">
             <div class="hero-kicker">Dallas, TX · Available for travel</div>
             <h1 class="hero-title">Honest, nostalgic photographs<br>for people who care more about connection than perfection.</h1>
             <p class="hero-tagline">
               I believe a meaningful photograph doesn’t just capture a moment — it connects one. My work is about
-              <strong>truth over perfection, curiosity over trends, and images that still matter years from now</strong>.
+              <strong>truth over perfection, curiosity over trends, and images that still matter years from now.</strong>
             </p>
             <div class="hero-actions">
-              <button class="btn-primary" type="button" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">
+              <button class="btn-primary" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">
                 View Portfolio
               </button>
-              <button class="btn-ghost" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+              <button class="btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
                 → Book a Session
               </button>
             </div>
-            <div class="hero-meta">
-              Portraits · Couples · Brands · Events
-            </div>
           </div>
 
-          <!-- 3–5 FEATURED IMAGES -->
-          <aside class="hero-gallery" aria-label="Featured images">
+          <div class="hero-gallery">
             <div class="hero-gallery-row">
-              <!-- TODO: replace these src values with real image paths -->
-              <img src="images/featured-01.jpg" alt="Featured photo 1 by Matthew Norton">
-              <img src="images/featured-02.jpg" alt="Featured photo 2 by Matthew Norton">
-              <img src="images/featured-03.jpg" alt="Featured photo 3 by Matthew Norton">
+              <img src="images/featured-01.jpg" alt="">
+              <img src="images/featured-02.jpg" alt="">
+              <img src="images/featured-03.jpg" alt="">
             </div>
-            <div class="hero-gallery-caption">
-              A few of my favorite frames.
-            </div>
-          </aside>
+            <div class="hero-gallery-caption">A few of my favorite frames.</div>
+          </div>
         </section>
 
         <!-- WHAT I SHOOT -->
         <section id="what-i-shoot">
           <div class="section-header">
             <div class="section-kicker">What I shoot</div>
-            <h2 class="section-title">People, stories &amp; honest moments</h2>
+            <h2 class="section-title">People, stories & honest moments</h2>
             <p class="section-subtitle">
               I’m a portrait photographer at heart, but my work often overlaps into couples, brands, and live events — wherever people and story meet.
             </p>
@@ -749,38 +468,19 @@
           <div class="section-header">
             <div class="section-kicker">Portfolio</div>
             <h2 class="section-title">Collections</h2>
-            <p class="section-subtitle">
-              Explore a few focused galleries. Each collection is a smaller, intentional slice of my work.
-            </p>
+            <p class="section-subtitle">Explore a few focused galleries. Each is an intentional slice of my work.</p>
           </div>
 
           <div class="portfolio-collections">
-            <!-- Portraits -->
-            <article class="collection-card" onclick="openImage('images/portraits/portrait-01.jpg')" aria-label="Portraits portfolio">
-              <img src="images/portraits/portrait-01.jpg" alt="Portraits by Matthew Norton">
-              <div class="collection-body">
-                <div class="collection-title">Portraits</div>
-                <div class="collection-note">Faces, details, and everyday characters — studio and on-location.</div>
-              </div>
-            </article>
-
-            <!-- Couples -->
-            <article class="collection-card" onclick="openImage('images/couples/couple-01.jpg')" aria-label="Couples portfolio">
-              <img src="images/couples/couple-01.jpg" alt="Couple photography by Matthew Norton">
-              <div class="collection-body">
-                <div class="collection-title">Couples</div>
-                <div class="collection-note">Sessions built around movement, inside jokes, and shared routines.</div>
-              </div>
-            </article>
-
-            <!-- Events -->
-            <article class="collection-card" onclick="openImage('images/events/event-01.jpg')" aria-label="Events portfolio">
-              <img src="images/events/event-01.jpg" alt="Event photography by Matthew Norton">
-              <div class="collection-body">
-                <div class="collection-title">Events</div>
-                <div class="collection-note">Moments on and off the stage — worship, conferences, and community.</div>
-              </div>
-            </article>
+            <div class="collection-card">
+              <img src="images/portraits/portrait-01.jpg" alt="">
+            </div>
+            <div class="collection-card">
+              <img src="images/couples/couple-01.jpg" alt="">
+            </div>
+            <div class="collection-card">
+              <img src="images/events/event-01.jpg" alt="">
+            </div>
           </div>
 
           <p class="section-subtitle" style="margin-top:14px;">
@@ -809,39 +509,8 @@
             </div>
 
             <aside class="about-photo">
-              <!-- YOUR PORTRAIT IN ABOUT -->
-              <img src="images/matthew-portrait.jpg" alt="Portrait of Matthew Norton">
+              <img src="images/matthew-portrait.jpg?v=2" alt="Portrait of Matthew Norton">
             </aside>
-          </div>
-        </section>
-
-        <!-- FEATURES & HIGHLIGHTS -->
-        <section id="features">
-          <div class="section-header">
-            <div class="section-kicker">Features &amp; highlights</div>
-            <h2 class="section-title">A few places my work has shown up</h2>
-            <p class="section-subtitle">
-              Select interviews, articles, and publications.
-            </p>
-          </div>
-
-          <div class="features-list">
-            <!-- TODO: replace # with your real links -->
-            <a class="feature-pill" href="#" target="_blank" rel="noreferrer">
-              Local Stories Article · SHOUTOUT DFW
-            </a>
-            <a class="feature-pill" href="#" target="_blank" rel="noreferrer">
-              Working with Models · The Real Model Talk Podcast
-            </a>
-            <a class="feature-pill" href="#" target="_blank" rel="noreferrer">
-              Suburban Dancefloor · HORIZONT Issue 5 Vol. 10
-            </a>
-            <a class="feature-pill" href="#" target="_blank" rel="noreferrer">
-              Young Elegance · HORIZONT Issue 5 Vol. 9
-            </a>
-            <a class="feature-pill" href="#" target="_blank" rel="noreferrer">
-              Autumn in Greece · HORIZONT Issue 5 Vol. 5
-            </a>
           </div>
         </section>
 
@@ -849,68 +518,36 @@
         <section id="contact">
           <div class="section-header">
             <div class="section-kicker">Contact</div>
-            <h2 class="section-title">Book a session</h2>
+            <h2 class="section-title">Book a Session</h2>
             <p class="section-subtitle">
-              Share a few details below and I’ll get back to you with availability, pricing, and next steps. No pressure, no weird sales pitch.
+              Share a few details below and I’ll get back to you with availability, pricing, and next steps.
             </p>
           </div>
 
           <div class="contact-layout">
             <div class="contact-card">
-              <!-- This opens the visitor's email client with your email + form details -->
               <form action="mailto:matthewnortonphotos@gmail.com?subject=New%20Photo%20Inquiry" method="POST" enctype="text/plain">
-                <div>
-                  <label for="name">Name</label>
-                  <input type="text" id="name" name="Name" required>
-                </div>
-                <div>
-                  <label for="email">Email</label>
-                  <input type="email" id="email" name="Email" required>
-                </div>
-                <div>
-                  <label for="type">What are you looking to book?</label>
-                  <input type="text" id="type" name="Session Type" placeholder="Portraits, couples, brand, event..." required>
-                </div>
-                <div>
-                  <label for="message">Message</label>
-                  <textarea id="message" name="Message" placeholder="Tell me a bit about what you’re dreaming up. Dates, location, and anything else that matters."></textarea>
-                </div>
+                <label>Name</label>
+                <input type="text" name="Name" required>
+
+                <label>Email</label>
+                <input type="email" name="Email" required>
+
+                <label>Session Type</label>
+                <input type="text" name="Type" placeholder="Portraits, couples, brand, event…" required>
+
+                <label>Message</label>
+                <textarea name="Message" placeholder="Tell me about what you're dreaming up…"></textarea>
+
                 <button class="btn-primary" type="submit">Send Inquiry</button>
-                <p class="helper-text">
-                  This will open your email app with the details filled in. If it doesn’t work, you can email me directly at
-                  <strong>matthewnortonphotos@gmail.com</strong>.
-                </p>
               </form>
             </div>
 
-            <aside class="contact-side">
-              <p>
-                Based in <strong>Dallas, TX</strong> — available for travel.
-              </p>
-              <p>
-                Prefer to reach out directly? Email:
-              </p>
-              <p class="contact-email">
-                matthewnortonphotos@gmail.com
-              </p>
-              <p>
-                You can also find more of my work and day-to-day life here:
-              </p>
-              <div class="social-row">
-                <a href="https://www.instagram.com/matthewnortonphotos" class="social-pill" target="_blank" rel="noreferrer">
-                  <span>◎</span> Instagram
-                </a>
-                <a href="https://www.tiktok.com/@matthewnortonphotos" class="social-pill" target="_blank" rel="noreferrer">
-                  <span>▶</span> TikTok
-                </a>
-                <a href="https://direct.me/matthewnortonphotos" class="social-pill" target="_blank" rel="noreferrer">
-                  <span>✶</span> Direct.me
-                </a>
-                <a href="mailto:matthewnortonphotos@gmail.com" class="social-pill">
-                  <span>@</span> E-mail
-                </a>
-              </div>
-            </aside>
+            <div class="contact-side">
+              <p>Based in <strong>Dallas, TX</strong> — available for travel.</p>
+              <p>Email me directly:</p>
+              <p class="contact-email">matthewnortonphotos@gmail.com</p>
+            </div>
           </div>
         </section>
 
@@ -918,14 +555,14 @@
 
       <!-- FOOTER -->
       <footer>
-        <div>© 2025 Matthew Norton Photography. All rights reserved.</div>
+        <div>© 2025 Matthew Norton Photos. All rights reserved.</div>
         <div>Based in Dallas, TX — available for travel.</div>
       </footer>
+
     </div>
   </div>
 
   <script>
-    // Simple "lightbox" behavior – opens images in a new tab
     function openImage(src) {
       window.open(src, '_blank');
     }
