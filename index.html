@@ -474,6 +474,146 @@
       object-fit: cover;
     }
 
+    /* ===== DEEPLY CURIOUS BOOK BANNER ===== */
+    .book-section {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+      gap: 26px;
+      padding: 26px 26px 24px;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(4, 9, 20, 0.9);
+      background:
+        radial-gradient(circle at 16% 20%, rgba(249, 169, 58, 0.26), transparent 55%),
+        linear-gradient(135deg, #050814, #111827);
+      color: #FDF7F1;
+      align-items: center;
+    }
+
+    .book-cover-wrap {
+      max-width: 260px;
+      justify-self: flex-start;
+    }
+
+    .book-cover-wrap img {
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      object-fit: cover;
+      border-radius: 14px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+    }
+
+    .book-content {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .book-kicker {
+      font-family: var(--font-heading);
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(249, 206, 137, 0.9);
+    }
+
+    .book-title {
+      font-family: "Gotham Condensed", "MNTitle", "Hesland", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 900;
+      font-size: 30px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      line-height: 1.05;
+    }
+
+    .book-subtitle {
+      font-family: "Gotham Condensed", "MNSubtitle", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(249, 206, 137, 0.96);
+      margin-top: 2px;
+    }
+
+    .book-body {
+      font-size: 13px;
+      color: rgba(248, 244, 236, 0.95);
+      max-width: 520px;
+      margin-top: 6px;
+    }
+
+    .book-body strong {
+      font-weight: 600;
+    }
+
+    .book-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px 16px;
+      margin-top: 4px;
+      font-size: 12px;
+      color: rgba(243, 235, 222, 0.9);
+    }
+
+    .book-list li::before {
+      content: "•";
+      margin-right: 6px;
+      color: rgba(249, 169, 58, 0.95);
+      font-weight: 700;
+    }
+
+    .book-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .book-cta-primary,
+    .book-cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-pill);
+      padding: 9px 18px;
+      font-family: var(--font-heading);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .book-cta-primary {
+      background: #F9A93A;
+      color: #050814;
+      border: none;
+    }
+
+    .book-cta-primary:hover {
+      background: #f59d1b;
+    }
+
+    .book-cta-secondary {
+      background: transparent;
+      color: #FDF7F1;
+      border: 1px solid rgba(249, 206, 137, 0.7);
+    }
+
+    .book-cta-secondary:hover {
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .book-note {
+      margin-top: 4px;
+      font-size: 11px;
+      font-family: var(--font-heading);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(229, 224, 213, 0.9);
+    }
+
     /* ===== FEATURES / HIGHLIGHTS ===== */
     .features-pills {
       display: flex;
@@ -868,7 +1008,8 @@
     @media (max-width: 960px) {
       .hero,
       .about-layout,
-      .contact-layout {
+      .contact-layout,
+      .book-section {
         grid-template-columns: 1fr;
       }
 
@@ -876,11 +1017,20 @@
         order: -1;
       }
 
+      .book-cover-wrap {
+        justify-self: center;
+        max-width: 230px;
+      }
+
       .portfolio-collections {
         grid-template-columns: repeat(2, minmax(0,1fr));
       }
 
       .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .book-list {
         grid-template-columns: 1fr;
       }
     }
@@ -934,6 +1084,10 @@
 
       .modal-gallery-images img {
         height: 60vh;
+      }
+
+      .book-cover-wrap {
+        max-width: 210px;
       }
     }
   </style>
@@ -1023,6 +1177,43 @@
               </div>
             </div>
           </aside>
+        </section>
+
+        <!-- DEEPLY CURIOUS BOOK BANNER -->
+        <section id="book" class="book-section">
+          <div class="book-cover-wrap image-hover">
+            <img src="images/deeply-curious.png" alt="Deeply Curious: Staying Inspired Behind the Lens - ebook cover">
+          </div>
+          <div class="book-content">
+            <div class="book-kicker">New e-book · For photographers &amp; creatives</div>
+            <h2 class="book-title">Deeply Curious</h2>
+            <div class="book-subtitle">Staying Inspired Behind the Lens</div>
+
+            <p class="book-body">
+              This is a field guide for photographers who love making images but feel a little burned out by the scroll.
+              It’s part honest conversation, part practical manual — helping you <strong>reconnect with why you started,
+              not just what you shoot.</strong>
+            </p>
+
+            <ul class="book-list">
+              <li>See like a photographer again, not just a content creator.</li>
+              <li>Trade perfectionism for honest, people-first images.</li>
+              <li>Build rhythm, confidence, and a portfolio with intention.</li>
+              <li>Use checklists, prompts, and tools you can apply on your next shoot.</li>
+            </ul>
+
+            <div class="book-ctas">
+              <!-- TODO: replace # with your live Amazon link when the book launches -->
+              <a class="book-cta-primary" href="#" target="_blank" rel="noreferrer">Buy on Amazon</a>
+              <a class="book-cta-secondary" href="mailto:matthewnortonphotos@gmail.com?subject=Deeply%20Curious%20Launch%20Questions">
+                Launch &amp; resources
+              </a>
+            </div>
+
+            <p class="book-note">
+              Also coming soon to Etsy &amp; Gumroad — built for photographers who want their spark back.
+            </p>
+          </div>
         </section>
 
         <!-- FEATURES & HIGHLIGHTS -->
@@ -1439,4 +1630,3 @@
   </script>
 </body>
 </html>
-
