@@ -7,6 +7,7 @@
   <meta name="description" content="Warm, honest, nostalgic photography based in Dallas, TX. Portraits, couples, brands, and events by Matthew Norton." />
 
   <style>
+    /* ===== FONTS ===== */
     @font-face {
       font-family: "Hesland";
       src: url("fonts/hesland-sans.otf") format("opentype");
@@ -15,42 +16,73 @@
       font-display: swap;
     }
 
-    :root {
-      --color-page: #F6E1D0;
-      --color-ink: #302F2B;
-      --color-accent: #DA6049;
-      --color-accent-soft: rgba(218, 96, 73, 0.12);
-      --color-muted: #8C7463;
-      --color-border: #D6C3B3;
-      --color-tag-bg: #FDF7F1;
-
-      --font-heading: "Hesland", system-ui, sans-serif;
-      --font-body: system-ui, sans-serif;
-
-      --max-width: 1080px;
-      --radius-lg: 18px;
-      --radius-md: 12px;
-      --radius-sm: 8px;
-      --shadow-soft: 0 14px 35px rgba(0,0,0,0.08);
+    /* Update these two src values to match the font files you uploaded */
+    @font-face {
+      font-family: "MNTitle";
+      src: url("fonts/mn-title.otf") format("opentype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    @font-face {
+      font-family: "MNSubtitle";
+      src: url("fonts/mn-subtitle.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      /* Brand palette from style guide */
+      --color-ink: #302F2B;
+      --color-paper: #F6E1D0;
+      --color-accent: #DA6049;
+      --color-accent-deep: #8E6249;
+      --color-ink-soft: rgba(48,47,43,0.72);
+      --color-blue: #324A56;
+
+      --color-border-soft: rgba(48,47,43,0.12);
+      --color-chip-bg: rgba(218,96,73,0.08);
+
+      --font-display: "MNTitle", "Hesland", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-heading: "Hesland", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --max-width: 1120px;
+      --radius-xl: 22px;
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --radius-pill: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
-      background: var(--color-page);
+      background: var(--color-paper);
       color: var(--color-ink);
       font-family: var(--font-body);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
 
-    img { max-width: 100%; display: block; }
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     .page {
       min-height: 100vh;
-      padding: 24px 18px 64px;
+      padding: 24px 20px 64px;
       display: flex;
       justify-content: center;
     }
@@ -60,37 +92,37 @@
       max-width: var(--max-width);
     }
 
-    /* HEADER */
+    /* ===== HEADER / NAV ===== */
     header {
       position: sticky;
       top: 0;
-      z-index: 50;
-      backdrop-filter: blur(10px);
-      background: rgba(246,225,208,0.92);
-      margin-bottom: 24px;
-      border-bottom: 1px solid var(--color-border);
+      z-index: 40;
+      backdrop-filter: blur(14px);
+      background: rgba(246,225,208,0.94);
+      border-bottom: 1px solid var(--color-border-soft);
     }
 
     .nav {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       padding: 10px 0;
+      gap: 20px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .brand-logo {
-      width: 38px;
-      height: 38px;
+      width: 40px;
+      height: 40px;
       border-radius: 999px;
       overflow: hidden;
-      border: 1px solid var(--color-border);
-      background: #FFF;
+      border: 1px solid var(--color-border-soft);
+      background: #111;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -104,76 +136,169 @@
 
     .brand-text-main {
       font-family: var(--font-heading);
-      font-size: 14px;
+      font-size: 13px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
     }
 
     .brand-text-sub {
-      font-size: 11px;
-      text-transform: uppercase;
+      font-family: var(--font-heading);
+      font-size: 10px;
       letter-spacing: 0.18em;
-      color: var(--color-muted);
+      text-transform: uppercase;
+      color: var(--color-ink-soft);
+      margin-top: 2px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 22px;
     }
 
     .nav-links {
       display: flex;
-      gap: 16px;
+      gap: 18px;
+      font-family: var(--font-heading);
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      font-family: var(--font-heading);
     }
 
-    main { display: flex; flex-direction: column; gap: 44px; }
+    .nav-links a {
+      position: relative;
+      padding-bottom: 3px;
+    }
 
-    /* HERO */
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--color-ink);
+      transition: width 0.18s ease-out;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn-booking {
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      background: var(--color-accent);
+      color: #fff;
+      border: none;
+      font-family: var(--font-heading);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-booking:hover {
+      background: var(--color-accent-deep);
+    }
+
+    /* ===== GLOBAL SECTION STYLES ===== */
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+      margin-top: 28px;
+    }
+
+    section {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-border-soft);
+      padding: 26px 26px 28px;
+      background: rgba(253,247,241,0.86);
+    }
+
+    .section-header {
+      margin-bottom: 18px;
+    }
+
+    .section-kicker {
+      font-family: var(--font-heading);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-ink-soft);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .section-subtitle {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--color-ink-soft);
+      max-width: 520px;
+      margin-top: 6px;
+    }
+
+    /* ===== HERO ===== */
     .hero {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 28px;
-      margin-top: 10px;
-      padding-bottom: 4px;
-      border-bottom: 1px solid var(--color-border);
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: 32px;
+      padding: 32px 26px 30px;
+      background: rgba(253,247,241,0.92);
     }
 
-    .hero-text {
+    .hero-left {
       display: flex;
       flex-direction: column;
       gap: 18px;
     }
 
     .hero-kicker {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      color: var(--color-muted);
       font-family: var(--font-heading);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-ink-soft);
     }
 
     .hero-title {
-      font-family: var(--font-heading);
+      font-family: var(--font-display);
       font-size: clamp(32px, 5vw, 46px);
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      line-height: 1.2;
+      line-height: 1.18;
     }
 
     .hero-tagline {
+      font-family: var(--font-body);
       font-size: 14px;
-      color: var(--color-muted);
-      max-width: 480px;
+      color: var(--color-ink-soft);
+      max-width: 520px;
+    }
+
+    .hero-tagline strong {
+      color: var(--color-ink);
+      font-weight: 600;
     }
 
     .hero-actions {
       display: flex;
+      flex-wrap: wrap;
       gap: 12px;
       margin-top: 6px;
     }
 
     .btn-primary {
-      border-radius: 999px;
-      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      padding: 10px 20px;
       background: var(--color-accent);
       color: #fff;
       border: none;
@@ -181,11 +306,16 @@
       font-size: 12px;
       letter-spacing: 0.18em;
       font-family: var(--font-heading);
+      text-transform: uppercase;
+    }
+
+    .btn-primary:hover {
+      background: var(--color-accent-deep);
     }
 
     .btn-ghost {
-      border-radius: 999px;
-      padding: 10px 16px;
+      border-radius: var(--radius-pill);
+      padding: 10px 18px;
       border: 1px solid var(--color-ink);
       background: transparent;
       color: var(--color-ink);
@@ -193,111 +323,136 @@
       font-size: 12px;
       letter-spacing: 0.18em;
       font-family: var(--font-heading);
+      text-transform: uppercase;
     }
 
-    .hero-gallery {
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--color-border);
-      background: #FBF3EB;
-      padding: 10px;
+    .btn-ghost:hover {
+      background: #fff;
+    }
+
+    .hero-meta {
       display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .hero-gallery-row {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 6px;
-    }
-
-    .hero-gallery img {
-      height: 150px;
-      object-fit: cover;
-      border-radius: var(--radius-md);
-    }
-
-    /* WHAT I SHOOT */
-    section {
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--color-border);
-      background: #FDF7F1;
-      padding: 22px;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .section-header { margin-bottom: 14px; }
-
-    .section-kicker {
-      font-size: 11px;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 18px;
+      font-family: var(--font-heading);
+      font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      color: var(--color-muted);
-      font-family: var(--font-heading);
+      color: var(--color-ink-soft);
     }
 
-    .section-title {
-      font-family: var(--font-heading);
-      font-size: 18px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-top: 4px;
+    .hero-meta span {
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(48,47,43,0.16);
+      background: rgba(246,225,208,0.4);
     }
 
-    .section-subtitle {
-      font-size: 13px;
-      color: var(--color-muted);
+    .hero-right {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--color-border-soft);
+      background: #111;
+    }
+
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      max-height: 520px;
+    }
+
+    /* ===== FEATURES / HIGHLIGHTS ===== */
+    .features-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
       margin-top: 6px;
     }
 
+    .feature-pill {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      border-radius: 999px;
+      background: #F2ECE5;
+      font-family: var(--font-heading);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .feature-pill:hover {
+      background: #E6DDD2;
+    }
+
+    .feature-pill span {
+      font-weight: 500;
+    }
+
+    /* ===== WHAT I SHOOT ===== */
     .shoot-grid {
       display: grid;
-      grid-template-columns: repeat(2,1fr);
-      gap: 10px;
-      margin-top: 10px;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      margin-top: 12px;
     }
 
     .shoot-item {
-      border-radius: var(--radius-md);
-      border: 1px solid var(--color-border);
-      padding: 10px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border-soft);
+      padding: 14px 14px 16px;
       background: #fff;
     }
 
     .shoot-item h3 {
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      font-size: 12px;
-      margin-bottom: 6px;
       font-family: var(--font-heading);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
     }
 
-    /* PORTFOLIO */
+    .shoot-item p {
+      font-size: 13px;
+      color: var(--color-ink-soft);
+    }
+
+    /* ===== PORTFOLIO ===== */
     .portfolio-collections {
       display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 10px;
-      margin-top: 10px;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+      margin-top: 14px;
     }
 
     .collection-card {
-      border-radius: var(--radius-md);
-      border: 1px solid var(--color-border);
-      background: #fff;
+      border-radius: var(--radius-lg);
       overflow: hidden;
+      border: 1px solid var(--color-border-soft);
+      background: #111;
       cursor: pointer;
     }
 
     .collection-card img {
-      height: 150px;
+      height: 200px;
       object-fit: cover;
+      width: 100%;
     }
 
-    /* ABOUT */
+    .portfolio-note {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--color-ink-soft);
+      max-width: 520px;
+    }
+
+    /* ===== ABOUT ===== */
     .about-layout {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 18px;
+      grid-template-columns: minmax(0,1.15fr) minmax(0,0.85fr);
+      gap: 22px;
       align-items: start;
     }
 
@@ -305,8 +460,8 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
-      color: var(--color-muted);
       font-size: 14px;
+      color: var(--color-ink-soft);
     }
 
     .about-text strong {
@@ -314,66 +469,219 @@
     }
 
     .about-photo {
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
       overflow: hidden;
-      border: 1px solid var(--color-border);
+      border: 1px solid var(--color-border-soft);
+      background: #111;
     }
 
     .about-photo img {
       width: 100%;
       height: auto;
+      max-height: 460px;
       object-fit: cover;
-      max-height: 420px;
     }
 
-    /* CONTACT */
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .testimonial-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border-soft);
+      background: #fff;
+      padding: 16px 16px 18px;
+    }
+
+    .testimonial-quote {
+      font-size: 13px;
+      color: var(--color-ink-soft);
+      margin-bottom: 10px;
+    }
+
+    .testimonial-name {
+      font-family: var(--font-heading);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--color-ink);
+    }
+
+    .testimonial-meta {
+      font-size: 11px;
+      color: var(--color-ink-soft);
+      margin-top: 2px;
+    }
+
+    /* ===== CONTACT / BOOKING ===== */
     .contact-layout {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      grid-template-columns: minmax(0,1.05fr) minmax(0,0.95fr);
+      gap: 22px;
     }
 
     .contact-card form {
       display: grid;
-      gap: 10px;
+      gap: 12px;
     }
 
     label {
-      font-size: 11px;
+      font-size: 10px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--color-muted);
+      color: var(--color-ink-soft);
       font-family: var(--font-heading);
     }
 
-    input, textarea {
+    input,
+    textarea {
       width: 100%;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border-soft);
       background: #fff;
-      padding: 9px;
+      padding: 9px 10px;
       font-size: 13px;
+      font-family: var(--font-body);
     }
 
-    textarea { min-height: 110px; }
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
 
-    /* FOOTER */
-    footer {
-      margin-top: 24px;
-      padding-top: 16px;
-      border-top: 1px solid var(--color-border);
+    .contact-side {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      font-size: 13px;
+      color: var(--color-ink-soft);
+    }
+
+    .contact-email {
+      font-family: var(--font-heading);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
       font-size: 11px;
-      color: var(--color-muted);
+      color: var(--color-ink);
+    }
+
+    .contact-socials {
+      margin-top: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .social-row-label {
+      font-family: var(--font-heading);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--color-ink-soft);
+    }
+
+    .social-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .chip-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      background: var(--color-chip-bg);
+      border: 1px solid rgba(48,47,43,0.16);
+      font-family: var(--font-heading);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .chip-link:hover {
+      background: rgba(218,96,73,0.16);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid var(--color-border-soft);
+      font-size: 11px;
+      color: var(--color-ink-soft);
       display: flex;
       justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
     }
 
-    @media(max-width:900px) {
-      .hero, .about-layout, .contact-layout {
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 960px) {
+      .hero,
+      .about-layout,
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      .portfolio-collections {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+
+      .testimonials-grid {
         grid-template-columns: 1fr;
       }
     }
 
+    @media (max-width: 720px) {
+      .page {
+        padding-inline: 14px;
+      }
+
+      header {
+        border-radius: 0;
+      }
+
+      .nav {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .nav-right {
+        width: 100%;
+        justify-content: flex-end;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      .hero,
+      section {
+        padding: 20px 16px 22px;
+        border-radius: 18px;
+      }
+
+      .hero-title {
+        font-size: 28px;
+      }
+
+      .shoot-grid,
+      .portfolio-collections {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 
@@ -381,38 +689,53 @@
   <div class="page">
     <div class="shell">
 
-      <!-- HEADER -->
+      <!-- ===== HEADER ===== -->
       <header>
         <nav class="nav">
           <div class="brand">
             <div class="brand-logo">
+              <!-- Black logo in the top left -->
               <img src="images/matthew-logo-black-border.png" alt="Matthew Norton Logo">
             </div>
             <div>
               <div class="brand-text-main">Matthew Norton Photos</div>
-              <div class="brand-text-sub">Dallas, Texas · Portrait & Brand</div>
+              <div class="brand-text-sub">Dallas, Texas · Portrait &amp; Brand</div>
             </div>
           </div>
 
-          <div class="nav-links">
-            <a href="#portfolio">Portfolio</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+          <div class="nav-right">
+            <div class="nav-links">
+              <a href="#portfolio">Portfolio</a>
+              <a href="#about">About</a>
+              <a href="#features">Features</a>
+              <a href="#testimonials">Testimonials</a>
+              <a href="#contact">Contact</a>
+            </div>
+            <button class="btn-booking" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+              Booking
+            </button>
           </div>
         </nav>
       </header>
 
+      <!-- ===== MAIN ===== -->
       <main>
 
         <!-- HERO -->
         <section class="hero">
-          <div class="hero-text">
+          <div class="hero-left">
             <div class="hero-kicker">Dallas, TX · Available for travel</div>
-            <h1 class="hero-title">Honest, nostalgic photographs<br>for people who care more about connection than perfection.</h1>
+
+            <h1 class="hero-title">
+              Honest, nostalgic photographs<br>
+              for people who care more about connection than perfection.
+            </h1>
+
             <p class="hero-tagline">
               I believe a meaningful photograph doesn’t just capture a moment — it connects one. My work is about
               <strong>truth over perfection, curiosity over trends, and images that still matter years from now.</strong>
             </p>
+
             <div class="hero-actions">
               <button class="btn-primary" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">
                 View Portfolio
@@ -421,15 +744,52 @@
                 → Book a Session
               </button>
             </div>
+
+            <div class="hero-meta">
+              <span>Portraits</span>
+              <span>Couples</span>
+              <span>Brands</span>
+              <span>Events</span>
+            </div>
           </div>
 
-          <div class="hero-gallery">
-            <div class="hero-gallery-row">
-              <img src="images/featured-01.jpg" alt="">
-              <img src="images/featured-02.jpg" alt="">
-              <img src="images/featured-03.jpg" alt="">
-            </div>
-            <div class="hero-gallery-caption">A few of my favorite frames.</div>
+          <aside class="hero-right">
+            <!-- Hero image (full-bleed style) -->
+            <img src="images/hero-portrait.jpg" alt="Sample portrait by Matthew Norton">
+          </aside>
+        </section>
+
+        <!-- FEATURES & HIGHLIGHTS -->
+        <section id="features">
+          <div class="section-header">
+            <div class="section-kicker">Features &amp; Highlights</div>
+            <h2 class="section-title">Selected Press &amp; Conversations</h2>
+            <p class="section-subtitle">
+              A few places my work and story have shown up. Each link opens in a new tab.
+            </p>
+          </div>
+
+          <div class="features-pills">
+            <a class="feature-pill" href="https://shoutoutdfw.com/meet-matthew-norton-urban-portrait-photographer-content-creator/" target="_blank" rel="noreferrer">
+              <span>Local Stories Article | SHOUTOUT DFW</span>
+            </a>
+
+            <a class="feature-pill" href="https://open.spotify.com/episode/5gyh492IbkKOBcJWlrVlIM" target="_blank" rel="noreferrer">
+              <span>Working with Models | The Real Model Talk Podcast</span>
+            </a>
+
+            <!-- Update these three href values when you have public URLs -->
+            <a class="feature-pill" href="#" target="_blank" rel="noreferrer">
+              <span>Suburban Dancefloor | HORIZONT Issue 5 Vol. 10</span>
+            </a>
+
+            <a class="feature-pill" href="#" target="_blank" rel="noreferrer">
+              <span>Young Elegance | HORIZONT Issue 5 Vol. 9</span>
+            </a>
+
+            <a class="feature-pill" href="#" target="_blank" rel="noreferrer">
+              <span>Autumn in Greece | HORIZONT Issue 5 Vol. 5</span>
+            </a>
           </div>
         </section>
 
@@ -437,7 +797,7 @@
         <section id="what-i-shoot">
           <div class="section-header">
             <div class="section-kicker">What I shoot</div>
-            <h2 class="section-title">People, stories & honest moments</h2>
+            <h2 class="section-title">People, stories &amp; honest moments</h2>
             <p class="section-subtitle">
               I’m a portrait photographer at heart, but my work often overlaps into couples, brands, and live events — wherever people and story meet.
             </p>
@@ -473,17 +833,17 @@
 
           <div class="portfolio-collections">
             <div class="collection-card">
-              <img src="images/portraits/portrait-01.jpg" alt="">
+              <img src="images/portraits/portrait-01.jpg" alt="Portraits collection preview">
             </div>
             <div class="collection-card">
-              <img src="images/couples/couple-01.jpg" alt="">
+              <img src="images/couples/couple-01.jpg" alt="Couples collection preview">
             </div>
             <div class="collection-card">
-              <img src="images/events/event-01.jpg" alt="">
+              <img src="images/events/event-01.jpg" alt="Events collection preview">
             </div>
           </div>
 
-          <p class="section-subtitle" style="margin-top:14px;">
+          <p class="portfolio-note">
             Want to see something specific (such as a full gallery)? Mention it in your inquiry and I’ll send over a curated set.
           </p>
         </section>
@@ -509,12 +869,58 @@
             </div>
 
             <aside class="about-photo">
+              <!-- Your portrait in the About section -->
               <img src="images/matthew-portrait.jpg?v=2" alt="Portrait of Matthew Norton">
             </aside>
           </div>
         </section>
 
-        <!-- CONTACT -->
+        <!-- TESTIMONIALS -->
+        <section id="testimonials">
+          <div class="section-header">
+            <div class="section-kicker">Testimonials</div>
+            <h2 class="section-title">Words from clients</h2>
+            <p class="section-subtitle">
+              Space for four stories you can rotate or update over time. Replace this placeholder text with your own client words.
+            </p>
+          </div>
+
+          <div class="testimonials-grid">
+            <div class="testimonial-card">
+              <div class="testimonial-quote">
+                “Testimonial text goes here. Keep it to a few sentences that feel like something your client would say in their own words.”
+              </div>
+              <div class="testimonial-name">Client Name One</div>
+              <div class="testimonial-meta">Session type · Year</div>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="testimonial-quote">
+                “Testimonial text goes here. You can highlight how the experience felt as much as the final images.”
+              </div>
+              <div class="testimonial-name">Client Name Two</div>
+              <div class="testimonial-meta">Session type · Year</div>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="testimonial-quote">
+                “Testimonial text goes here. Consider including one quote from a brand, event, or long-term collaborator.”
+              </div>
+              <div class="testimonial-name">Client Name Three</div>
+              <div class="testimonial-meta">Session type · Year</div>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="testimonial-quote">
+                “Testimonial text goes here. Keep it simple and honest, just like the work.”
+              </div>
+              <div class="testimonial-name">Client Name Four</div>
+              <div class="testimonial-meta">Session type · Year</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CONTACT / BOOKING -->
         <section id="contact">
           <div class="section-header">
             <div class="section-kicker">Contact</div>
@@ -526,7 +932,7 @@
 
           <div class="contact-layout">
             <div class="contact-card">
-              <form action="mailto:matthewnortonphotos@gmail.com?subject=New%20Photo%20Inquiry" method="POST" enctype="text/plain">
+              <form action="mailto:matthewnortonphotos.com?subject=New%20Photo%20Inquiry" method="POST" enctype="text/plain">
                 <label>Name</label>
                 <input type="text" name="Name" required>
 
@@ -545,27 +951,43 @@
 
             <div class="contact-side">
               <p>Based in <strong>Dallas, TX</strong> — available for travel.</p>
-              <p>Email me directly:</p>
-              <p class="contact-email">matthewnortonphotos@gmail.com</p>
+
+              <div>
+                <div class="social-row-label">Email</div>
+                <a href="mailto:matthewnortonphotos.com" class="contact-email">matthewnortonphotos.com</a>
+              </div>
+
+              <div class="contact-socials">
+                <div class="social-row-label">Elsewhere</div>
+                <div class="social-buttons">
+                  <a class="chip-link" href="https://instagram.com/matthewnortonphotos" target="_blank" rel="noreferrer">
+                    Instagram
+                  </a>
+                  <a class="chip-link" href="https://www.tiktok.com/@matthewnortonphotos" target="_blank" rel="noreferrer">
+                    TikTok
+                  </a>
+                  <a class="chip-link" href="https://direct.me/matthewnortonphotos?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnbn9KBJOyedCfxzKtIRNumpg99BVoIryVqV7-0wZdE_QsSXYyT-GSsxLPDuk_aem_-GYXmgvz978KZYxcD0anPA#" target="_blank" rel="noreferrer">
+                    Direct.me
+                  </a>
+                </div>
+              </div>
+
+              <p>
+                If forms aren’t your thing, you can always reach out directly via email or socials and share what you’re dreaming up.
+              </p>
             </div>
           </div>
         </section>
 
       </main>
 
-      <!-- FOOTER -->
+      <!-- ===== FOOTER ===== -->
       <footer>
         <div>© 2025 Matthew Norton Photos. All rights reserved.</div>
-        <div>Based in Dallas, TX — available for travel.</div>
+        <div>Warm, honest, nostalgic photography based in Dallas, Texas.</div>
       </footer>
 
     </div>
   </div>
-
-  <script>
-    function openImage(src) {
-      window.open(src, '_blank');
-    }
-  </script>
 </body>
 </html>
