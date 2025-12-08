@@ -62,6 +62,10 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       background: var(--color-paper);
       color: var(--color-ink);
@@ -114,6 +118,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      cursor: pointer; /* clickable brand */
     }
 
     .brand-logo {
@@ -244,6 +249,40 @@
       color: var(--color-ink-soft);
       max-width: 520px;
       margin-top: 6px;
+    }
+
+    /* ===== IMAGE HOVER HIGHLIGHT ===== */
+    .image-hover {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .image-hover img {
+      transition: transform 0.35s ease-out, filter 0.35s ease-out;
+    }
+
+    .image-hover::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.15),
+        rgba(255,255,255,0.03)
+      );
+      mix-blend-mode: screen;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease-out;
+    }
+
+    .image-hover:hover img {
+      transform: scale(1.02);
+      filter: saturate(1.03);
+    }
+
+    .image-hover:hover::after {
+      opacity: 1;
     }
 
     /* ===== HERO ===== */
@@ -743,10 +782,10 @@
     <div class="shell">
 
       <!-- ===== HEADER ===== -->
-      <header>
+      <header id="top">
         <nav class="nav">
-          <div class="brand">
-            <div class="brand-logo">
+          <div class="brand" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+            <div class="brand-logo image-hover">
               <img src="images/matthew-logo-black-border.png" alt="Matthew Norton Logo">
             </div>
             <div>
@@ -805,7 +844,7 @@
             </div>
           </div>
 
-          <aside class="hero-right">
+          <aside class="hero-right image-hover">
             <img src="images/austin-michael-1.JPG" alt="Portrait by Matthew Norton">
           </aside>
         </section>
@@ -882,13 +921,13 @@
           </div>
 
           <div class="portfolio-collections">
-            <div class="collection-card">
+            <div class="collection-card image-hover">
               <img src="images/rachel-1.JPG" alt="Portraits collection preview">
             </div>
-            <div class="collection-card">
+            <div class="collection-card image-hover">
               <img src="images/jo-sandy-1.jpg" alt="Couples collection preview">
             </div>
-            <div class="collection-card">
+            <div class="collection-card image-hover">
               <img src="images/naomi-1.JPG" alt="Events collection preview">
             </div>
           </div>
@@ -957,7 +996,7 @@
               </div>
             </div>
 
-            <aside class="about-photo">
+            <aside class="about-photo image-hover">
               <img src="images/matthew-portrait-2.JPG" alt="Portrait of Matthew Norton">
             </aside>
           </div>
@@ -1020,7 +1059,7 @@
 
           <div class="contact-layout">
             <div class="contact-card">
-              <form action="mailto:matthewnortonphotos@gmail..com?subject=New%20Photo%20Inquiry" method="POST" enctype="text/plain">
+              <form action="mailto:matthewnortonphotos@gmail.com?subject=New%20Photo%20Inquiry" method="POST" enctype="text/plain">
                 <label>Name</label>
                 <input type="text" name="Name" required>
 
@@ -1042,7 +1081,7 @@
 
               <div>
                 <div class="social-row-label">Email</div>
-                <a href="mailto:matthewnortonphotos.com" class="contact-email">matthewnortonphotos.com</a>
+                <a href="mailto:matthewnortonphotos@gmail.com" class="contact-email">matthewnortonphotos@gmail.com</a>
               </div>
 
               <div class="contact-socials">
