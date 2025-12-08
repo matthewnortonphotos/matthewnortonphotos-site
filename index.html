@@ -484,6 +484,46 @@
       display: block;
     }
 
+    /* QUICK FACTS UNDER ABOUT TEXT */
+    .about-facts {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--color-border-soft);
+    }
+
+    .about-facts-label {
+      font-family: var(--font-heading);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-ink-soft);
+      margin-bottom: 10px;
+    }
+
+    .about-facts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px 16px;
+    }
+
+    .about-fact {
+      font-size: 12px;
+    }
+
+    .about-fact-heading {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-ink-soft);
+      margin-bottom: 4px;
+    }
+
+    .about-fact-body {
+      color: var(--color-ink-soft);
+    }
+
     /* ===== TESTIMONIALS ===== */
     .testimonials-grid {
       display: grid;
@@ -683,6 +723,10 @@
       .portfolio-collections {
         grid-template-columns: 1fr;
       }
+
+      .about-facts-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -865,6 +909,25 @@
               <p>
                 If you’re looking for stiff poses and retouched perfection, I’m probably not your photographer. If you want images that feel like you, I’d love to work together.
               </p>
+
+              <!-- QUICK FACTS BLOCK -->
+              <div class="about-facts">
+                <div class="about-facts-label">At a glance</div>
+                <div class="about-facts-grid">
+                  <div class="about-fact">
+                    <span class="about-fact-heading">Base</span>
+                    <span class="about-fact-body">Dallas, Texas · Available for travel</span>
+                  </div>
+                  <div class="about-fact">
+                    <span class="about-fact-heading">Since</span>
+                    <span class="about-fact-body">2017 — portraits, couples, live music &amp; events</span>
+                  </div>
+                  <div class="about-fact">
+                    <span class="about-fact-heading">Focus</span>
+                    <span class="about-fact-body">Warm, nostalgic, people-first photography</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <aside class="about-photo">
@@ -989,5 +1052,3 @@
   </div>
 </body>
 </html>
-
-
