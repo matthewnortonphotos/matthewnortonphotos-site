@@ -388,6 +388,60 @@
       background: rgba(246,225,208,0.4);
     }
 
+    /* HERO REVIEW FORM */
+    .hero-review {
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px solid var(--color-border-soft);
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .hero-review-label {
+      font-family: var(--font-heading);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--color-ink-soft);
+    }
+
+    .hero-review input,
+    .hero-review textarea {
+      width: 100%;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border-soft);
+      background: #fff;
+      padding: 8px 10px;
+      font-size: 12px;
+      font-family: var(--font-body);
+    }
+
+    .hero-review textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .btn-review {
+      align-self: flex-start;
+      margin-top: 4px;
+      border-radius: var(--radius-pill);
+      padding: 8px 16px;
+      border: 1px solid var(--color-accent);
+      background: transparent;
+      color: var(--color-accent-deep);
+      cursor: pointer;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      font-family: var(--font-heading);
+      text-transform: uppercase;
+    }
+
+    .btn-review:hover {
+      background: rgba(218,96,73,0.08);
+    }
+
     .hero-right {
       border-radius: var(--radius-xl);
       overflow: hidden;
@@ -800,7 +854,6 @@
               <a href="#about">About</a>
               <a href="#features">Features</a>
               <a href="#testimonials">Testimonials</a>
-              <!-- Contact removed from nav -->
             </div>
             <button class="btn-booking" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
               Booking
@@ -818,7 +871,8 @@
             <div class="hero-kicker">Dallas, TX · Available for travel</div>
 
             <h1 class="hero-title">
-              Honest, nostalgic photography.<br>
+              Honest, nostalgic photographs<br>
+              for people who care more about connection than perfection.
             </h1>
 
             <p class="hero-tagline">
@@ -841,6 +895,14 @@
               <span>Brands</span>
               <span>Events</span>
             </div>
+
+            <!-- WRITE A REVIEW -->
+            <form class="hero-review" action="mailto:matthewnortonphotos@gmail.com?subject=New%20Website%20Review" method="POST" enctype="text/plain">
+              <div class="hero-review-label">Write a review</div>
+              <input type="text" name="Name" placeholder="Your name" required>
+              <textarea name="Review" placeholder="Share a few words about your experience…" required></textarea>
+              <button class="btn-review" type="submit">Submit review</button>
+            </form>
           </div>
 
           <aside class="hero-right image-hover">
@@ -1117,4 +1179,5 @@
   </div>
 </body>
 </html>
+
 
