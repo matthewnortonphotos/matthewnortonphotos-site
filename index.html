@@ -5,7 +5,8 @@
   <title>Matthew Norton Photos | Dallas Photographer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Warm, honest, nostalgic photography based in Dallas, TX. Portraits, couples, brands, and events by Matthew Norton." />
-  <link rel="icon" type="image/png" href="images/matthew-logo-black-border.png" />
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="images/MNmono5.PNG" />
 
   <style>
     /* ===== FONTS ===== */
@@ -284,6 +285,15 @@
 
     .image-hover:hover::after {
       opacity: 1;
+    }
+
+    /* Disable zoom effect for hero carousel to prevent edge bleed */
+    .hero-right.image-hover:hover img {
+      transform: none;
+      filter: none;
+    }
+    .hero-right.image-hover:hover::after {
+      opacity: 0;
     }
 
     /* ===== HERO ===== */
@@ -1360,24 +1370,40 @@
     // ===== HERO IMAGE CAROUSEL =====
     document.addEventListener('DOMContentLoaded', function () {
       const track = document.querySelector('.hero-carousel-track');
-      if (!track) return;
+      const heroCarousel = document.querySelector('.hero-carousel');
+      if (!track || !heroCarousel) return;
 
       const slides = track.querySelectorAll('.hero-carousel-image');
       const total = slides.length;
       let currentIndex = 0;
+      let carouselInterval = null;
 
       function showSlide(index) {
         track.style.transform = 'translateX(-' + (index * 100) + '%)';
       }
 
-      if (total > 1) {
-        setInterval(function () {
+      function startCarousel() {
+        if (carouselInterval !== null || total <= 1) return;
+        carouselInterval = setInterval(function () {
           currentIndex = (currentIndex + 1) % total;
           showSlide(currentIndex);
         }, 5000);
       }
+
+      function stopCarousel() {
+        if (carouselInterval !== null) {
+          clearInterval(carouselInterval);
+          carouselInterval = null;
+        }
+      }
+
+      // Start auto-rotation
+      startCarousel();
+
+      // Pause on hover, resume on mouse leave
+      heroCarousel.addEventListener('mouseenter', stopCarousel);
+      heroCarousel.addEventListener('mouseleave', startCarousel);
     });
   </script>
 </body>
 </html>
-
