@@ -473,6 +473,8 @@
       overflow: hidden;
       border: 1px solid var(--color-border-soft);
       background: #111;
+      max-width: 340px;      /* smaller scale, keeps 2:3 crop */
+      justify-self: end;     /* tuck image to the right in the grid */
     }
 
     /* Force 2:3 vertical orientation for Matthew portrait */
@@ -726,6 +728,11 @@
 
       .about-facts-grid {
         grid-template-columns: 1fr;
+      }
+
+      .about-photo {
+        max-width: none;
+        justify-self: stretch;
       }
     }
   </style>
@@ -1013,7 +1020,7 @@
 
           <div class="contact-layout">
             <div class="contact-card">
-              <form action="mailto:matthewnortonphotos.com?subject=New%20Photo%20Inquiry" method="POST" enctype="text/plain">
+              <form action="mailto:matthewnortonphotos@gmail..com?subject=New%20Photo%20Inquiry" method="POST" enctype="text/plain">
                 <label>Name</label>
                 <input type="text" name="Name" required>
 
