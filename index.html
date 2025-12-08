@@ -5,6 +5,7 @@
   <title>Matthew Norton Photos | Dallas Photographer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Warm, honest, nostalgic photography based in Dallas, TX. Portraits, couples, brands, and events by Matthew Norton." />
+  <link rel="icon" type="image/png" href="images/matthew-logo-black-border.png" />
 
   <style>
     /* ===== FONTS ===== */
@@ -447,12 +448,28 @@
       overflow: hidden;
       border: 1px solid var(--color-border-soft);
       background: #111;
+      position: relative;
+      aspect-ratio: 3 / 4;
     }
 
-    .hero-right img {
+    .hero-carousel {
       width: 100%;
-      height: auto;
-      max-height: 600px;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .hero-carousel-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.7s ease-in-out;
+    }
+
+    .hero-carousel-image {
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     /* ===== FEATURES / HIGHLIGHTS ===== */
@@ -979,7 +996,15 @@
           </div>
 
           <aside class="hero-right image-hover">
-            <img src="images/austin-michael-1.JPG" alt="Portrait by Matthew Norton">
+            <div class="hero-carousel">
+              <div class="hero-carousel-track">
+                <img class="hero-carousel-image" src="images/austin-michael-1.JPG" alt="Portrait by Matthew Norton - Austin Michael">
+                <img class="hero-carousel-image" src="images/bethany-1.jpg" alt="Portrait by Matthew Norton - Bethany">
+                <img class="hero-carousel-image" src="images/adam-1.JPG" alt="Portrait by Matthew Norton - Adam">
+                <img class="hero-carousel-image" src="images/birdie-1.JPG" alt="Portrait by Matthew Norton - Birdie">
+                <img class="hero-carousel-image" src="images/lukis-1.JPG" alt="Portrait by Matthew Norton - Lukis">
+              </div>
+            </div>
           </aside>
         </section>
 
@@ -1331,6 +1356,28 @@
         modal.classList.remove('active');
       }
     });
+
+    // ===== HERO IMAGE CAROUSEL =====
+    document.addEventListener('DOMContentLoaded', function () {
+      const track = document.querySelector('.hero-carousel-track');
+      if (!track) return;
+
+      const slides = track.querySelectorAll('.hero-carousel-image');
+      const total = slides.length;
+      let currentIndex = 0;
+
+      function showSlide(index) {
+        track.style.transform = 'translateX(-' + (index * 100) + '%)';
+      }
+
+      if (total > 1) {
+        setInterval(function () {
+          currentIndex = (currentIndex + 1) % total;
+          showSlide(currentIndex);
+        }, 5000);
+      }
+    });
   </script>
 </body>
 </html>
+
