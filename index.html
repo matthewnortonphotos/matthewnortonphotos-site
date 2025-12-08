@@ -492,6 +492,8 @@
     .book-cover-wrap {
       max-width: 260px;
       justify-self: flex-start;
+      border-radius: 14px;
+      overflow: visible;
     }
 
     .book-cover-wrap img {
@@ -500,6 +502,16 @@
       object-fit: cover;
       border-radius: 14px;
       box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+    }
+
+    /* Disable highlight + zoom effect on this specific image */
+    .book-cover-wrap.image-hover::after {
+      display: none;
+    }
+
+    .book-cover-wrap.image-hover img:hover {
+      transform: none;
+      filter: none;
     }
 
     .book-content {
@@ -1211,7 +1223,7 @@
             </div>
 
             <p class="book-note">
-              Also coming soon to Etsy &amp; Gumroad — built for photographers who want their spark back.
+              Also coming soon to Etsy &amp; Gumroad — MADE FOR PHOTOGRAPHERS WHO WANT THEIR SPARK BACK.
             </p>
           </div>
         </section>
@@ -1630,3 +1642,4 @@
   </script>
 </body>
 </html>
+
