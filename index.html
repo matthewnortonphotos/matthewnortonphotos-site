@@ -188,6 +188,23 @@
 
     .btn-booking:hover { background: var(--color-accent-deep); }
 
+    /* Mobile menu toggle */
+    .nav-toggle {
+      display: none;
+      border: 1px solid rgba(48,47,43,0.22);
+      background: rgba(253,247,241,0.55);
+      color: var(--color-ink);
+      border-radius: 999px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      line-height: 1;
+    }
+    .nav-toggle:hover { background: rgba(253,247,241,0.9); }
+
     /* ===== GLOBAL SECTION STYLES ===== */
     main {
       display: flex;
@@ -299,7 +316,19 @@
       max-width: 520px;
     }
 
-    .hero-tagline strong { color: var(--color-ink); font-weight: 600; }
+    .hero-tagline strong {
+      color: var(--color-ink);
+      font-weight: 600;
+      display: inline-block;
+      cursor: pointer;
+      transition: transform 0.2s ease-out;
+      transform-origin: left center;
+    }
+
+    .hero-tagline strong:hover,
+    .hero-tagline strong.active {
+      transform: scale(1.02);
+    }
 
     .hero-actions {
       display: flex;
@@ -763,10 +792,11 @@
     }
 
     .modal-slide img {
-      max-height: 70vh;
+      max-height: 100%;
       height: auto;
       width: auto;
       max-width: 100%;
+      object-fit: contain;
       border-radius: var(--radius-lg);
     }
 
@@ -846,7 +876,7 @@
 
     .about-facts-label {
       font-family: var(--font-heading);
-      font-size: 10px;
+      font-size: 12px; /* bigger to separate from above */
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--color-ink-soft);
@@ -1043,8 +1073,34 @@
       header { border-radius: 0; }
 
       .nav { flex-wrap: wrap; gap: 10px; }
-      .nav-right { width: 100%; justify-content: flex-end; }
-      .nav-links { gap: 14px; }
+
+      .nav-toggle { display: inline-flex; }
+
+      .nav-right {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 12px;
+        padding-top: 6px;
+      }
+
+      .nav-right.open .nav-links { display: flex; }
+
+      .nav-links a {
+        padding: 10px 2px;
+      }
+
+      .btn-booking {
+        padding: 9px 14px;
+      }
 
       .hero, section { padding: 20px 16px 22px; border-radius: 18px; }
       .hero-title { font-size: 28px; }
@@ -1056,7 +1112,6 @@
 
       .book-cover-wrap { max-width: 210px; }
 
-      .modal-slide img { max-height: 62vh; }
       .modal-arrow { width: 42px; height: 42px; }
     }
   </style>
@@ -1079,13 +1134,16 @@
             </div>
           </div>
 
-          <div class="nav-right">
-            <div class="nav-links">
+          <div class="nav-right" id="navRight">
+            <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+
+            <div class="nav-links" id="navLinks">
               <a href="#portfolio">Portfolio</a>
               <a href="#about">About</a>
               <a href="#features">Features</a>
               <a href="#testimonials">Testimonials</a>
             </div>
+
             <button class="btn-booking" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
               Booking
             </button>
@@ -1107,7 +1165,7 @@
 
             <p class="hero-tagline">
               I believe a meaningful photograph doesn’t just capture a moment — it connects one. My work is about
-              <strong>truth over perfection, curiosity over trends, and images that still matter years from now.</strong>
+              <strong id="heroEmphasis">truth over perfection, curiosity over trends, and images that still matter years from now.</strong>
             </p>
 
             <div class="hero-actions">
@@ -1409,7 +1467,7 @@
 
           <div class="contact-layout">
             <div class="contact-card">
-              <form action="mailto:matthewnortonphotos@gmail.com?subject=New%20Photo%20Inquiry" method="POST" enctype="text/plain">
+              <form id="inquiryForm" action="mailto:matthewnortonphotos@gmail.com?subject=New%20Photo%20Inquiry" method="POST" enctype="text/plain">
                 <label>Name</label>
                 <input type="text" name="Name" placeholder="Your name" required>
 
@@ -1493,8 +1551,7 @@
 
   <script>
     // ===== PORTFOLIO GALLERIES =====
-    // NOTE: You asked for images 1–33 in exact order, using the filenames as written ("potraits-...").
-    // These are set to live in the /images folder.
+    // NOTE: Portraits are set to live in the /images folder.
     const galleryImages = {
       portraits: [
         "images/potraits-1.JPG",
@@ -1532,14 +1589,44 @@
         "images/potraits-33.PNG"
       ],
       couples: [
-        // add later
+        "images/couples-1.jpg",
+        "images/couples-2.jpg",
+        "images/couples-3.jpg",
+        "images/couples-4.jpg",
+        "images/couples-5.jpg",
+        "images/couples-6.jpg",
+        "images/couples-7.jpg",
+        "images/couples-8.jpg",
+        "images/couples-9.JPG",
+        "images/couples-10.JPG",
+        "images/couples-11.JPG",
+        "images/couples-12.JPG",
+        "images/couples-13.jpg",
+        "images/couples-14.jpg",
+        "images/couples-15.jpg",
+        "images/couples-16.jpg",
+        "images/couples-17.jpg",
+        "images/couples-18.jpg",
+        "images/couples-19.jpg",
+        "images/couples-20.jpg",
+        "images/couples-21.jpg",
+        "images/couples-22.jpg",
+        "images/couples-23.jpg",
+        "images/couples-24.jpg",
+        "images/couples-25.jpg",
+        "images/couples-26.jpg",
+        "images/couples-27.jpg",
+        "images/couples-28.jpg",
+        "images/couples-29.png",
+        "images/couples-30.JPG"
       ],
       events: [
-        // add later
+        "images/naomi-1.JPG"
       ]
     };
 
     // ===== MODAL SLIDER (click arrows; no auto-rotation) =====
+    // Updated to loop seamlessly from last -> first (forward) using clones (like the hero carousel).
     const modal = document.getElementById('galleryModal');
     const sliderTrack = document.getElementById('modalSliderTrack');
     const closeBtn = document.querySelector('.modal-close');
@@ -1548,11 +1635,21 @@
     const counterEl = document.getElementById('modalCounter');
 
     let currentGallery = [];
-    let currentIndex = 0;
+    let currentIndex = 0;          // index in the "track" (includes clones)
+    let logicalIndex = 0;          // index in the real images array
+    let isModalTransitioning = false;
 
-    function renderSlides(images) {
+    function buildTrackImages(images) {
+      if (!images || images.length === 0) return [];
+      if (images.length === 1) return [images[0]];
+      const first = images[0];
+      const last = images[images.length - 1];
+      return [last, ...images, first]; // clones on both ends
+    }
+
+    function renderSlides(trackImages) {
       sliderTrack.innerHTML = '';
-      images.forEach((src) => {
+      trackImages.forEach((src) => {
         const slide = document.createElement('div');
         slide.className = 'modal-slide';
 
@@ -1567,27 +1664,34 @@
 
     function updateCounter() {
       const total = currentGallery.length || 1;
-      counterEl.textContent = `${Math.min(currentIndex + 1, total)} / ${total}`;
+      counterEl.textContent = `${Math.min(logicalIndex + 1, total)} / ${total}`;
     }
 
-    function goToSlide(index) {
-      if (!currentGallery.length) return;
-      const total = currentGallery.length;
-      currentIndex = (index + total) % total;
-      sliderTrack.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
-      updateCounter();
+    function setTrackPosition(trackIndex, withTransition = true) {
+      if (withTransition) {
+        sliderTrack.style.transition = 'transform 0.7s ease-in-out';
+      } else {
+        sliderTrack.style.transition = 'none';
+      }
+      sliderTrack.style.transform = 'translateX(-' + (trackIndex * 100) + '%)';
     }
 
     function openGallery(key) {
       currentGallery = galleryImages[key] || [];
-      currentIndex = 0;
+      logicalIndex = 0;
 
-      renderSlides(currentGallery);
-      sliderTrack.style.transition = 'none';
-      sliderTrack.style.transform = 'translateX(0%)';
-      // force reflow then restore transition (prevents initial jank)
+      const trackImages = buildTrackImages(currentGallery);
+      renderSlides(trackImages);
+
+      // Start position:
+      // - If 1 image: index 0
+      // - If many: index 1 (first real image, because index 0 is "last clone")
+      currentIndex = (currentGallery.length > 1) ? 1 : 0;
+
+      // Prevent initial jank
+      setTrackPosition(currentIndex, false);
       void sliderTrack.offsetWidth;
-      sliderTrack.style.transition = 'transform 0.7s ease-in-out';
+      setTrackPosition(currentIndex, true);
 
       updateCounter();
       modal.classList.add('active');
@@ -1597,6 +1701,73 @@
       modal.classList.remove('active');
     }
 
+    function goNext() {
+      if (!currentGallery.length) return;
+
+      const total = currentGallery.length;
+
+      // Single image: do nothing
+      if (total === 1) return;
+
+      if (isModalTransitioning) return;
+      isModalTransitioning = true;
+
+      currentIndex += 1;
+      logicalIndex = (logicalIndex + 1) % total;
+      setTrackPosition(currentIndex, true);
+      updateCounter();
+    }
+
+    function goPrev() {
+      if (!currentGallery.length) return;
+
+      const total = currentGallery.length;
+
+      // Single image: do nothing
+      if (total === 1) return;
+
+      if (isModalTransitioning) return;
+      isModalTransitioning = true;
+
+      currentIndex -= 1;
+      logicalIndex = (logicalIndex - 1 + total) % total;
+      setTrackPosition(currentIndex, true);
+      updateCounter();
+    }
+
+    function handleModalTransitionEnd() {
+      const total = currentGallery.length;
+
+      if (total <= 1) {
+        isModalTransitioning = false;
+        return;
+      }
+
+      // Track layout: [lastClone, ...realImages, firstClone]
+      // Indices: 0 = lastClone, 1..total = real images, total+1 = firstClone
+      if (currentIndex === 0) {
+        // We moved to lastClone via prev from first real.
+        // Jump to last real (index = total) without transition.
+        setTrackPosition(total, false);
+        currentIndex = total;
+        void sliderTrack.offsetWidth;
+        setTrackPosition(currentIndex, true);
+      }
+
+      if (currentIndex === total + 1) {
+        // We moved to firstClone via next from last real.
+        // Jump to first real (index = 1) without transition.
+        setTrackPosition(1, false);
+        currentIndex = 1;
+        void sliderTrack.offsetWidth;
+        setTrackPosition(currentIndex, true);
+      }
+
+      isModalTransitioning = false;
+    }
+
+    sliderTrack.addEventListener('transitionend', handleModalTransitionEnd);
+
     document.querySelectorAll('.collection-card').forEach(card => {
       card.addEventListener('click', () => {
         const key = card.dataset.gallery;
@@ -1604,8 +1775,8 @@
       });
     });
 
-    prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
-    nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+    prevBtn.addEventListener('click', goPrev);
+    nextBtn.addEventListener('click', goNext);
 
     closeBtn.addEventListener('click', closeGallery);
 
@@ -1617,8 +1788,8 @@
     document.addEventListener('keydown', (e) => {
       if (!modal.classList.contains('active')) return;
       if (e.key === 'Escape') closeGallery();
-      if (e.key === 'ArrowLeft') goToSlide(currentIndex - 1);
-      if (e.key === 'ArrowRight') goToSlide(currentIndex + 1);
+      if (e.key === 'ArrowLeft') goPrev();
+      if (e.key === 'ArrowRight') goNext();
     });
 
     // ===== TESTIMONIAL CLICK TOGGLE (bold on click as well as hover) =====
@@ -1634,6 +1805,36 @@
         card.classList.toggle('active');
       });
     });
+
+    // ===== HERO EMPHASIS CLICK TOGGLE (stays expanded) =====
+    const heroEmphasis = document.getElementById('heroEmphasis');
+    if (heroEmphasis) {
+      heroEmphasis.addEventListener('click', () => {
+        heroEmphasis.classList.toggle('active');
+      });
+    }
+
+    // ===== MOBILE NAV TOGGLE =====
+    const navToggle = document.getElementById('navToggle');
+    const navRight = document.getElementById('navRight');
+    const navLinks = document.getElementById('navLinks');
+
+    if (navToggle && navRight && navLinks) {
+      navToggle.addEventListener('click', () => {
+        const isOpen = navRight.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      // Close the menu after tapping a link (mobile-friendly)
+      navLinks.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          if (navRight.classList.contains('open')) {
+            navRight.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+    }
 
     // ===== HERO IMAGE CAROUSEL (looping, pause on hover) =====
     document.addEventListener('DOMContentLoaded', function () {
@@ -1692,7 +1893,7 @@
     });
 
     // ===== REVIEW FORM (mailto to matthewnortonphotos@gmail.com) =====
-    // This builds a clean mailto link so your email address won't be flagged as "invalid" by a broken form action.
+    // Removed the site footer line so it opens as "fresh" as mailto allows.
     document.getElementById('reviewForm').addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -1701,11 +1902,33 @@
 
       const subject = encodeURIComponent('New Website Review');
       const body = encodeURIComponent(
-        `Name: ${name}\n\nReview:\n${review}\n\n— Sent from matthewnortonphotos.github.io`
+        `Name: ${name}\n\nReview:\n${review}`
       );
 
       window.location.href = `mailto:matthewnortonphotos@gmail.com?subject=${subject}&body=${body}`;
     });
+
+    // ===== INQUIRY FORM (mailto built by JS to avoid extra auto-filled bits) =====
+    // Note: Email apps may still append the user's default signature (we can't control that from a website).
+    const inquiryForm = document.getElementById('inquiryForm');
+    if (inquiryForm) {
+      inquiryForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(inquiryForm);
+        const name = (formData.get('Name') || '').toString().trim();
+        const email = (formData.get('Email') || '').toString().trim();
+        const type = (formData.get('Type') || '').toString().trim();
+        const message = (formData.get('Message') || '').toString().trim();
+
+        const subject = encodeURIComponent('New Photo Inquiry');
+        const body = encodeURIComponent(
+          `Name: ${name}\nEmail: ${email}\nSession Type: ${type}\n\nMessage:\n${message}`
+        );
+
+        window.location.href = `mailto:matthewnortonphotos@gmail.com?subject=${subject}&body=${body}`;
+      });
+    }
   </script>
 </body>
 </html>
