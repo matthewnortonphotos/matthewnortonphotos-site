@@ -18,7 +18,6 @@
       font-display: swap;
     }
 
-    /* Update these src values to match your uploaded title/subtitle fonts */
     @font-face {
       font-family: "MNTitle";
       src: url("fonts/mn-title.otf") format("opentype");
@@ -36,7 +35,7 @@
     }
 
     :root {
-      /* Brand palette from style guide */
+      /* Brand palette */
       --color-ink: #302F2B;
       --color-paper: #F6E1D0;
       --color-accent: #DA6049;
@@ -58,15 +57,8 @@
       --radius-pill: 999px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
       background: var(--color-paper);
@@ -76,15 +68,8 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
 
     .page {
       min-height: 100vh;
@@ -93,10 +78,7 @@
       justify-content: center;
     }
 
-    .shell {
-      width: 100%;
-      max-width: var(--max-width);
-    }
+    .shell { width: 100%; max-width: var(--max-width); }
 
     /* ===== HEADER / NAV ===== */
     header {
@@ -120,7 +102,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      cursor: pointer; /* clickable brand */
+      cursor: pointer;
     }
 
     .brand-logo {
@@ -129,7 +111,7 @@
       border-radius: 999px;
       overflow: hidden;
       border: 1px solid var(--color-border-soft);
-      background: var(--color-paper); /* match site background */
+      background: var(--color-paper);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -188,9 +170,7 @@
       transition: width 0.18s ease-out;
     }
 
-    .nav-links a:hover::after {
-      width: 100%;
-    }
+    .nav-links a:hover::after { width: 100%; }
 
     .btn-booking {
       padding: 9px 18px;
@@ -206,9 +186,7 @@
       white-space: nowrap;
     }
 
-    .btn-booking:hover {
-      background: var(--color-accent-deep);
-    }
+    .btn-booking:hover { background: var(--color-accent-deep); }
 
     /* ===== GLOBAL SECTION STYLES ===== */
     main {
@@ -225,9 +203,7 @@
       background: rgba(253,247,241,0.86);
     }
 
-    .section-header {
-      margin-bottom: 18px;
-    }
+    .section-header { margin-bottom: 18px; }
 
     .section-kicker {
       font-family: var(--font-heading);
@@ -278,15 +254,12 @@
       transition: opacity 0.25s ease-out;
     }
 
-    /* Zoom only the image being hovered (prevents neighbor slides from peeking) */
     .image-hover img:hover {
       transform: scale(1.02);
       filter: saturate(1.03);
     }
 
-    .image-hover:hover::after {
-      opacity: 1;
-    }
+    .image-hover:hover::after { opacity: 1; }
 
     /* ===== HERO ===== */
     .hero {
@@ -326,10 +299,7 @@
       max-width: 520px;
     }
 
-    .hero-tagline strong {
-      color: var(--color-ink);
-      font-weight: 600;
-    }
+    .hero-tagline strong { color: var(--color-ink); font-weight: 600; }
 
     .hero-actions {
       display: flex;
@@ -351,9 +321,7 @@
       text-transform: uppercase;
     }
 
-    .btn-primary:hover {
-      background: var(--color-accent-deep);
-    }
+    .btn-primary:hover { background: var(--color-accent-deep); }
 
     .btn-ghost {
       border-radius: var(--radius-pill);
@@ -368,9 +336,7 @@
       text-transform: uppercase;
     }
 
-    .btn-ghost:hover {
-      background: #fff;
-    }
+    .btn-ghost:hover { background: #fff; }
 
     .hero-meta {
       display: flex;
@@ -441,9 +407,7 @@
       text-transform: uppercase;
     }
 
-    .btn-review:hover {
-      background: rgba(218,96,73,0.08);
-    }
+    .btn-review:hover { background: rgba(218,96,73,0.08); }
 
     .hero-right {
       border-radius: var(--radius-xl);
@@ -505,14 +469,8 @@
     }
 
     /* Disable highlight + zoom effect on this specific image */
-    .book-cover-wrap.image-hover::after {
-      display: none;
-    }
-
-    .book-cover-wrap.image-hover img:hover {
-      transform: none;
-      filter: none;
-    }
+    .book-cover-wrap.image-hover::after { display: none; }
+    .book-cover-wrap.image-hover img:hover { transform: none; filter: none; }
 
     .book-content {
       display: flex;
@@ -554,10 +512,6 @@
       margin-top: 6px;
     }
 
-    .book-body strong {
-      font-weight: 600;
-    }
-
     .book-list {
       list-style: none;
       display: grid;
@@ -597,14 +551,15 @@
       cursor: pointer;
     }
 
-    .book-cta-primary {
-      background: #F9A93A;
-      color: #050814;
-      border: none;
-    }
+    .book-cta-primary { background: #F9A93A; color: #050814; border: none; }
+    .book-cta-primary:hover { background: #f59d1b; }
 
-    .book-cta-primary:hover {
-      background: #f59d1b;
+    /* Disabled state for Coming soon */
+    .book-cta-primary.is-disabled {
+      opacity: 0.72;
+      cursor: default;
+      pointer-events: none; /* disables click */
+      user-select: none;
     }
 
     .book-cta-secondary {
@@ -613,9 +568,7 @@
       border: 1px solid rgba(249, 206, 137, 0.7);
     }
 
-    .book-cta-secondary:hover {
-      background: rgba(15, 23, 42, 0.9);
-    }
+    .book-cta-secondary:hover { background: rgba(15, 23, 42, 0.9); }
 
     .book-note {
       margin-top: 4px;
@@ -646,13 +599,8 @@
       text-align: center;
     }
 
-    .feature-pill:hover {
-      background: #E6DDD2;
-    }
-
-    .feature-pill span {
-      font-weight: 500;
-    }
+    .feature-pill:hover { background: #E6DDD2; }
+    .feature-pill span { font-weight: 500; }
 
     /* ===== WHAT I SHOOT ===== */
     .shoot-grid {
@@ -667,6 +615,13 @@
       border: 1px solid var(--color-border-soft);
       padding: 14px 14px 16px;
       background: #fff;
+      cursor: pointer;
+      transition: background 0.2s ease-out, transform 0.2s ease-out;
+    }
+
+    .shoot-item:hover {
+      background: #f6f0e8;
+      transform: translateY(-1px);
     }
 
     .shoot-item h3 {
@@ -675,11 +630,20 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       margin-bottom: 8px;
+      color: var(--color-ink);
     }
 
     .shoot-item p {
       font-size: 13px;
       color: var(--color-ink-soft);
+      transition: font-weight 0.2s ease-out, color 0.2s ease-out;
+    }
+
+    /* Bold ONLY the supporting text on hover/click, like testimonials */
+    .shoot-item:hover p,
+    .shoot-item.active p {
+      font-weight: 600;
+      color: var(--color-ink);
     }
 
     /* ===== PORTFOLIO ===== */
@@ -698,7 +662,6 @@
       cursor: pointer;
     }
 
-    /* 2:3 portrait thumbnails */
     .collection-card img {
       width: 100%;
       aspect-ratio: 2 / 3;
@@ -712,7 +675,7 @@
       max-width: 520px;
     }
 
-    /* ===== MODAL GALLERY ===== */
+    /* ===== MODAL GALLERY OVERLAY (Slider w/ arrows) ===== */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -723,30 +686,44 @@
       z-index: 60;
     }
 
-    .modal-backdrop.active {
-      display: flex;
-    }
+    .modal-backdrop.active { display: flex; }
 
     .modal-gallery {
       background: #111;
       border-radius: var(--radius-xl);
       padding: 14px 14px 18px;
       max-width: min(960px, 100% - 40px);
-      max-height: 80vh;
+      width: 100%;
+      max-height: 84vh;
       display: flex;
       flex-direction: column;
+      gap: 10px;
     }
 
     .modal-gallery-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 8px;
+      gap: 10px;
       color: #FDF7F1;
       font-family: var(--font-heading);
       font-size: 11px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
+    }
+
+    .modal-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .modal-counter {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(253, 247, 241, 0.82);
     }
 
     .modal-close {
@@ -758,23 +735,72 @@
       cursor: pointer;
     }
 
-    .modal-gallery-track {
-      overflow-x: auto;
-      padding-bottom: 8px;
-    }
-
-    .modal-gallery-images {
-      display: flex;
-      gap: 8px;
-    }
-
-    .modal-gallery-images img {
-      height: 70vh;
-      max-height: 640px;
-      width: auto;
+    .modal-slider {
+      position: relative;
+      overflow: hidden;
       border-radius: var(--radius-lg);
-      flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: #0b0b0b;
+      flex: 1;
+      min-height: 300px;
     }
+
+    .modal-slider-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.7s ease-in-out; /* matches hero feel */
+    }
+
+    .modal-slide {
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    .modal-slide img {
+      max-height: 70vh;
+      height: auto;
+      width: auto;
+      max-width: 100%;
+      border-radius: var(--radius-lg);
+    }
+
+    .modal-nav {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .modal-arrow {
+      pointer-events: auto;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 1px solid rgba(253,247,241,0.28);
+      background: rgba(0,0,0,0.35);
+      color: #FDF7F1;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      backdrop-filter: blur(10px);
+    }
+
+    .modal-arrow:hover {
+      background: rgba(0,0,0,0.55);
+      border-color: rgba(253,247,241,0.42);
+    }
+
+    .modal-arrow.prev { left: 10px; }
+    .modal-arrow.next { right: 10px; }
 
     /* ===== ABOUT ===== */
     .about-layout {
@@ -792,20 +818,17 @@
       color: var(--color-ink-soft);
     }
 
-    .about-text strong {
-      color: var(--color-ink);
-    }
+    .about-text strong { color: var(--color-ink); }
 
     .about-photo {
       border-radius: var(--radius-lg);
       overflow: hidden;
       border: 1px solid var(--color-border-soft);
       background: #111;
-      max-width: 340px;      /* smaller scale, keeps 2:3 crop */
-      justify-self: end;     /* tuck image to the right in the grid */
+      max-width: 340px;
+      justify-self: end;
     }
 
-    /* Force 2:3 vertical orientation for Matthew portrait */
     .about-photo img {
       width: 100%;
       aspect-ratio: 2 / 3;
@@ -814,7 +837,7 @@
       display: block;
     }
 
-    /* QUICK FACTS UNDER ABOUT TEXT */
+    /* QUICK FACTS */
     .about-facts {
       margin-top: 18px;
       padding-top: 14px;
@@ -836,9 +859,7 @@
       gap: 10px 16px;
     }
 
-    .about-fact {
-      font-size: 12px;
-    }
+    .about-fact { font-size: 12px; }
 
     .about-fact-heading {
       display: block;
@@ -850,9 +871,7 @@
       margin-bottom: 4px;
     }
 
-    .about-fact-body {
-      color: var(--color-ink-soft);
-    }
+    .about-fact-body { color: var(--color-ink-soft); }
 
     /* ===== TESTIMONIALS ===== */
     .testimonials-grid {
@@ -883,7 +902,6 @@
       transition: font-weight 0.2s ease-out;
     }
 
-    /* Bold ONLY the quote inside the hovered/clicked card */
     .testimonial-card:hover .testimonial-quote,
     .testimonial-card.active .testimonial-quote {
       font-weight: 600;
@@ -930,8 +948,7 @@
       font-family: var(--font-heading);
     }
 
-    input,
-    textarea {
+    input, textarea {
       width: 100%;
       border-radius: var(--radius-md);
       border: 1px solid var(--color-border-soft);
@@ -941,10 +958,7 @@
       font-family: var(--font-body);
     }
 
-    textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
+    textarea { min-height: 120px; resize: vertical; }
 
     .contact-side {
       display: flex;
@@ -999,9 +1013,7 @@
       white-space: nowrap;
     }
 
-    .chip-link:hover {
-      background: rgba(218,96,73,0.16);
-    }
+    .chip-link:hover { background: rgba(218,96,73,0.16); }
 
     /* ===== FOOTER ===== */
     footer {
@@ -1018,89 +1030,34 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 960px) {
-      .hero,
-      .about-layout,
-      .contact-layout,
-      .book-section {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-right {
-        order: -1;
-      }
-
-      .book-cover-wrap {
-        justify-self: center;
-        max-width: 230px;
-      }
-
-      .portfolio-collections {
-        grid-template-columns: repeat(2, minmax(0,1fr));
-      }
-
-      .testimonials-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .book-list {
-        grid-template-columns: 1fr;
-      }
+      .hero, .about-layout, .contact-layout, .book-section { grid-template-columns: 1fr; }
+      .hero-right { order: -1; }
+      .book-cover-wrap { justify-self: center; max-width: 230px; }
+      .portfolio-collections { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .book-list { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 720px) {
-      .page {
-        padding-inline: 14px;
-      }
+      .page { padding-inline: 14px; }
+      header { border-radius: 0; }
 
-      header {
-        border-radius: 0;
-      }
+      .nav { flex-wrap: wrap; gap: 10px; }
+      .nav-right { width: 100%; justify-content: flex-end; }
+      .nav-links { gap: 14px; }
 
-      .nav {
-        flex-wrap: wrap;
-        gap: 10px;
-      }
+      .hero, section { padding: 20px 16px 22px; border-radius: 18px; }
+      .hero-title { font-size: 28px; }
 
-      .nav-right {
-        width: 100%;
-        justify-content: flex-end;
-      }
+      .shoot-grid, .portfolio-collections { grid-template-columns: 1fr; }
+      .about-facts-grid { grid-template-columns: 1fr; }
 
-      .nav-links {
-        gap: 14px;
-      }
+      .about-photo { max-width: none; justify-self: stretch; }
 
-      .hero,
-      section {
-        padding: 20px 16px 22px;
-        border-radius: 18px;
-      }
+      .book-cover-wrap { max-width: 210px; }
 
-      .hero-title {
-        font-size: 28px;
-      }
-
-      .shoot-grid,
-      .portfolio-collections {
-        grid-template-columns: 1fr;
-      }
-
-      .about-facts-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .about-photo {
-        max-width: none;
-        justify-self: stretch;
-      }
-
-      .modal-gallery-images img {
-        height: 60vh;
-      }
-
-      .book-cover-wrap {
-        max-width: 210px;
-      }
+      .modal-slide img { max-height: 62vh; }
+      .modal-arrow { width: 42px; height: 42px; }
     }
   </style>
 </head>
@@ -1169,11 +1126,11 @@
               <span>Events</span>
             </div>
 
-            <!-- WRITE A REVIEW -->
-            <form class="hero-review" action="mailto:matthewnortonphotos@gmail.com?subject=New%20Website%20Review" method="POST" enctype="text/plain">
+            <!-- WRITE A REVIEW (mailto built by JS for reliable formatting) -->
+            <form class="hero-review" id="reviewForm">
               <div class="hero-review-label">Write a review</div>
-              <input type="text" name="Name" placeholder="Your name" required>
-              <textarea name="Review" placeholder="Share a few words about your experience…" required></textarea>
+              <input type="text" id="reviewName" name="Name" placeholder="Your name" required>
+              <textarea id="reviewText" name="Review" placeholder="Share a few words about your experience…" required></textarea>
               <button class="btn-review" type="submit">Submit review</button>
             </form>
           </div>
@@ -1215,9 +1172,10 @@
             </ul>
 
             <div class="book-ctas">
-              <!-- Coming soon placeholder until the Amazon link is live -->
-              <a class="book-cta-primary" href="#" target="_blank" rel="noreferrer">Coming soon</a>
+              <!-- Disabled (not clickable) -->
+              <span class="book-cta-primary is-disabled" aria-disabled="true">Coming soon</span>
 
+              <!-- Active -->
               <a class="book-cta-secondary" href="images/5-curiosity-prompts.pdf" target="_blank" rel="noreferrer">
                 Free resource
               </a>
@@ -1336,7 +1294,6 @@
                 If you’re looking for stiff poses and retouched perfection, I’m probably not your photographer. If you want images that feel like you, I’d love to work together.
               </p>
 
-              <!-- QUICK FACTS BLOCK -->
               <div class="about-facts">
                 <div class="about-facts-label">At a glance</div>
                 <div class="about-facts-grid">
@@ -1512,14 +1469,23 @@
 
   <!-- ===== MODAL GALLERY OVERLAY ===== -->
   <div id="galleryModal" class="modal-backdrop">
-    <div class="modal-gallery">
+    <div class="modal-gallery" role="dialog" aria-modal="true" aria-label="Gallery">
       <div class="modal-gallery-header">
-        <span>Gallery</span>
+        <div class="modal-header-left">
+          <span>Gallery</span>
+          <span class="modal-counter" id="modalCounter">1 / 1</span>
+        </div>
         <button class="modal-close" type="button" aria-label="Close gallery">&times;</button>
       </div>
-      <div class="modal-gallery-track">
-        <div class="modal-gallery-images" id="modalGalleryImages">
-          <!-- Images injected by JavaScript -->
+
+      <div class="modal-slider" aria-live="polite">
+        <div class="modal-slider-track" id="modalSliderTrack">
+          <!-- slides injected by JS -->
+        </div>
+
+        <div class="modal-nav">
+          <button class="modal-arrow prev" type="button" aria-label="Previous image" id="modalPrev">&#8249;</button>
+          <button class="modal-arrow next" type="button" aria-label="Next image" id="modalNext">&#8250;</button>
         </div>
       </div>
     </div>
@@ -1527,53 +1493,143 @@
 
   <script>
     // ===== PORTFOLIO GALLERIES =====
+    // NOTE: You asked for images 1–33 in exact order, using the filenames as written ("potraits-...").
+    // These are set to live in the /images folder.
     const galleryImages = {
       portraits: [
-        // 'images/portraits/portrait-01.jpg',
+        "images/potraits-1.JPG",
+        "images/potraits-2.JPG",
+        "images/potraits-3.JPEG",
+        "images/potraits-4.PNG",
+        "images/potraits-5.JPG",
+        "images/potraits-6.JPG",
+        "images/potraits-7.JPEG",
+        "images/potraits-8.JPG",
+        "images/potraits-9.JPEG",
+        "images/potraits-10.JPG",
+        "images/potraits-11.JPG",
+        "images/potraits-12.JPG",
+        "images/potraits-13.JPG",
+        "images/potraits-14.JPG",
+        "images/potraits-15.jpg",
+        "images/potraits-16.JPG",
+        "images/potraits-17.JPG",
+        "images/potraits-18.JPG",
+        "images/potraits-19.JPEG",
+        "images/potraits-20.JPG",
+        "images/potraits-21.JPG",
+        "images/potraits-22.JPG",
+        "images/potraits-23.JPEG",
+        "images/potraits-24.JPG",
+        "images/potraits-25.JPG",
+        "images/potraits-26.jpg",
+        "images/potraits-27.JPG",
+        "images/potraits-28.JPEG",
+        "images/potraits-29.JPG",
+        "images/potraits-30.JPG",
+        "images/potraits-31.JPG",
+        "images/potraits-32.PNG",
+        "images/potraits-33.PNG"
       ],
       couples: [
-        // 'images/couples/couples-01.jpg',
+        // add later
       ],
       events: [
-        // 'images/events/event-01.jpg',
+        // add later
       ]
     };
 
+    // ===== MODAL SLIDER (click arrows; no auto-rotation) =====
     const modal = document.getElementById('galleryModal');
-    const modalImages_container = document.getElementById('modalGalleryImages');
+    const sliderTrack = document.getElementById('modalSliderTrack');
     const closeBtn = document.querySelector('.modal-close');
+    const prevBtn = document.getElementById('modalPrev');
+    const nextBtn = document.getElementById('modalNext');
+    const counterEl = document.getElementById('modalCounter');
+
+    let currentGallery = [];
+    let currentIndex = 0;
+
+    function renderSlides(images) {
+      sliderTrack.innerHTML = '';
+      images.forEach((src) => {
+        const slide = document.createElement('div');
+        slide.className = 'modal-slide';
+
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = '';
+
+        slide.appendChild(img);
+        sliderTrack.appendChild(slide);
+      });
+    }
+
+    function updateCounter() {
+      const total = currentGallery.length || 1;
+      counterEl.textContent = `${Math.min(currentIndex + 1, total)} / ${total}`;
+    }
+
+    function goToSlide(index) {
+      if (!currentGallery.length) return;
+      const total = currentGallery.length;
+      currentIndex = (index + total) % total;
+      sliderTrack.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+      updateCounter();
+    }
+
+    function openGallery(key) {
+      currentGallery = galleryImages[key] || [];
+      currentIndex = 0;
+
+      renderSlides(currentGallery);
+      sliderTrack.style.transition = 'none';
+      sliderTrack.style.transform = 'translateX(0%)';
+      // force reflow then restore transition (prevents initial jank)
+      void sliderTrack.offsetWidth;
+      sliderTrack.style.transition = 'transform 0.7s ease-in-out';
+
+      updateCounter();
+      modal.classList.add('active');
+    }
+
+    function closeGallery() {
+      modal.classList.remove('active');
+    }
 
     document.querySelectorAll('.collection-card').forEach(card => {
       card.addEventListener('click', () => {
         const key = card.dataset.gallery;
-        const images = galleryImages[key] || [];
-
-        // Clear previous images
-        modalImages_container.innerHTML = '';
-
-        images.forEach(src => {
-          const img = document.createElement('img');
-          img.src = src;
-          img.alt = '';
-          modalImages_container.appendChild(img);
-        });
-
-        modal.classList.add('active');
+        openGallery(key);
       });
     });
 
-    closeBtn.addEventListener('click', () => {
-      modal.classList.remove('active');
-    });
+    prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+    nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+    closeBtn.addEventListener('click', closeGallery);
 
     modal.addEventListener('click', (event) => {
-      if (event.target === modal) {
-        modal.classList.remove('active');
-      }
+      if (event.target === modal) closeGallery();
+    });
+
+    // Keyboard navigation: Esc / arrows
+    document.addEventListener('keydown', (e) => {
+      if (!modal.classList.contains('active')) return;
+      if (e.key === 'Escape') closeGallery();
+      if (e.key === 'ArrowLeft') goToSlide(currentIndex - 1);
+      if (e.key === 'ArrowRight') goToSlide(currentIndex + 1);
     });
 
     // ===== TESTIMONIAL CLICK TOGGLE (bold on click as well as hover) =====
     document.querySelectorAll('.testimonial-card').forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('active');
+      });
+    });
+
+    // ===== WHAT I SHOOT CLICK TOGGLE (bold supporting text on click as well as hover) =====
+    document.querySelectorAll('.shoot-item').forEach(card => {
       card.addEventListener('click', () => {
         card.classList.toggle('active');
       });
@@ -1588,7 +1644,6 @@
       let slides = Array.from(track.children);
       const originalSlideCount = slides.length;
 
-      // Clone first slide and append to the end for seamless looping
       const firstClone = slides[0].cloneNode(true);
       track.appendChild(firstClone);
 
@@ -1596,33 +1651,31 @@
       let carouselInterval = null;
       let isTransitioning = false;
 
-      function goToSlide(index) {
+      function goToHeroSlide(index) {
         isTransitioning = true;
         track.style.transition = 'transform 0.7s ease-in-out';
         track.style.transform = 'translateX(-' + (index * 100) + '%)';
       }
 
-      function handleTransitionEnd() {
+      function handleHeroTransitionEnd() {
         isTransitioning = false;
-        // If we've reached the clone (index === originalSlideCount), snap back to real first slide
         if (currentIndex === originalSlideCount) {
           track.style.transition = 'none';
           currentIndex = 0;
           track.style.transform = 'translateX(0%)';
-          // Force reflow so the browser applies the non-animated state
           void track.offsetWidth;
           track.style.transition = 'transform 0.7s ease-in-out';
         }
       }
 
-      track.addEventListener('transitionend', handleTransitionEnd);
+      track.addEventListener('transitionend', handleHeroTransitionEnd);
 
       function startCarousel() {
         if (carouselInterval !== null || originalSlideCount <= 1) return;
         carouselInterval = setInterval(function () {
           if (isTransitioning) return;
           currentIndex += 1;
-          goToSlide(currentIndex);
+          goToHeroSlide(currentIndex);
         }, 5000);
       }
 
@@ -1633,13 +1686,27 @@
         }
       }
 
-      // Start auto-rotation
       startCarousel();
-
-      // Pause on hover, resume on mouse leave
       heroCarousel.addEventListener('mouseenter', stopCarousel);
       heroCarousel.addEventListener('mouseleave', startCarousel);
+    });
+
+    // ===== REVIEW FORM (mailto to matthewnortonphotos@gmail.com) =====
+    // This builds a clean mailto link so your email address won't be flagged as "invalid" by a broken form action.
+    document.getElementById('reviewForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('reviewName').value.trim();
+      const review = document.getElementById('reviewText').value.trim();
+
+      const subject = encodeURIComponent('New Website Review');
+      const body = encodeURIComponent(
+        `Name: ${name}\n\nReview:\n${review}\n\n— Sent from matthewnortonphotos.github.io`
+      );
+
+      window.location.href = `mailto:matthewnortonphotos@gmail.com?subject=${subject}&body=${body}`;
     });
   </script>
 </body>
 </html>
+
