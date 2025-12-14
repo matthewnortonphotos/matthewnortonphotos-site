@@ -125,10 +125,6 @@
       object-fit: contain;
     }
 
-    .brand-text {
-      min-width: 0;
-    }
-
     .brand-text-main {
       font-family: var(--font-heading);
       font-size: 13px;
@@ -166,6 +162,7 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.18em;
+      white-space: nowrap;
     }
 
     .nav-links a {
@@ -202,91 +199,92 @@
 
     .btn-booking:hover { background: var(--color-accent-deep); }
 
-    /* Mobile controls (hamburger + View Portfolio button) */
-    .mobile-controls {
-      display: none;
-      width: 100%;
+    /* ===== MOBILE HEADER CONTROLS ===== */
+    .mobile-controls { display: none; width: 100%; }
+    .mobile-controls-row {
+      display: flex;
       align-items: center;
-      justify-content: space-between;
       gap: 12px;
-      padding: 10px 0 12px;
-      border-top: 1px solid var(--color-border-soft);
+      padding: 8px 0 6px;
     }
 
     .btn-hamburger {
-      width: 52px;
-      height: 52px;
+      width: 40px; /* match logo circle */
+      height: 40px;
       border-radius: 999px;
-      border: 1px solid rgba(48,47,43,0.18);
-      background: rgba(253,247,241,0.78);
+      border: 1px solid rgba(48,47,43,0.22);
+      background: rgba(253,247,241,0.75);
       display: grid;
       place-items: center;
       cursor: pointer;
       flex: 0 0 auto;
     }
 
+    .btn-hamburger:hover { background: rgba(253,247,241,0.92); }
+
     .btn-hamburger span {
-      font-size: 22px;
+      font-family: var(--font-heading);
+      font-size: 16px;
+      letter-spacing: 0.06em;
       line-height: 1;
       color: var(--color-ink);
-      transform: translateY(-1px);
     }
 
     .btn-mobile-portfolio {
-      padding: 10px 14px;
+      padding: 9px 14px;
       border-radius: var(--radius-pill);
-      border: 1px solid rgba(48,47,43,0.9);
+      border: 1px solid var(--color-ink);
       background: transparent;
       color: var(--color-ink);
       cursor: pointer;
-      font-family: var(--font-heading);
       font-size: 11px;
       letter-spacing: 0.22em;
+      font-family: var(--font-heading);
       text-transform: uppercase;
       white-space: nowrap;
-      flex: 1 1 auto;      /* can shrink */
-      max-width: 260px;    /* keeps it from getting too wide */
-      text-align: center;
-      justify-self: center;
+      flex: 1 1 auto; /* lets it breathe but not go huge */
+      max-width: 320px;
+      min-width: 160px;
     }
 
-    .btn-mobile-portfolio:hover { background: rgba(255,255,255,0.55); }
+    .btn-mobile-portfolio:hover { background: #fff; }
 
-    .mobile-controls .btn-booking {
-      padding: 10px 16px;
-      flex: 0 0 auto;
-    }
-
-    /* Mobile dropdown menu (animated) */
+    /* Mobile dropdown panel */
     .mobile-menu {
       display: none;
       overflow: hidden;
-      max-height: 0;
-      opacity: 0;
-      transform: translateY(-6px);
-      transition: max-height 0.32s ease, opacity 0.22s ease, transform 0.22s ease;
       border-top: 1px solid var(--color-border-soft);
       padding: 0;
     }
 
-    .mobile-menu.open {
-      max-height: 340px;
-      opacity: 1;
-      transform: translateY(0);
-      padding: 14px 0 18px;
+    .mobile-menu.is-open { display: block; }
+
+    .mobile-menu-inner {
+      padding: 10px 0 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transform-origin: top;
+      animation: menuIn 180ms ease-out both;
+    }
+
+    @keyframes menuIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .mobile-menu a {
-      display: block;
-      padding: 14px 2px;
       font-family: var(--font-heading);
-      font-size: 14px;
+      font-size: 11px;                 /* match header/button scale */
+      font-weight: 400;                /* no bold states */
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--color-ink);
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(48,47,43,0.10);
     }
 
-    .mobile-menu a:hover { opacity: 0.85; }
+    .mobile-menu a:last-child { border-bottom: none; }
 
     /* ===== GLOBAL SECTION STYLES ===== */
     main {
@@ -330,35 +328,21 @@
     }
 
     /* ===== IMAGE HOVER HIGHLIGHT ===== */
-    .image-hover {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .image-hover img {
-      transition: transform 0.35s ease-out, filter 0.35s ease-out;
-    }
+    .image-hover { position: relative; overflow: hidden; }
+    .image-hover img { transition: transform 0.35s ease-out, filter 0.35s ease-out; }
 
     .image-hover::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        135deg,
-        rgba(255,255,255,0.15),
-        rgba(255,255,255,0.03)
-      );
+      background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.03));
       mix-blend-mode: screen;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.25s ease-out;
     }
 
-    .image-hover img:hover {
-      transform: scale(1.02);
-      filter: saturate(1.03);
-    }
-
+    .image-hover img:hover { transform: scale(1.02); filter: saturate(1.03); }
     .image-hover:hover::after { opacity: 1; }
 
     /* ===== HERO ===== */
@@ -370,11 +354,7 @@
       background: rgba(253,247,241,0.92);
     }
 
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
+    .hero-left { display: flex; flex-direction: column; gap: 18px; }
 
     .hero-kicker {
       font-family: var(--font-heading);
@@ -399,12 +379,7 @@
       max-width: 520px;
     }
 
-    /* keep everything as one continuous text block */
-    .hero-tagline strong {
-      color: var(--color-ink);
-      font-weight: 600;
-      display: inline; /* ensures it stays part of the same line flow */
-    }
+    .hero-tagline strong { color: var(--color-ink); font-weight: 600; }
 
     .hero-actions {
       display: flex;
@@ -424,6 +399,7 @@
       letter-spacing: 0.18em;
       font-family: var(--font-heading);
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .btn-primary:hover { background: var(--color-accent-deep); }
@@ -439,13 +415,13 @@
       letter-spacing: 0.18em;
       font-family: var(--font-heading);
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .btn-ghost:hover { background: #fff; }
 
     .hero-meta {
       display: flex;
-      flex-wrap: wrap;
       gap: 7px;
       margin-top: 18px;
       font-family: var(--font-heading);
@@ -453,6 +429,7 @@
       text-transform: uppercase;
       letter-spacing: 0.18em;
       color: var(--color-ink-soft);
+      flex-wrap: nowrap; /* keep on one line */
     }
 
     .hero-meta span {
@@ -493,10 +470,7 @@
       font-family: var(--font-body);
     }
 
-    .hero-review textarea {
-      min-height: 80px;
-      resize: vertical;
-    }
+    .hero-review textarea { min-height: 80px; resize: vertical; }
 
     .btn-review {
       align-self: flex-start;
@@ -511,6 +485,7 @@
       letter-spacing: 0.18em;
       font-family: var(--font-heading);
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .btn-review:hover { background: rgba(218,96,73,0.08); }
@@ -524,25 +499,9 @@
       aspect-ratio: 3 / 4;
     }
 
-    .hero-carousel {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
-
-    .hero-carousel-track {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.7s ease-in-out;
-    }
-
-    .hero-carousel-image {
-      flex: 0 0 100%;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .hero-carousel { width: 100%; height: 100%; overflow: hidden; }
+    .hero-carousel-track { display: flex; width: 100%; height: 100%; transition: transform 0.7s ease-in-out; }
+    .hero-carousel-image { flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover; }
 
     /* ===== DEEPLY CURIOUS BOOK BANNER ===== */
     .book-section {
@@ -578,11 +537,7 @@
     .book-cover-wrap.image-hover::after { display: none; }
     .book-cover-wrap.image-hover img:hover { transform: none; filter: none; }
 
-    .book-content {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+    .book-content { display: flex; flex-direction: column; gap: 10px; }
 
     .book-kicker {
       font-family: var(--font-heading);
@@ -635,12 +590,7 @@
       font-weight: 700;
     }
 
-    .book-ctas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 10px;
-    }
+    .book-ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
 
     .book-cta-primary,
     .book-cta-secondary {
@@ -660,7 +610,6 @@
     .book-cta-primary { background: #F9A93A; color: #050814; border: none; }
     .book-cta-primary:hover { background: #f59d1b; }
 
-    /* Disabled state for Coming soon */
     .book-cta-primary.is-disabled {
       opacity: 0.72;
       cursor: default;
@@ -673,7 +622,6 @@
       color: #FDF7F1;
       border: 1px solid rgba(249, 206, 137, 0.7);
     }
-
     .book-cta-secondary:hover { background: rgba(15, 23, 42, 0.9); }
 
     .book-note {
@@ -759,19 +707,15 @@
       margin-top: 14px;
     }
 
-    .collection-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 10px; /* matches the “At a glance” breathing room */
-    }
+    .collection-wrap { display: flex; flex-direction: column; gap: 8px; }
 
     .collection-label {
       font-family: var(--font-heading);
       font-size: 10px;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--color-ink);
-      font-weight: 600;
+      color: var(--color-ink-soft);
+      font-weight: 700;
     }
 
     .collection-card {
@@ -804,7 +748,6 @@
       align-items: center;
       justify-content: center;
       z-index: 60;
-      padding: 18px;
     }
 
     .modal-backdrop.active { display: flex; }
@@ -863,7 +806,7 @@
       border: 1px solid rgba(255,255,255,0.12);
       background: #0b0b0b;
       flex: 1;
-      min-height: 320px;
+      min-height: 300px;
     }
 
     .modal-slider-track {
@@ -871,6 +814,7 @@
       width: 100%;
       height: 100%;
       transition: transform 0.7s ease-in-out;
+      will-change: transform;
     }
 
     .modal-slide {
@@ -878,26 +822,22 @@
       width: 100%;
       height: 100%;
       display: flex;
-      align-items: center;     /* centers landscape nicely */
-      justify-content: center; /* centers landscape nicely */
+      align-items: center;   /* center vertically */
+      justify-content: center; /* center horizontally */
       padding: 10px;
     }
 
     .modal-slide img {
-      max-height: 70vh;
+      max-height: 68vh;
       height: auto;
       width: auto;
       max-width: 100%;
       border-radius: var(--radius-lg);
       object-fit: contain;
-      object-position: center;
+      display: block;
     }
 
-    .modal-nav {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
+    .modal-nav { position: absolute; inset: 0; pointer-events: none; }
 
     .modal-arrow {
       pointer-events: auto;
@@ -969,7 +909,7 @@
 
     .about-facts-label {
       font-family: var(--font-heading);
-      font-size: 12px; /* slightly bigger per request */
+      font-size: 12px; /* slightly bigger than before */
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--color-ink-soft);
@@ -1058,10 +998,7 @@
       gap: 22px;
     }
 
-    .contact-card form {
-      display: grid;
-      gap: 12px;
-    }
+    .contact-card form { display: grid; gap: 12px; }
 
     label {
       font-size: 10px;
@@ -1165,20 +1102,10 @@
       .page { padding-inline: 14px; }
       header { border-radius: 0; }
 
-      .nav { flex-direction: column; align-items: stretch; gap: 10px; }
-
-      /* brand stays on top, left aligned */
-      .brand { justify-content: flex-start; }
-      .brand-text-main, .brand-text-sub { max-width: 100%; }
-
-      /* desktop nav links hidden on mobile */
-      .nav-right { display: none; }
-
-      /* show mobile controls row */
-      .mobile-controls { display: flex; }
-
-      /* dropdown exists on mobile only */
-      .mobile-menu { display: block; }
+      /* Mobile: stack brand on top, then controls row */
+      .nav { flex-wrap: wrap; gap: 6px; padding: 8px 0; }
+      .nav-right { display: none; } /* hide desktop nav on mobile */
+      .mobile-controls { display: block; }
 
       .hero, section { padding: 20px 16px 22px; border-radius: 18px; }
       .hero-title { font-size: 28px; }
@@ -1188,20 +1115,9 @@
       .about-photo { max-width: none; justify-self: stretch; }
       .book-cover-wrap { max-width: 210px; }
 
-      /* keep chips on one line (no wrap) and fit nicely */
-      .hero-meta {
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        gap: 6px;
-        overflow: hidden;
-      }
-      .hero-meta span {
-        flex: 1 1 0;
-        text-align: center;
-        padding: 4px 6px;
-        font-size: 9px;
-        letter-spacing: 0.18em;
-      }
+      /* Keep the 4 chips on one line on mobile */
+      .hero-meta { gap: 6px; }
+      .hero-meta span { padding: 4px 8px; }
 
       .modal-slide img { max-height: 62vh; }
       .modal-arrow { width: 42px; height: 42px; }
@@ -1220,7 +1136,7 @@
             <div class="brand-logo image-hover">
               <img src="images/matthew-logo-black-border.png" alt="Matthew Norton Logo">
             </div>
-            <div class="brand-text">
+            <div>
               <div class="brand-text-main">Matthew Norton Photos</div>
               <div class="brand-text-sub">Dallas, Texas · Portrait &amp; Brand</div>
             </div>
@@ -1231,7 +1147,7 @@
             <div class="nav-links">
               <a href="#portfolio">Portfolio</a>
               <a href="#about">About</a>
-              <a href="#what-i-shoot">What I shoot</a>
+              <a href="#what-i-shoot">What I Shoot</a>
               <a href="#features">Features</a>
               <a href="#testimonials">Testimonials</a>
             </div>
@@ -1240,27 +1156,30 @@
             </button>
           </div>
 
-          <!-- Mobile row: hamburger + View Portfolio + Booking (same line) -->
+          <!-- Mobile controls -->
           <div class="mobile-controls" aria-label="Mobile controls">
-            <button class="btn-hamburger" id="hamburgerBtn" type="button" aria-label="Open menu" aria-expanded="false">
-              <span>≡</span>
-            </button>
+            <div class="mobile-controls-row">
+              <button class="btn-hamburger" id="hamburgerBtn" type="button" aria-label="Open menu" aria-expanded="false">
+                <span>≡</span>
+              </button>
 
-            <button class="btn-mobile-portfolio" type="button" id="mobilePortfolioBtn">
-              View Portfolio
-            </button>
+              <button class="btn-mobile-portfolio" id="mobilePortfolioBtn" type="button">
+                View Portfolio
+              </button>
 
-            <button class="btn-booking" type="button" id="mobileBookingBtn">
-              Booking
-            </button>
-          </div>
+              <button class="btn-booking" id="mobileBookingBtn" type="button">
+                Booking
+              </button>
+            </div>
 
-          <!-- Mobile dropdown menu (NO Portfolio item) -->
-          <div class="mobile-menu" id="mobileMenu" aria-label="Mobile menu">
-            <a href="#about" class="mobile-link">About</a>
-            <a href="#what-i-shoot" class="mobile-link">What I shoot</a>
-            <a href="#features" class="mobile-link">Features</a>
-            <a href="#testimonials" class="mobile-link">Testimonials</a>
+            <div class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+              <div class="mobile-menu-inner">
+                <a href="#about" data-close-menu="true">About</a>
+                <a href="#what-i-shoot" data-close-menu="true">What I Shoot</a>
+                <a href="#features" data-close-menu="true">Features</a>
+                <a href="#testimonials" data-close-menu="true">Testimonials</a>
+              </div>
+            </div>
           </div>
         </nav>
       </header>
@@ -1291,8 +1210,8 @@
               </button>
             </div>
 
-            <!-- swap order: Events before Brands, keep all on one line on mobile -->
-            <div class="hero-meta" aria-label="Tags">
+            <!-- Swap order: Portraits, Couples, Events, Brands (Brands last) -->
+            <div class="hero-meta">
               <span>Portraits</span>
               <span>Couples</span>
               <span>Events</span>
@@ -1431,21 +1350,21 @@
 
           <div class="portfolio-collections">
             <div class="collection-wrap">
-              <div class="collection-label">PORTRAITS</div>
+              <div class="collection-label">Portraits</div>
               <div class="collection-card image-hover" data-gallery="portraits">
                 <img src="images/rachel-1.JPG" alt="Portraits collection preview">
               </div>
             </div>
 
             <div class="collection-wrap">
-              <div class="collection-label">COUPLES</div>
+              <div class="collection-label">Couples</div>
               <div class="collection-card image-hover" data-gallery="couples">
                 <img src="images/jo-sandy-1.jpg" alt="Couples collection preview">
               </div>
             </div>
 
             <div class="collection-wrap">
-              <div class="collection-label">EVENTS</div>
+              <div class="collection-label">Events</div>
               <div class="collection-card image-hover" data-gallery="events">
                 <img src="images/naomi-1.JPG" alt="Events collection preview">
               </div>
@@ -1675,8 +1594,7 @@
 
   <script>
     // ===== PORTFOLIO GALLERIES =====
-    // NOTE: Portraits use your exact filenames as provided earlier ("potraits-...").
-    // Couples are set to the exact filenames/casing from your screenshot.
+    // These are set to live in the /images folder.
     const galleryImages = {
       portraits: [
         "images/potraits-1.JPG",
@@ -1746,11 +1664,65 @@
         "images/couples-30.JPG"
       ],
       events: [
+        // Only show Naomi for now (you’ll add more later)
         "images/naomi-1.JPG"
       ]
     };
 
-    // ===== MODAL SLIDER (click arrows; no auto-rotation) =====
+    // ===== MOBILE HEADER BEHAVIOR =====
+    const brandHome = document.getElementById('brandHome');
+    const mobileBookingBtn = document.getElementById('mobileBookingBtn');
+    const mobilePortfolioBtn = document.getElementById('mobilePortfolioBtn');
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    brandHome.addEventListener('click', scrollToTop);
+
+    mobileBookingBtn.addEventListener('click', () => {
+      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    mobilePortfolioBtn.addEventListener('click', () => {
+      document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('is-open');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    function toggleMobileMenu() {
+      const isOpen = mobileMenu.classList.toggle('is-open');
+      hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
+    }
+
+    hamburgerBtn.addEventListener('click', toggleMobileMenu);
+
+    mobileMenu.querySelectorAll('a[data-close-menu="true"]').forEach(link => {
+      link.addEventListener('click', () => {
+        closeMobileMenu();
+      });
+    });
+
+    // Close mobile menu if you tap outside it (but inside header)
+    document.addEventListener('click', (e) => {
+      const headerEl = document.getElementById('top');
+      if (!headerEl) return;
+
+      const isClickInsideHeader = headerEl.contains(e.target);
+      const isMenuOpen = mobileMenu.classList.contains('is-open');
+      const isClickHamburger = hamburgerBtn.contains(e.target);
+
+      if (isMenuOpen && isClickInsideHeader && !isClickHamburger && !mobileMenu.contains(e.target)) {
+        closeMobileMenu();
+      }
+    });
+
+    // ===== MODAL SLIDER (seamless loop forward, click arrows; no auto-rotation) =====
     const modal = document.getElementById('galleryModal');
     const sliderTrack = document.getElementById('modalSliderTrack');
     const closeBtn = document.querySelector('.modal-close');
@@ -1759,7 +1731,19 @@
     const counterEl = document.getElementById('modalCounter');
 
     let currentGallery = [];
-    let currentIndex = 0;
+    let currentIndex = 0;     // index within renderedSlides
+    let renderedSlides = [];  // includes clones
+    let isModalTransitioning = false;
+
+    function buildRenderedSlides(images) {
+      const total = images.length;
+      if (total <= 1) return images.slice();
+
+      // clones for seamless looping
+      const first = images[0];
+      const last = images[total - 1];
+      return [last, ...images, first];
+    }
 
     function renderSlides(images) {
       sliderTrack.innerHTML = '';
@@ -1776,26 +1760,57 @@
       });
     }
 
-    function updateCounter() {
-      const total = currentGallery.length || 1;
-      counterEl.textContent = `${Math.min(currentIndex + 1, total)} / ${total}`;
+    function realCount() {
+      return currentGallery.length || 1;
     }
 
-    function goToSlide(index) {
-      if (!currentGallery.length) return;
+    function realIndexFromRendered() {
       const total = currentGallery.length;
-      currentIndex = (index + total) % total;
+      if (total <= 1) return 0;
+      return currentIndex - 1; // because index 0 is last-clone
+    }
+
+    function updateCounter() {
+      const total = realCount();
+      let displayIndex = 0;
+
+      if (total <= 1) {
+        displayIndex = 0;
+      } else {
+        displayIndex = realIndexFromRendered();
+        if (displayIndex < 0) displayIndex = total - 1;
+        if (displayIndex >= total) displayIndex = 0;
+      }
+
+      counterEl.textContent = `${displayIndex + 1} / ${total}`;
+    }
+
+    function goToRenderedIndex(index) {
+      if (!renderedSlides.length) return;
+      isModalTransitioning = true;
+      currentIndex = index;
+      sliderTrack.style.transition = 'transform 0.7s ease-in-out';
       sliderTrack.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
       updateCounter();
     }
 
     function openGallery(key) {
       currentGallery = galleryImages[key] || [];
-      currentIndex = 0;
+      renderedSlides = buildRenderedSlides(currentGallery);
 
-      renderSlides(currentGallery);
+      renderSlides(renderedSlides);
+
       sliderTrack.style.transition = 'none';
-      sliderTrack.style.transform = 'translateX(0%)';
+
+      if (currentGallery.length <= 1) {
+        currentIndex = 0;
+        sliderTrack.style.transform = 'translateX(0%)';
+      } else {
+        currentIndex = 1; // start on the first real slide
+        sliderTrack.style.transform = 'translateX(-100%)';
+      }
+
+      // force reflow then restore transition (prevents initial jank)
       void sliderTrack.offsetWidth;
       sliderTrack.style.transition = 'transform 0.7s ease-in-out';
 
@@ -1807,6 +1822,34 @@
       modal.classList.remove('active');
     }
 
+    function handleModalTransitionEnd() {
+      isModalTransitioning = false;
+      const total = currentGallery.length;
+
+      if (total <= 1) return;
+
+      // if we hit the clones, snap (no rewind visual)
+      if (currentIndex === 0) {
+        sliderTrack.style.transition = 'none';
+        currentIndex = total; // last real slide position within renderedSlides
+        sliderTrack.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+        void sliderTrack.offsetWidth;
+        sliderTrack.style.transition = 'transform 0.7s ease-in-out';
+        updateCounter();
+      }
+
+      if (currentIndex === total + 1) {
+        sliderTrack.style.transition = 'none';
+        currentIndex = 1; // first real slide
+        sliderTrack.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+        void sliderTrack.offsetWidth;
+        sliderTrack.style.transition = 'transform 0.7s ease-in-out';
+        updateCounter();
+      }
+    }
+
+    sliderTrack.addEventListener('transitionend', handleModalTransitionEnd);
+
     document.querySelectorAll('.collection-card').forEach(card => {
       card.addEventListener('click', () => {
         const key = card.dataset.gallery;
@@ -1814,29 +1857,40 @@
       });
     });
 
-    prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
-    nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+    prevBtn.addEventListener('click', () => {
+      if (isModalTransitioning) return;
+      if (currentGallery.length <= 1) return;
+      goToRenderedIndex(currentIndex - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (isModalTransitioning) return;
+      if (currentGallery.length <= 1) return;
+      goToRenderedIndex(currentIndex + 1);
+    });
+
     closeBtn.addEventListener('click', closeGallery);
 
     modal.addEventListener('click', (event) => {
       if (event.target === modal) closeGallery();
     });
 
+    // Keyboard navigation: Esc / arrows
     document.addEventListener('keydown', (e) => {
       if (!modal.classList.contains('active')) return;
       if (e.key === 'Escape') closeGallery();
-      if (e.key === 'ArrowLeft') goToSlide(currentIndex - 1);
-      if (e.key === 'ArrowRight') goToSlide(currentIndex + 1);
+      if (e.key === 'ArrowLeft') prevBtn.click();
+      if (e.key === 'ArrowRight') nextBtn.click();
     });
 
-    // ===== TESTIMONIAL CLICK TOGGLE =====
+    // ===== TESTIMONIAL CLICK TOGGLE (bold on click as well as hover) =====
     document.querySelectorAll('.testimonial-card').forEach(card => {
       card.addEventListener('click', () => {
         card.classList.toggle('active');
       });
     });
 
-    // ===== WHAT I SHOOT CLICK TOGGLE =====
+    // ===== WHAT I SHOOT CLICK TOGGLE (bold supporting text on click as well as hover) =====
     document.querySelectorAll('.shoot-item').forEach(card => {
       card.addEventListener('click', () => {
         card.classList.toggle('active');
@@ -1899,8 +1953,8 @@
       heroCarousel.addEventListener('mouseleave', startCarousel);
     });
 
-    // ===== REVIEW FORM (mailto) =====
-    // "Fresh email" as much as mailto allows: no extra signature line appended by us.
+    // ===== REVIEW FORM (mailto to matthewnortonphotos@gmail.com) =====
+    // Keep it clean (no extra signature line).
     document.getElementById('reviewForm').addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -1913,51 +1967,6 @@
       );
 
       window.location.href = `mailto:matthewnortonphotos@gmail.com?subject=${subject}&body=${body}`;
-    });
-
-    // ===== MOBILE HEADER BEHAVIOR =====
-    // Brand click returns to top (mobile + desktop)
-    document.getElementById('brandHome').addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // Mobile controls buttons
-    document.getElementById('mobilePortfolioBtn').addEventListener('click', () => {
-      document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
-      closeMobileMenu();
-    });
-
-    document.getElementById('mobileBookingBtn').addEventListener('click', () => {
-      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-      closeMobileMenu();
-    });
-
-    // Mobile dropdown toggle + animation
-    const mobileMenu = document.getElementById('mobileMenu');
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-
-    function openMobileMenu() {
-      mobileMenu.classList.add('open');
-      hamburgerBtn.setAttribute('aria-expanded', 'true');
-    }
-    function closeMobileMenu() {
-      mobileMenu.classList.remove('open');
-      hamburgerBtn.setAttribute('aria-expanded', 'false');
-    }
-
-    hamburgerBtn.addEventListener('click', () => {
-      if (mobileMenu.classList.contains('open')) closeMobileMenu();
-      else openMobileMenu();
-    });
-
-    // Close dropdown after tapping a menu link
-    document.querySelectorAll('.mobile-link').forEach(link => {
-      link.addEventListener('click', () => closeMobileMenu());
-    });
-
-    // Close dropdown on resize up to desktop
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 720) closeMobileMenu();
     });
   </script>
 </body>
