@@ -96,7 +96,6 @@
       justify-content: space-between;
       padding: 10px 0;
       gap: 20px;
-      position: relative;
     }
 
     .brand {
@@ -105,6 +104,7 @@
       gap: 12px;
       cursor: pointer;
       min-width: 0;
+      flex: 1 1 auto;
     }
 
     .brand-logo {
@@ -126,12 +126,21 @@
       object-fit: contain;
     }
 
+    .brand-text {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
     .brand-text-main {
       font-family: var(--font-heading);
       font-size: 13px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
+
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .brand-text-sub {
@@ -141,13 +150,16 @@
       text-transform: uppercase;
       color: var(--color-ink-soft);
       margin-top: 2px;
+
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .nav-right {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 22px;
       flex: 0 0 auto;
     }
 
@@ -163,7 +175,6 @@
     .nav-links a {
       position: relative;
       padding-bottom: 3px;
-      white-space: nowrap;
     }
 
     .nav-links a::after {
@@ -195,14 +206,14 @@
 
     .btn-booking:hover { background: var(--color-accent-deep); }
 
-    /* Mobile-only View Portfolio button (balances spacing) */
+    /* Mobile-only "View Portfolio" button in header */
     .btn-portfolio-mobile {
       display: none;
       padding: 9px 16px;
       border-radius: var(--radius-pill);
+      border: 1px solid var(--color-ink);
       background: transparent;
       color: var(--color-ink);
-      border: 1px solid var(--color-ink);
       font-family: var(--font-heading);
       font-size: 11px;
       letter-spacing: 0.22em;
@@ -210,52 +221,7 @@
       cursor: pointer;
       white-space: nowrap;
     }
-
     .btn-portfolio-mobile:hover { background: #fff; }
-
-    /* Optional mobile menu toggle (keeps native feel on small screens) */
-    .nav-toggle {
-      display: none;
-      width: 42px;
-      height: 42px;
-      border-radius: 999px;
-      border: 1px solid rgba(48,47,43,0.18);
-      background: rgba(253,247,241,0.7);
-      cursor: pointer;
-      font-size: 18px;
-      line-height: 1;
-      color: var(--color-ink);
-      align-items: center;
-      justify-content: center;
-    }
-
-    .nav-dropdown {
-      display: none;
-      position: absolute;
-      right: 0;
-      top: calc(100% + 10px);
-      background: rgba(253,247,241,0.96);
-      border: 1px solid var(--color-border-soft);
-      border-radius: 16px;
-      padding: 10px 10px;
-      min-width: 220px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-      z-index: 80;
-    }
-
-    .nav-dropdown a {
-      display: block;
-      padding: 10px 10px;
-      border-radius: 12px;
-      font-family: var(--font-heading);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-    }
-
-    .nav-dropdown a:hover { background: rgba(218,96,73,0.08); }
-
-    .nav-dropdown.active { display: block; }
 
     /* ===== GLOBAL SECTION STYLES ===== */
     main {
@@ -365,26 +331,13 @@
       font-family: var(--font-body);
       font-size: 14px;
       color: var(--color-ink-soft);
-      max-width: 560px;
+      max-width: 520px;
     }
 
-    /* Inline expandable phrase (stays connected; wraps naturally only when needed) */
-    .hero-tagline .expanding-phrase {
-      display: inline-block;
+    /* Keep bold, but no hover/expand behavior here */
+    .hero-tagline strong {
       color: var(--color-ink);
       font-weight: 600;
-      transform-origin: left center;
-      transition: transform 0.22s ease-out, letter-spacing 0.22s ease-out;
-      letter-spacing: 0;
-      will-change: transform;
-      white-space: normal;
-      vertical-align: baseline;
-    }
-
-    .hero-tagline .expanding-phrase:hover,
-    .hero-tagline .expanding-phrase.is-active {
-      transform: scaleX(1.03);
-      letter-spacing: 0.02em;
     }
 
     .hero-actions {
@@ -740,20 +693,20 @@
       margin-top: 14px;
     }
 
-    /* Titles above each collection card (desktop + mobile) */
+    /* NEW: Title above each collection card (desktop + mobile) */
     .collection-wrap {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px; /* similar “air” to your other labels */
     }
 
-    .collection-label {
+    .collection-title {
       font-family: var(--font-heading);
-      font-size: 10px;            /* matches “At a glance” rhythm */
+      font-size: 10px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--color-ink-soft);
-      font-weight: 700;           /* requested bold */
+      padding-left: 2px;
     }
 
     .collection-card {
@@ -762,28 +715,14 @@
       border: 1px solid var(--color-border-soft);
       background: #111;
       cursor: pointer;
-      position: relative;
     }
 
-    /* Collection cover carousels */
-    .collection-carousel {
-      width: 100%;
-      overflow: hidden;
-    }
-
-    .collection-carousel-track {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.7s ease-in-out;
-    }
-
-    .collection-carousel-image {
-      flex: 0 0 100%;
+    .collection-card img {
       width: 100%;
       aspect-ratio: 2 / 3;
       object-fit: cover;
-      height: auto;
+      object-position: center;
+      display: block;
     }
 
     .portfolio-note {
@@ -875,21 +814,23 @@
       width: 100%;
       height: 100%;
       display: flex;
-      align-items: center;       /* centers vertically */
-      justify-content: center;   /* centers horizontally */
+      align-items: center;     /* CENTER VERTICALLY */
+      justify-content: center; /* CENTER HORIZONTALLY */
       padding: 10px;
     }
 
-    /* Ensures BOTH portrait + landscape look centered/balanced */
     .modal-slide img {
-      display: block;
-      margin: auto;
       max-height: 70vh;
       height: auto;
       width: auto;
       max-width: 100%;
-      object-fit: contain;
       border-radius: var(--radius-lg);
+      object-fit: contain;
+    }
+
+    /* Fix: Events looked too large on desktop vs other galleries */
+    @media (min-width: 961px) {
+      .modal-slide img { max-height: 64vh; }
     }
 
     .modal-nav {
@@ -966,15 +907,14 @@
       border-top: 1px solid var(--color-border-soft);
     }
 
-    /* AT A GLANCE bigger (requested) */
+    /* Make "AT A GLANCE" a bit bigger */
     .about-facts-label {
       font-family: var(--font-heading);
-      font-size: 12px; /* was 10px */
+      font-size: 12px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--color-ink-soft);
       margin-bottom: 10px;
-      font-weight: 700;
     }
 
     .about-facts-grid {
@@ -1166,11 +1106,15 @@
       .page { padding-inline: 14px; }
       header { border-radius: 0; }
 
-      /* Mobile nav: native spacing + menu + extra button */
+      /* Fix mobile header spacing/awkward gaps */
       .nav { gap: 10px; }
-      .nav-links { display: none; } /* hides the desktop links */
-      .nav-toggle { display: inline-flex; }
+      .nav-right { gap: 10px; }
       .btn-portfolio-mobile { display: inline-flex; }
+      .nav-links { display: none; } /* keep header clean on mobile */
+
+      /* keep brand from pushing buttons off; prevent odd overlaps */
+      .brand-text-sub { display: none; }
+      .brand-text-main { font-size: 12px; letter-spacing: 0.14em; }
 
       .hero, section { padding: 20px 16px 22px; border-radius: 18px; }
       .hero-title { font-size: 28px; }
@@ -1199,24 +1143,18 @@
             <div class="brand-logo image-hover">
               <img src="images/matthew-logo-black-border.png" alt="Matthew Norton Logo">
             </div>
-            <div>
+            <div class="brand-text">
               <div class="brand-text-main">Matthew Norton Photos</div>
               <div class="brand-text-sub">Dallas, Texas · Portrait &amp; Brand</div>
             </div>
           </div>
 
           <div class="nav-right">
-            <!-- Mobile-only extra button -->
-            <button class="btn-portfolio-mobile" type="button"
-              onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">
+            <button class="btn-portfolio-mobile" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">
               View Portfolio
             </button>
 
-            <!-- Mobile menu toggle -->
-            <button class="nav-toggle" type="button" aria-label="Open menu" id="navToggle">☰</button>
-
-            <!-- Desktop links -->
-            <div class="nav-links" id="navLinks">
+            <div class="nav-links">
               <a href="#portfolio">Portfolio</a>
               <a href="#about">About</a>
               <a href="#features">Features</a>
@@ -1226,14 +1164,6 @@
             <button class="btn-booking" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
               Booking
             </button>
-          </div>
-
-          <!-- Mobile dropdown (same links) -->
-          <div class="nav-dropdown" id="navDropdown" aria-label="Mobile navigation">
-            <a href="#portfolio">Portfolio</a>
-            <a href="#about">About</a>
-            <a href="#features">Features</a>
-            <a href="#testimonials">Testimonials</a>
           </div>
         </nav>
       </header>
@@ -1250,10 +1180,9 @@
               Honest, nostalgic photography.<br>
             </h1>
 
-            <!-- Keep sentence connected: “My work is about [phrase]” -->
+            <!-- FIX: keep sentence continuous; bold remains; no motion/expand behavior -->
             <p class="hero-tagline">
-              I believe a meaningful photograph doesn’t just capture a moment — it connects one. My work is about
-              <span class="expanding-phrase" id="heroExpandingPhrase">truth over perfection, curiosity over trends, and images that still matter years from now.</span>
+              I believe a meaningful photograph doesn’t just capture a moment — it connects one. My work is about <strong>truth over perfection, curiosity over trends, and images that still matter years from now.</strong>
             </p>
 
             <div class="hero-actions">
@@ -1402,46 +1331,26 @@
           </div>
 
           <div class="portfolio-collections">
-
-            <!-- Portraits -->
             <div class="collection-wrap">
-              <div class="collection-label">PORTRAITS</div>
-              <div class="collection-card image-hover" data-gallery="portraits" data-cover="portraits">
-                <div class="collection-carousel">
-                  <div class="collection-carousel-track" data-track="portraits">
-                    <img class="collection-carousel-image" src="images/rachel-1.JPG" alt="Portraits collection preview">
-                    <!-- clones injected by JS for seamless loop -->
-                  </div>
-                </div>
+              <div class="collection-title">Portraits</div>
+              <div class="collection-card image-hover" data-gallery="portraits">
+                <img src="images/rachel-1.JPG" alt="Portraits collection preview">
               </div>
             </div>
 
-            <!-- Couples -->
             <div class="collection-wrap">
-              <div class="collection-label">COUPLES</div>
-              <div class="collection-card image-hover" data-gallery="couples" data-cover="couples">
-                <div class="collection-carousel">
-                  <div class="collection-carousel-track" data-track="couples">
-                    <img class="collection-carousel-image" src="images/jo-sandy-1.jpg" alt="Couples collection preview">
-                    <!-- clones injected by JS for seamless loop -->
-                  </div>
-                </div>
+              <div class="collection-title">Couples</div>
+              <div class="collection-card image-hover" data-gallery="couples">
+                <img src="images/jo-sandy-1.jpg" alt="Couples collection preview">
               </div>
             </div>
 
-            <!-- Events -->
             <div class="collection-wrap">
-              <div class="collection-label">EVENTS</div>
-              <div class="collection-card image-hover" data-gallery="events" data-cover="events">
-                <div class="collection-carousel">
-                  <div class="collection-carousel-track" data-track="events">
-                    <!-- requested: Naomi as the first + only cover image for now -->
-                    <img class="collection-carousel-image" src="images/naomi-1.JPG" alt="Events collection preview">
-                  </div>
-                </div>
+              <div class="collection-title">Events</div>
+              <div class="collection-card image-hover" data-gallery="events">
+                <img src="images/naomi-1.JPG" alt="Events collection preview">
               </div>
             </div>
-
           </div>
 
           <p class="portfolio-note">
@@ -1583,19 +1492,18 @@
 
           <div class="contact-layout">
             <div class="contact-card">
-              <!-- Keep your form structure, but build the mailto via JS to keep the email as “fresh” as possible -->
-              <form id="contactForm">
+              <form action="mailto:matthewnortonphotos@gmail.com?subject=New%20Photo%20Inquiry" method="POST" enctype="text/plain">
                 <label>Name</label>
-                <input type="text" id="contactName" name="Name" placeholder="Your name" required>
+                <input type="text" name="Name" placeholder="Your name" required>
 
                 <label>Email</label>
-                <input type="email" id="contactEmail" name="Email" placeholder="Your email" required>
+                <input type="email" name="Email" placeholder="Your email" required>
 
                 <label>Session Type</label>
-                <input type="text" id="contactType" name="Type" placeholder="Portraits, couples, brand, event…" required>
+                <input type="text" name="Type" placeholder="Portraits, couples, brand, event…" required>
 
                 <label>Message</label>
-                <textarea id="contactMessage" name="Message" placeholder="Tell me about what you're dreaming up…"></textarea>
+                <textarea name="Message" placeholder="Tell me about what you're dreaming up…"></textarea>
 
                 <button class="btn-primary" type="submit">Send Inquiry</button>
               </form>
@@ -1668,7 +1576,6 @@
 
   <script>
     // ===== PORTFOLIO GALLERIES =====
-    // These are set to live in the /images folder.
     const galleryImages = {
       portraits: [
         "images/potraits-1.JPG",
@@ -1710,7 +1617,7 @@
         "images/couples-2.jpg",
         "images/couples-3.jpg",
         "images/couples-4.jpg",
-        "images/couple-5.jpg",
+        "images/couples-5.jpg",
         "images/couples-6.jpg",
         "images/couples-7.jpg",
         "images/couples-8.jpg",
@@ -1738,7 +1645,6 @@
         "images/couples-30.JPG"
       ],
       events: [
-        // requested: only Naomi for now
         "images/naomi-1.JPG"
       ]
     };
@@ -1836,14 +1742,6 @@
       });
     });
 
-    // ===== HERO EXPANDING PHRASE (allow click-to-hold on mobile) =====
-    const heroPhrase = document.getElementById('heroExpandingPhrase');
-    if (heroPhrase) {
-      heroPhrase.addEventListener('click', () => {
-        heroPhrase.classList.toggle('is-active');
-      });
-    }
-
     // ===== HERO IMAGE CAROUSEL (looping, pause on hover) =====
     document.addEventListener('DOMContentLoaded', function () {
       const track = document.querySelector('.hero-carousel-track');
@@ -1900,93 +1798,7 @@
       heroCarousel.addEventListener('mouseleave', startCarousel);
     });
 
-    // ===== COLLECTION COVER CAROUSELS (Portraits + Couples only; seamless loop like hero) =====
-    document.addEventListener('DOMContentLoaded', function () {
-      const coverConfigs = [
-        { key: 'portraits', selector: '[data-track="portraits"]', interval: 5000 },
-        { key: 'couples', selector: '[data-track="couples"]', interval: 5000 }
-        // events intentionally excluded: only one cover image for now
-      ];
-
-      coverConfigs.forEach(cfg => {
-        const track = document.querySelector(cfg.selector);
-        if (!track) return;
-
-        // Replace the single preview image with the actual gallery set for covers
-        track.innerHTML = '';
-        const sources = (galleryImages[cfg.key] || []).slice(0);
-
-        // Fallback: if somehow empty, do nothing
-        if (sources.length === 0) return;
-
-        sources.forEach(src => {
-          const img = document.createElement('img');
-          img.className = 'collection-carousel-image';
-          img.src = src;
-          img.alt = '';
-          track.appendChild(img);
-        });
-
-        const slides = Array.from(track.children);
-        const originalCount = slides.length;
-
-        // Seamless loop: clone first slide
-        const firstClone = slides[0].cloneNode(true);
-        track.appendChild(firstClone);
-
-        let current = 0;
-        let timer = null;
-        let transitioning = false;
-
-        function go(index) {
-          transitioning = true;
-          track.style.transition = 'transform 0.7s ease-in-out';
-          track.style.transform = 'translateX(-' + (index * 100) + '%)';
-        }
-
-        function onEnd() {
-          transitioning = false;
-          if (current === originalCount) {
-            track.style.transition = 'none';
-            current = 0;
-            track.style.transform = 'translateX(0%)';
-            void track.offsetWidth;
-            track.style.transition = 'transform 0.7s ease-in-out';
-          }
-        }
-
-        track.addEventListener('transitionend', onEnd);
-
-        function start() {
-          if (timer || originalCount <= 1) return;
-          timer = setInterval(() => {
-            if (transitioning) return;
-            current += 1;
-            go(current);
-          }, cfg.interval);
-        }
-
-        function stop() {
-          if (timer) {
-            clearInterval(timer);
-            timer = null;
-          }
-        }
-
-        // Pause on hover for desktop
-        const card = track.closest('.collection-card');
-        if (card) {
-          card.addEventListener('mouseenter', stop);
-          card.addEventListener('mouseleave', start);
-        }
-
-        start();
-      });
-    });
-
-    // ===== REVIEW FORM (mailto) =====
-    // NOTE: You cannot fully control Apple Mail's auto-signature or certain “From Safari” behaviors,
-    // but we can avoid adding extra site lines ourselves. (Fresh as possible.)
+    // ===== REVIEW FORM (mailto to matthewnortonphotos@gmail.com) =====
     document.getElementById('reviewForm').addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -1995,49 +1807,11 @@
 
       const subject = encodeURIComponent('New Website Review');
       const body = encodeURIComponent(
-        `Name: ${name}\n\nReview:\n${review}`
+        `Name: ${name}\n\nReview:\n${review}\n\n— Sent from matthewnortonphotos.github.io`
       );
 
       window.location.href = `mailto:matthewnortonphotos@gmail.com?subject=${subject}&body=${body}`;
     });
-
-    // ===== CONTACT FORM (mailto built by JS for cleaner body) =====
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const name = document.getElementById('contactName').value.trim();
-      const email = document.getElementById('contactEmail').value.trim();
-      const type = document.getElementById('contactType').value.trim();
-      const message = document.getElementById('contactMessage').value.trim();
-
-      const subject = encodeURIComponent('New Photo Inquiry');
-      const body = encodeURIComponent(
-        `Name: ${name}\nEmail: ${email}\nSession Type: ${type}\n\nMessage:\n${message}`
-      );
-
-      window.location.href = `mailto:matthewnortonphotos@gmail.com?subject=${subject}&body=${body}`;
-    });
-
-    // ===== MOBILE NAV DROPDOWN =====
-    const navToggle = document.getElementById('navToggle');
-    const navDropdown = document.getElementById('navDropdown');
-
-    if (navToggle && navDropdown) {
-      navToggle.addEventListener('click', () => {
-        navDropdown.classList.toggle('active');
-      });
-
-      // Close dropdown when clicking a link
-      navDropdown.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => navDropdown.classList.remove('active'));
-      });
-
-      // Close dropdown when clicking outside
-      document.addEventListener('click', (e) => {
-        const clickedInside = navDropdown.contains(e.target) || navToggle.contains(e.target);
-        if (!clickedInside) navDropdown.classList.remove('active');
-      });
-    }
   </script>
 </body>
 </html>
