@@ -4,12 +4,19 @@
   <meta charset="UTF-8" />
   <title>Matthew Norton Photos | Dallas Photographer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Warm, honest, nostalgic photography based in Dallas, TX. Portraits, couples, brands, and events by Matthew Norton." />
-  <!-- FAVICON -->
+  <meta
+    name="description"
+    content="Warm, honest, nostalgic photography based in Dallas, TX. Portraits, couples, brands, and events by Matthew Norton."
+  />
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="MNmono5.PNG" />
 
   <style>
-    /* ===== FONTS ===== */
+    /* =========================================================
+       FONTS
+    ========================================================= */
+
     @font-face {
       font-family: "Hesland";
       src: url("fonts/hesland-sans.otf") format("opentype");
@@ -34,30 +41,38 @@
       font-display: swap;
     }
 
+    /* =========================================================
+       THEME
+    ========================================================= */
+
     :root {
-      /* Brand palette */
       --color-ink: #302F2B;
       --color-paper: #F6E1D0;
       --color-accent: #DA6049;
       --color-accent-deep: #8E6249;
-      --color-ink-soft: rgba(48,47,43,0.72);
-      --color-blue: #324A56;
 
-      --color-border-soft: rgba(48,47,43,0.12);
-      --color-chip-bg: rgba(218,96,73,0.08);
+      --color-ink-soft: rgba(48, 47, 43, 0.72);
+      --color-border-soft: rgba(48, 47, 43, 0.12);
+      --color-chip-bg: rgba(218, 96, 73, 0.08);
 
       --font-display: "MNTitle", "Hesland", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       --font-heading: "Hesland", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       --font-body: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 
       --max-width: 1120px;
+
       --radius-xl: 22px;
       --radius-lg: 16px;
       --radius-md: 10px;
       --radius-pill: 999px;
     }
 
+    /* =========================================================
+       BASE
+    ========================================================= */
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     html { scroll-behavior: smooth; }
 
     body {
@@ -69,6 +84,7 @@
     }
 
     img { max-width: 100%; display: block; }
+
     a { color: inherit; text-decoration: none; }
 
     .page {
@@ -78,15 +94,22 @@
       justify-content: center;
     }
 
-    .shell { width: 100%; max-width: var(--max-width); }
+    .shell {
+      width: 100%;
+      max-width: var(--max-width);
+    }
 
-    /* ===== HEADER / NAV ===== */
+    /* =========================================================
+       HEADER / NAV
+    ========================================================= */
+
     header {
       position: sticky;
       top: 0;
       z-index: 40;
+
       backdrop-filter: blur(14px);
-      background: rgba(246,225,208,0.94);
+      background: rgba(246, 225, 208, 0.94);
       border-bottom: 1px solid var(--color-border-soft);
     }
 
@@ -94,29 +117,37 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       padding: 10px 0;
-      gap: 20px;
+      gap: 18px;
       position: relative;
     }
 
+    /* Brand */
     .brand {
       display: flex;
       align-items: center;
       gap: 12px;
+
       cursor: pointer;
       user-select: none;
+      min-width: 0;
     }
 
     .brand-logo {
       width: 40px;
       height: 40px;
+
       border-radius: 999px;
       overflow: hidden;
+
       border: 1px solid var(--color-border-soft);
       background: var(--color-paper);
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       flex: 0 0 auto;
     }
 
@@ -124,6 +155,10 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
+    }
+
+    .brand-text {
+      min-width: 0;
     }
 
     .brand-text-main {
@@ -144,21 +179,24 @@
       white-space: nowrap;
     }
 
+    /* Right side */
     .nav-right {
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 18px;
       justify-content: flex-end;
+      white-space: nowrap;
     }
 
+    /* Desktop links */
     .nav-links {
       display: flex;
       gap: 18px;
+
       font-family: var(--font-heading);
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      white-space: nowrap;
     }
 
     .nav-links a {
@@ -179,52 +217,85 @@
 
     .nav-links a:hover::after { width: 100%; }
 
+    /* Booking button */
     .btn-booking {
       padding: 9px 18px;
       border-radius: var(--radius-pill);
+
       background: var(--color-accent);
       color: #fff;
       border: none;
+
       font-family: var(--font-heading);
       font-size: 11px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
+
       cursor: pointer;
       white-space: nowrap;
     }
 
     .btn-booking:hover { background: var(--color-accent-deep); }
 
-    /* ===== MOBILE DROPDOWN (MOBILE ONLY) ===== */
+    /* Hamburger */
     .hamburger {
       display: none;
       width: 44px;
       height: 44px;
+
       border-radius: var(--radius-pill);
-      border: 1px solid rgba(48,47,43,0.18);
-      background: rgba(253,247,241,0.8);
+      border: 1px solid rgba(48, 47, 43, 0.18);
+
+      background: rgba(253, 247, 241, 0.8);
+      backdrop-filter: blur(10px);
+
       cursor: pointer;
       place-items: center;
       font-size: 18px;
       line-height: 1;
       color: var(--color-ink);
+    }
+
+    /* Mobile "View Portfolio" button in header row */
+    .btn-portfolio-mobile {
+      display: none;
+
+      padding: 10px 16px;
+      border-radius: var(--radius-pill);
+
+      border: 1px solid rgba(48, 47, 43, 0.40);
+      background: rgba(253, 247, 241, 0.65);
+
+      color: var(--color-ink);
+
+      cursor: pointer;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      font-family: var(--font-heading);
+      text-transform: uppercase;
+
+      white-space: nowrap;
+
       backdrop-filter: blur(10px);
     }
 
-    .mobile-menu {
-      display: none; /* desktop off */
-    }
+    .btn-portfolio-mobile:hover { background: #fff; }
 
-    /* Mobile dropdown panel (animated) */
+    /* Mobile dropdown */
+    .mobile-menu { display: none; }
+
     .mobile-menu-panel {
       border-top: 1px solid var(--color-border-soft);
-      background: rgba(246,225,208,0.96);
+
+      background: rgba(246, 225, 208, 0.96);
       backdrop-filter: blur(14px);
+
       overflow: hidden;
 
       max-height: 0;
       opacity: 0;
       transform: translateY(-6px);
+
       transition:
         max-height 280ms ease,
         opacity 220ms ease,
@@ -232,7 +303,7 @@
     }
 
     .mobile-menu-panel.active {
-      max-height: 420px;
+      max-height: 340px;
       opacity: 1;
       transform: translateY(0);
     }
@@ -248,60 +319,34 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+
       font-family: var(--font-heading);
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.18em;
     }
 
+    /* No dash markers; simple links */
     .mobile-menu-links a {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
       padding: 6px 2px;
+
       color: var(--color-ink);
       opacity: 0.9;
+      font-weight: 400;
     }
 
+    /* Active section highlight = bold only */
     .mobile-menu-links a.active {
       opacity: 1;
       font-weight: 700;
     }
 
-    .mobile-menu-links a.active::before {
-      content: "";
-      width: 10px;
-      height: 1px;
-      background: var(--color-ink);
-      display: inline-block;
-    }
+    /* =========================================================
+       SECTIONS
+    ========================================================= */
 
-    .mobile-cta-row {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 10px;
-      padding-top: 8px;
-      border-top: 1px solid rgba(48,47,43,0.12);
-    }
-
-    .btn-ghost {
-      border-radius: var(--radius-pill);
-      padding: 10px 18px;
-      border: 1px solid var(--color-ink);
-      background: transparent;
-      color: var(--color-ink);
-      cursor: pointer;
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      font-family: var(--font-heading);
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .btn-ghost:hover { background: #fff; }
-
-    /* ===== GLOBAL SECTION STYLES ===== */
     main {
       display: flex;
       flex-direction: column;
@@ -312,8 +357,9 @@
     section {
       border-radius: var(--radius-xl);
       border: 1px solid var(--color-border-soft);
+
       padding: 26px 26px 28px;
-      background: rgba(253,247,241,0.86);
+      background: rgba(253, 247, 241, 0.86);
     }
 
     .section-header { margin-bottom: 18px; }
@@ -338,15 +384,13 @@
       font-family: var(--font-body);
       font-size: 13px;
       color: var(--color-ink-soft);
+
       max-width: 520px;
       margin-top: 6px;
     }
 
-    /* ===== IMAGE HOVER HIGHLIGHT ===== */
-    .image-hover {
-      position: relative;
-      overflow: hidden;
-    }
+    /* Hover effect */
+    .image-hover { position: relative; overflow: hidden; }
 
     .image-hover img {
       transition: transform 0.35s ease-out, filter 0.35s ease-out;
@@ -356,31 +400,37 @@
       content: "";
       position: absolute;
       inset: 0;
+
       background: linear-gradient(
         135deg,
-        rgba(255,255,255,0.15),
-        rgba(255,255,255,0.03)
+        rgba(255, 255, 255, 0.15),
+        rgba(255, 255, 255, 0.03)
       );
+
       mix-blend-mode: screen;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.25s ease-out;
     }
 
+    .image-hover:hover::after { opacity: 1; }
+
     .image-hover img:hover {
       transform: scale(1.02);
       filter: saturate(1.03);
     }
 
-    .image-hover:hover::after { opacity: 1; }
+    /* =========================================================
+       HERO
+    ========================================================= */
 
-    /* ===== HERO ===== */
     .hero {
       display: grid;
       grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
       gap: 32px;
+
       padding: 32px 26px 30px;
-      background: rgba(253,247,241,0.92);
+      background: rgba(253, 247, 241, 0.92);
     }
 
     .hero-left {
@@ -405,6 +455,7 @@
       line-height: 1.18;
     }
 
+    /* Continuous text (no splitting / no motion) */
     .hero-tagline {
       font-family: var(--font-body);
       font-size: 14px;
@@ -412,7 +463,6 @@
       max-width: 560px;
     }
 
-    /* Keep the bold phrase inline (no forced new line). No motion. */
     .hero-tagline strong {
       color: var(--color-ink);
       font-weight: 600;
@@ -429,9 +479,11 @@
     .btn-primary {
       border-radius: var(--radius-pill);
       padding: 10px 20px;
+
       background: var(--color-accent);
       color: #fff;
       border: none;
+
       cursor: pointer;
       font-size: 12px;
       letter-spacing: 0.18em;
@@ -441,11 +493,30 @@
 
     .btn-primary:hover { background: var(--color-accent-deep); }
 
+    .btn-ghost {
+      border-radius: var(--radius-pill);
+      padding: 10px 18px;
+
+      border: 1px solid var(--color-ink);
+      background: transparent;
+      color: var(--color-ink);
+
+      cursor: pointer;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      font-family: var(--font-heading);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .btn-ghost:hover { background: #fff; }
+
     .hero-meta {
       display: flex;
       flex-wrap: wrap;
       gap: 7px;
       margin-top: 18px;
+
       font-family: var(--font-heading);
       font-size: 10px;
       text-transform: uppercase;
@@ -456,15 +527,17 @@
     .hero-meta span {
       padding: 4px 10px;
       border-radius: var(--radius-pill);
-      border: 1px solid rgba(48,47,43,0.16);
-      background: rgba(246,225,208,0.4);
+
+      border: 1px solid rgba(48, 47, 43, 0.16);
+      background: rgba(246, 225, 208, 0.4);
     }
 
-    /* HERO REVIEW FORM */
+    /* Review form */
     .hero-review {
       margin-top: 20px;
       padding-top: 14px;
       border-top: 1px solid var(--color-border-soft);
+
       max-width: 420px;
       display: flex;
       flex-direction: column;
@@ -485,24 +558,25 @@
       border-radius: var(--radius-md);
       border: 1px solid var(--color-border-soft);
       background: #fff;
+
       padding: 8px 10px;
       font-size: 12px;
       font-family: var(--font-body);
     }
 
-    .hero-review textarea {
-      min-height: 80px;
-      resize: vertical;
-    }
+    .hero-review textarea { min-height: 80px; resize: vertical; }
 
     .btn-review {
       align-self: flex-start;
       margin-top: 4px;
+
       border-radius: var(--radius-pill);
       padding: 8px 16px;
+
       border: 1px solid var(--color-accent);
       background: transparent;
       color: var(--color-accent-deep);
+
       cursor: pointer;
       font-size: 11px;
       letter-spacing: 0.18em;
@@ -510,22 +584,21 @@
       text-transform: uppercase;
     }
 
-    .btn-review:hover { background: rgba(218,96,73,0.08); }
+    .btn-review:hover { background: rgba(218, 96, 73, 0.08); }
 
+    /* HERO CAROUSEL (ONLY one that auto-rotates) */
     .hero-right {
       border-radius: var(--radius-xl);
       overflow: hidden;
+
       border: 1px solid var(--color-border-soft);
       background: #111;
+
       position: relative;
-      aspect-ratio: 3 / 4;
+      aspect-ratio: 3/4;
     }
 
-    .hero-carousel {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
+    .hero-carousel { width: 100%; height: 100%; overflow: hidden; }
 
     .hero-carousel-track {
       display: flex;
@@ -541,17 +614,24 @@
       object-fit: cover;
     }
 
-    /* ===== DEEPLY CURIOUS BOOK BANNER ===== */
+    /* =========================================================
+       DEEPLY CURIOUS CARD
+    ========================================================= */
+
     .book-section {
       display: grid;
       grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
       gap: 26px;
+
       padding: 26px 26px 24px;
+
       border-radius: var(--radius-xl);
       border: 1px solid rgba(4, 9, 20, 0.9);
+
       background:
         radial-gradient(circle at 16% 20%, rgba(249, 169, 58, 0.26), transparent 55%),
         linear-gradient(135deg, #050814, #111827);
+
       color: #FDF7F1;
       align-items: center;
     }
@@ -565,13 +645,12 @@
 
     .book-cover-wrap img {
       width: 100%;
-      aspect-ratio: 2 / 3;
+      aspect-ratio: 2/3;
       object-fit: cover;
       border-radius: 14px;
       box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
     }
 
-    /* Disable highlight + zoom effect on this specific image */
     .book-cover-wrap.image-hover::after { display: none; }
     .book-cover-wrap.image-hover img:hover { transform: none; filter: none; }
 
@@ -621,6 +700,7 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 6px 16px;
       margin-top: 4px;
+
       font-size: 12px;
       color: rgba(243, 235, 222, 0.9);
     }
@@ -644,20 +724,27 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+
       border-radius: var(--radius-pill);
       padding: 9px 18px;
+
       font-family: var(--font-heading);
       font-size: 11px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
+
       white-space: nowrap;
       cursor: pointer;
     }
 
-    .book-cta-primary { background: #F9A93A; color: #050814; border: none; }
+    .book-cta-primary {
+      background: #F9A93A;
+      color: #050814;
+      border: none;
+    }
+
     .book-cta-primary:hover { background: #f59d1b; }
 
-    /* Disabled state for Coming soon */
     .book-cta-primary.is-disabled {
       opacity: 0.72;
       cursor: default;
@@ -682,7 +769,10 @@
       color: rgba(229, 224, 213, 0.9);
     }
 
-    /* ===== FEATURES / HIGHLIGHTS ===== */
+    /* =========================================================
+       FEATURES
+    ========================================================= */
+
     .features-pills {
       display: flex;
       flex-direction: column;
@@ -694,21 +784,27 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
       padding: 12px 24px;
       border-radius: 999px;
       background: #F2ECE5;
+
       font-family: var(--font-heading);
       font-size: 13px;
       text-align: center;
     }
 
     .feature-pill:hover { background: #E6DDD2; }
+
     .feature-pill span { font-weight: 500; }
 
-    /* ===== WHAT I SHOOT ===== */
+    /* =========================================================
+       WHAT I SHOOT
+    ========================================================= */
+
     .shoot-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
       margin-top: 12px;
     }
@@ -716,9 +812,12 @@
     .shoot-item {
       border-radius: var(--radius-lg);
       border: 1px solid var(--color-border-soft);
+
       padding: 14px 14px 16px;
       background: #fff;
+
       cursor: pointer;
+
       transition: background 0.2s ease-out, transform 0.2s ease-out;
     }
 
@@ -742,17 +841,19 @@
       transition: font-weight 0.2s ease-out, color 0.2s ease-out;
     }
 
-    /* Bold ONLY the supporting text on hover/click, like testimonials */
     .shoot-item:hover p,
     .shoot-item.active p {
       font-weight: 600;
       color: var(--color-ink);
     }
 
-    /* ===== PORTFOLIO ===== */
+    /* =========================================================
+       PORTFOLIO (NO auto rotation)
+    ========================================================= */
+
     .portfolio-collections {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
       margin-top: 14px;
     }
@@ -760,28 +861,31 @@
     .collection-card {
       border-radius: var(--radius-lg);
       overflow: hidden;
+
       border: 1px solid var(--color-border-soft);
-      background: rgba(253,247,241,0.9);
+      background: rgba(253, 247, 241, 0.9);
+
       cursor: pointer;
       display: flex;
       flex-direction: column;
     }
 
-    /* Title ABOVE the cover image (all caps, same feel as AT A GLANCE label) */
     .collection-label {
       font-family: var(--font-heading);
       font-size: 10px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--color-ink-soft);
+
       padding: 12px 14px 10px;
-      border-bottom: 1px solid rgba(48,47,43,0.10);
-      background: rgba(253,247,241,0.92);
+
+      border-bottom: 1px solid rgba(48, 47, 43, 0.10);
+      background: rgba(253, 247, 241, 0.92);
     }
 
     .collection-card img {
       width: 100%;
-      aspect-ratio: 2 / 3;
+      aspect-ratio: 2/3;
       object-fit: cover;
     }
 
@@ -792,14 +896,19 @@
       max-width: 520px;
     }
 
-    /* ===== MODAL GALLERY OVERLAY (Slider w/ arrows; seamless loop) ===== */
+    /* =========================================================
+       MODAL GALLERY (NO auto rotation)
+    ========================================================= */
+
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.6);
+
       display: none;
       align-items: center;
       justify-content: center;
+
       z-index: 60;
     }
 
@@ -807,11 +916,15 @@
 
     .modal-gallery {
       background: #111;
+
       border-radius: var(--radius-xl);
       padding: 14px 14px 18px;
+
       max-width: min(960px, 100% - 40px);
       width: 100%;
+
       max-height: 84vh;
+
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -822,6 +935,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
+
       color: #FDF7F1;
       font-family: var(--font-heading);
       font-size: 11px;
@@ -854,10 +968,13 @@
 
     .modal-slider {
       position: relative;
+
       overflow: hidden;
       border-radius: var(--radius-lg);
-      border: 1px solid rgba(255,255,255,0.12);
+
+      border: 1px solid rgba(255, 255, 255, 0.12);
       background: #0b0b0b;
+
       flex: 1;
       min-height: 320px;
     }
@@ -866,6 +983,7 @@
       display: flex;
       width: 100%;
       height: 100%;
+
       transition: transform 0.7s ease-in-out;
       will-change: transform;
     }
@@ -874,17 +992,22 @@
       flex: 0 0 100%;
       width: 100%;
       height: 100%;
+
       display: flex;
-      align-items: center;     /* center vertically (fix for landscape balance) */
-      justify-content: center; /* center horizontally */
+      align-items: center;
+      justify-content: center;
+
       padding: 14px;
     }
 
+    /* Ensures Events isn't "too large" on desktop */
     .modal-slide img {
       max-height: 70vh;
       height: auto;
+
       width: auto;
       max-width: 100%;
+
       border-radius: var(--radius-lg);
       object-fit: contain;
     }
@@ -897,25 +1020,32 @@
 
     .modal-arrow {
       pointer-events: auto;
+
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      border: 1px solid rgba(253,247,241,0.28);
-      background: rgba(0,0,0,0.35);
+
+      border: 1px solid rgba(253, 247, 241, 0.28);
+      background: rgba(0, 0, 0, 0.35);
+
       color: #FDF7F1;
+
       width: 44px;
       height: 44px;
       border-radius: 999px;
+
       cursor: pointer;
+
       display: grid;
       place-items: center;
+
       font-size: 18px;
       backdrop-filter: blur(10px);
     }
 
     .modal-arrow:hover {
-      background: rgba(0,0,0,0.55);
-      border-color: rgba(253,247,241,0.42);
+      background: rgba(0, 0, 0, 0.55);
+      border-color: rgba(253, 247, 241, 0.42);
     }
 
     .modal-arrow.prev { left: 10px; }
@@ -923,10 +1053,13 @@
 
     .modal-arrow.is-hidden { display: none; }
 
-    /* ===== ABOUT ===== */
+    /* =========================================================
+       ABOUT
+    ========================================================= */
+
     .about-layout {
       display: grid;
-      grid-template-columns: minmax(0,1.15fr) minmax(0,0.85fr);
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
       gap: 22px;
       align-items: start;
     }
@@ -935,6 +1068,7 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
+
       font-size: 14px;
       color: var(--color-ink-soft);
     }
@@ -944,28 +1078,27 @@
     .about-photo {
       border-radius: var(--radius-lg);
       overflow: hidden;
+
       border: 1px solid var(--color-border-soft);
       background: #111;
+
       max-width: 340px;
       justify-self: end;
     }
 
     .about-photo img {
       width: 100%;
-      aspect-ratio: 2 / 3;
+      aspect-ratio: 2/3;
       object-fit: cover;
       object-position: center;
-      display: block;
     }
 
-    /* QUICK FACTS */
     .about-facts {
       margin-top: 18px;
       padding-top: 14px;
       border-top: 1px solid var(--color-border-soft);
     }
 
-    /* Bigger "AT A GLANCE" title */
     .about-facts-label {
       font-family: var(--font-heading);
       font-size: 12px;
@@ -977,7 +1110,7 @@
 
     .about-facts-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px 16px;
     }
 
@@ -995,10 +1128,13 @@
 
     .about-fact-body { color: var(--color-ink-soft); }
 
-    /* ===== TESTIMONIALS ===== */
+    /* =========================================================
+       TESTIMONIALS
+    ========================================================= */
+
     .testimonials-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
       margin-top: 10px;
     }
@@ -1006,9 +1142,12 @@
     .testimonial-card {
       border-radius: var(--radius-lg);
       border: 1px solid var(--color-border-soft);
+
       background: #fff;
       padding: 16px 16px 18px;
+
       cursor: pointer;
+
       transition: background 0.2s ease-out, transform 0.2s ease-out;
     }
 
@@ -1021,7 +1160,7 @@
       font-size: 13px;
       color: var(--color-ink-soft);
       margin-bottom: 10px;
-      transition: font-weight 0.2s ease-out;
+      transition: font-weight 0.2s ease-out, color 0.2s ease-out;
     }
 
     .testimonial-card:hover .testimonial-quote,
@@ -1050,17 +1189,17 @@
       margin-top: 2px;
     }
 
-    /* ===== CONTACT / BOOKING ===== */
+    /* =========================================================
+       CONTACT / BOOKING
+    ========================================================= */
+
     .contact-layout {
       display: grid;
-      grid-template-columns: minmax(0,1.05fr) minmax(0,0.95fr);
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
       gap: 22px;
     }
 
-    .contact-card form {
-      display: grid;
-      gap: 12px;
-    }
+    .contact-card form { display: grid; gap: 12px; }
 
     label {
       font-size: 10px;
@@ -1075,6 +1214,7 @@
       border-radius: var(--radius-md);
       border: 1px solid var(--color-border-soft);
       background: #fff;
+
       padding: 9px 10px;
       font-size: 13px;
       font-family: var(--font-body);
@@ -1086,6 +1226,7 @@
       display: flex;
       flex-direction: column;
       gap: 14px;
+
       font-size: 13px;
       color: var(--color-ink-soft);
     }
@@ -1124,10 +1265,13 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+
       padding: 7px 14px;
       border-radius: var(--radius-pill);
+
       background: var(--color-chip-bg);
-      border: 1px solid rgba(48,47,43,0.16);
+      border: 1px solid rgba(48, 47, 43, 0.16);
+
       font-family: var(--font-heading);
       font-size: 11px;
       letter-spacing: 0.16em;
@@ -1135,62 +1279,109 @@
       white-space: nowrap;
     }
 
-    .chip-link:hover { background: rgba(218,96,73,0.16); }
+    .chip-link:hover { background: rgba(218, 96, 73, 0.16); }
 
-    /* ===== FOOTER ===== */
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
     footer {
       margin-top: 32px;
       padding-top: 16px;
       border-top: 1px solid var(--color-border-soft);
+
       font-size: 11px;
       color: var(--color-ink-soft);
+
       display: flex;
       justify-content: space-between;
       gap: 18px;
       flex-wrap: wrap;
     }
 
-    /* ===== RESPONSIVE ===== */
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
     @media (max-width: 960px) {
       .hero, .about-layout, .contact-layout, .book-section { grid-template-columns: 1fr; }
       .hero-right { order: -1; }
+
       .book-cover-wrap { justify-self: center; max-width: 230px; }
-      .portfolio-collections { grid-template-columns: repeat(2, minmax(0,1fr)); }
+
+      .portfolio-collections { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .testimonials-grid { grid-template-columns: 1fr; }
       .book-list { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 720px) {
       .page { padding-inline: 14px; }
-      header { border-radius: 0; }
 
-      /* Make brand row sit ABOVE buttons like your screenshot */
-      .nav { flex-wrap: wrap; gap: 12px; padding: 12px 0; }
-      .brand { width: 100%; }
+      /* Mobile header: brand row on top */
+      .nav {
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 12px 0;
+        align-items: flex-start;
+      }
 
-      /* Hide desktop links on mobile; show hamburger */
+      .brand {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      /* Hide desktop links */
       .nav-links { display: none; }
+
+      /* Show mobile controls row */
       .hamburger { display: grid; }
-
-      /* Booking stays right; hamburger left */
-      .nav-right { width: 100%; justify-content: space-between; gap: 10px; }
-      .nav-right-left { display: flex; align-items: center; gap: 10px; }
-
-      /* Show mobile dropdown container on mobile */
+      .btn-portfolio-mobile { display: inline-flex; }
       .mobile-menu { display: block; }
 
-      .hero, section { padding: 20px 16px 22px; border-radius: 18px; }
+      /* Row 2: hamburger + view portfolio + booking on same line */
+      .nav-right {
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .nav-right-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .btn-portfolio-mobile {
+        flex: 1;
+        justify-content: center;
+      }
+
+      .btn-booking { flex: 0 0 auto; }
+
+      .hero, section {
+        padding: 20px 16px 22px;
+        border-radius: 18px;
+      }
+
       .hero-title { font-size: 28px; }
 
       .shoot-grid, .portfolio-collections { grid-template-columns: 1fr; }
       .about-facts-grid { grid-template-columns: 1fr; }
 
-      .about-photo { max-width: none; justify-self: stretch; }
+      .about-photo {
+        max-width: none;
+        justify-self: stretch;
+      }
 
       .book-cover-wrap { max-width: 210px; }
-
       .modal-slide img { max-height: 62vh; }
-      .modal-arrow { width: 42px; height: 42px; }
+
+      .modal-arrow {
+        width: 42px;
+        height: 42px;
+      }
     }
   </style>
 </head>
@@ -1199,22 +1390,30 @@
   <div class="page">
     <div class="shell">
 
-      <!-- ===== HEADER ===== -->
+      <!-- =====================================================
+           HEADER
+      ====================================================== -->
       <header id="top">
         <nav class="nav">
-          <!-- Clicking anywhere on brand returns to top (mobile & desktop) -->
-          <div class="brand" id="brandHome">
+
+          <!-- Clicking anywhere here goes to top (mobile + desktop) -->
+          <div class="brand" id="brandHome" aria-label="Back to top">
             <div class="brand-logo image-hover">
-              <img src="images/matthew-logo-black-border.png" alt="Matthew Norton Logo">
+              <img
+                src="images/matthew-logo-black-border.png"
+                alt="Matthew Norton Logo"
+              />
             </div>
-            <div>
+
+            <div class="brand-text">
               <div class="brand-text-main">Matthew Norton Photos</div>
               <div class="brand-text-sub">Dallas, Texas · Portrait &amp; Brand</div>
             </div>
           </div>
 
           <div class="nav-right">
-            <!-- Desktop links -->
+
+            <!-- Desktop nav (order: Portfolio, About, Features, Testimonials) -->
             <div class="nav-links" aria-label="Primary">
               <a href="#portfolio">Portfolio</a>
               <a href="#about">About</a>
@@ -1222,31 +1421,35 @@
               <a href="#testimonials">Testimonials</a>
             </div>
 
-            <!-- Mobile left cluster: hamburger only -->
+            <!-- Mobile row: hamburger + view portfolio (between hamburger and booking) -->
             <div class="nav-right-left">
-              <button class="hamburger" id="mobileMenuToggle" type="button" aria-label="Open menu">☰</button>
+              <button
+                class="hamburger"
+                id="mobileMenuToggle"
+                type="button"
+                aria-label="Open menu"
+              >☰</button>
+
+              <button
+                class="btn-portfolio-mobile"
+                id="headerViewPortfolioMobile"
+                type="button"
+              >View Portfolio</button>
             </div>
 
-            <!-- Booking always visible -->
-            <button class="btn-booking" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-              Booking
-            </button>
+            <!-- Booking always on far right -->
+            <button
+              class="btn-booking"
+              onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"
+            >Booking</button>
           </div>
         </nav>
 
-        <!-- Mobile dropdown panel (animated). Only visible on mobile via CSS. -->
+        <!-- Mobile dropdown menu (NO Portfolio item) -->
         <div class="mobile-menu">
           <div class="mobile-menu-panel" id="mobileMenuPanel" aria-label="Mobile menu">
             <div class="mobile-menu-inner shell">
-              <!-- Secondary button ONLY on mobile, left aligned in dropdown -->
-              <div class="mobile-cta-row">
-                <button class="btn-ghost" type="button" id="mobileViewPortfolio">
-                  View Portfolio
-                </button>
-              </div>
-
               <div class="mobile-menu-links" id="mobileMenuLinks">
-                <a href="#portfolio" data-target="portfolio">Portfolio</a>
                 <a href="#about" data-target="about">About</a>
                 <a href="#features" data-target="features">Features</a>
                 <a href="#testimonials" data-target="testimonials">Testimonials</a>
@@ -1256,28 +1459,34 @@
         </div>
       </header>
 
-      <!-- ===== MAIN ===== -->
+      <!-- =====================================================
+           MAIN
+      ====================================================== -->
       <main>
 
-        <!-- HERO -->
+        <!-- ===================== HERO ====================== -->
         <section class="hero">
           <div class="hero-left">
             <div class="hero-kicker">Dallas, TX · Available for travel</div>
 
-            <h1 class="hero-title">
-              Honest, nostalgic photography.<br>
-            </h1>
+            <h1 class="hero-title">Honest, nostalgic photography.</h1>
 
-            <!-- Keep the sentence continuous; no motion; bold phrase stays inline -->
-            <p class="hero-tagline">I believe a meaningful photograph doesn’t just capture a moment — it connects one. My work is about <strong>truth over perfection, curiosity over trends, and images that still matter years from now.</strong></p>
+            <!-- Continuous text, no splitting / no motion -->
+            <p class="hero-tagline">
+              I believe a meaningful photograph doesn’t just capture a moment — it connects one. My work is about
+              <strong>truth over perfection, curiosity over trends, and images that still matter years from now.</strong>
+            </p>
 
             <div class="hero-actions">
-              <button class="btn-primary" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">
-                View Portfolio
-              </button>
-              <button class="btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-                → Book a Session
-              </button>
+              <button
+                class="btn-primary"
+                onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})"
+              >View Portfolio</button>
+
+              <button
+                class="btn-ghost"
+                onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"
+              >→ Book a Session</button>
             </div>
 
             <div class="hero-meta">
@@ -1287,36 +1496,56 @@
               <span>Events</span>
             </div>
 
-            <!-- WRITE A REVIEW (mailto built by JS for reliable formatting) -->
             <form class="hero-review" id="reviewForm">
               <div class="hero-review-label">Write a review</div>
-              <input type="text" id="reviewName" name="Name" placeholder="Your name" required>
-              <textarea id="reviewText" name="Review" placeholder="Share a few words about your experience…" required></textarea>
+
+              <input
+                type="text"
+                id="reviewName"
+                name="Name"
+                placeholder="Your name"
+                required
+              />
+
+              <textarea
+                id="reviewText"
+                name="Review"
+                placeholder="Share a few words about your experience…"
+                required
+              ></textarea>
+
               <button class="btn-review" type="submit">Submit review</button>
             </form>
           </div>
 
+          <!-- HERO carousel (ONLY auto-rotating element; 5 seconds) -->
           <aside class="hero-right image-hover">
             <div class="hero-carousel">
-              <div class="hero-carousel-track">
-                <img class="hero-carousel-image" src="images/austin-michael-1.JPG" alt="Portrait by Matthew Norton - Austin Michael">
-                <img class="hero-carousel-image" src="images/bethany-1.jpg" alt="Portrait by Matthew Norton - Bethany">
-                <img class="hero-carousel-image" src="images/dawson-1.JPEG" alt="Portrait by Matthew Norton - Dawson">
-                <img class="hero-carousel-image" src="images/birdie-1.JPG" alt="Portrait by Matthew Norton - Birdie">
-                <img class="hero-carousel-image" src="images/lukis-1.JPG" alt="Portrait by Matthew Norton - Lukis">
+              <div class="hero-carousel-track" id="heroCarouselTrack">
+                <img class="hero-carousel-image" src="images/austin-michael-1.JPG" alt="Portrait by Matthew Norton - Austin Michael" />
+                <img class="hero-carousel-image" src="images/bethany-1.jpg" alt="Portrait by Matthew Norton - Bethany" />
+                <img class="hero-carousel-image" src="images/dawson-1.JPEG" alt="Portrait by Matthew Norton - Dawson" />
+                <img class="hero-carousel-image" src="images/birdie-1.JPG" alt="Portrait by Matthew Norton - Birdie" />
+                <img class="hero-carousel-image" src="images/lukis-1.JPG" alt="Portrait by Matthew Norton - Lukis" />
               </div>
             </div>
           </aside>
         </section>
 
-        <!-- DEEPLY CURIOUS BOOK BANNER (RESTORED) -->
+        <!-- ===================== DEEPLY CURIOUS ====================== -->
         <section id="book" class="book-section">
           <div class="book-cover-wrap image-hover">
-            <img src="images/deeply-curious.png" alt="Deeply Curious: Staying Inspired Behind the Lens - ebook cover">
+            <img
+              src="images/deeply-curious.png"
+              alt="Deeply Curious: Staying Inspired Behind the Lens - ebook cover"
+            />
           </div>
+
           <div class="book-content">
             <div class="book-kicker">New e-book · For photographers &amp; creatives</div>
+
             <h2 class="book-title">Deeply Curious</h2>
+
             <div class="book-subtitle">Staying Inspired Behind the Lens</div>
 
             <p class="book-body">
@@ -1334,18 +1563,20 @@
 
             <div class="book-ctas">
               <span class="book-cta-primary is-disabled" aria-disabled="true">Coming soon</span>
-              <a class="book-cta-secondary" href="images/5-curiosity-prompts.pdf" target="_blank" rel="noreferrer">
-                Free resource
-              </a>
+
+              <a
+                class="book-cta-secondary"
+                href="images/5-curiosity-prompts.pdf"
+                target="_blank"
+                rel="noreferrer"
+              >Free resource</a>
             </div>
 
-            <p class="book-note">
-              HELPFUL ASSETS FOR PHOTOGRAPHERS WHO WANT THEIR SPARK BACK.
-            </p>
+            <p class="book-note">HELPFUL ASSETS FOR PHOTOGRAPHERS WHO WANT THEIR SPARK BACK.</p>
           </div>
         </section>
 
-        <!-- FEATURES & HIGHLIGHTS -->
+        <!-- ===================== FEATURES ====================== -->
         <section id="features">
           <div class="section-header">
             <div class="section-kicker">Features &amp; Highlights</div>
@@ -1356,29 +1587,44 @@
           </div>
 
           <div class="features-pills">
-            <a class="feature-pill" href="https://shoutoutdfw.com/meet-matthew-norton-urban-portrait-photographer-content-creator/" target="_blank" rel="noreferrer">
-              <span>Local Stories Article | SHOUTOUT DFW</span>
-            </a>
+            <a
+              class="feature-pill"
+              href="https://shoutoutdfw.com/meet-matthew-norton-urban-portrait-photographer-content-creator/"
+              target="_blank"
+              rel="noreferrer"
+            ><span>Local Stories Article | SHOUTOUT DFW</span></a>
 
-            <a class="feature-pill" href="https://open.spotify.com/episode/5gyh492IbkKOBcJWlrVlIM" target="_blank" rel="noreferrer">
-              <span>Working with Models | The Real Model Talk Podcast</span>
-            </a>
+            <a
+              class="feature-pill"
+              href="https://open.spotify.com/episode/5gyh492IbkKOBcJWlrVlIM"
+              target="_blank"
+              rel="noreferrer"
+            ><span>Working with Models | The Real Model Talk Podcast</span></a>
 
-            <a class="feature-pill" href="https://www.magcloud.com/browse/issue/1674798?__r=1813141" target="_blank" rel="noreferrer">
-              <span>Suburban Dancefloor | HORIZONT Issue 5 Vol. 10</span>
-            </a>
+            <a
+              class="feature-pill"
+              href="https://www.magcloud.com/browse/issue/1674798?__r=1813141"
+              target="_blank"
+              rel="noreferrer"
+            ><span>Suburban Dancefloor | HORIZONT Issue 5 Vol. 10</span></a>
 
-            <a class="feature-pill" href="https://www.magcloud.com/browse/issue/1671303?__r=1813141" target="_blank" rel="noreferrer">
-              <span>Young Elegance | HORIZONT Issue 5 Vol. 9</span>
-            </a>
+            <a
+              class="feature-pill"
+              href="https://www.magcloud.com/browse/issue/1671303?__r=1813141"
+              target="_blank"
+              rel="noreferrer"
+            ><span>Young Elegance | HORIZONT Issue 5 Vol. 9</span></a>
 
-            <a class="feature-pill" href="https://www.magcloud.com/browse/issue/1669333" target="_blank" rel="noreferrer">
-              <span>Autumn in Greece | HORIZONT Issue 5 Vol. 5</span>
-            </a>
+            <a
+              class="feature-pill"
+              href="https://www.magcloud.com/browse/issue/1669333"
+              target="_blank"
+              rel="noreferrer"
+            ><span>Autumn in Greece | HORIZONT Issue 5 Vol. 5</span></a>
           </div>
         </section>
 
-        <!-- WHAT I SHOOT (RESTORED) -->
+        <!-- ===================== WHAT I SHOOT ====================== -->
         <section id="what-i-shoot">
           <div class="section-header">
             <div class="section-kicker">What I shoot</div>
@@ -1393,14 +1639,17 @@
               <h3>Portraits</h3>
               <p>Individuals, creatives, musicians, and founders who want images that feel like them, not like a template.</p>
             </div>
+
             <div class="shoot-item">
               <h3>Couples</h3>
               <p>Engagements, anniversaries, and just-because sessions that focus on shared quirks and real connection.</p>
             </div>
+
             <div class="shoot-item">
               <h3>Brands</h3>
               <p>Small businesses, personal brands, and campaigns that need honest imagery instead of stock-photo energy.</p>
             </div>
+
             <div class="shoot-item">
               <h3>Events</h3>
               <p>Conferences, worship nights, and live gatherings captured documentary-style — present, not performative.</p>
@@ -1408,29 +1657,31 @@
           </div>
         </section>
 
-        <!-- PORTFOLIO COLLECTIONS -->
+        <!-- ===================== PORTFOLIO ====================== -->
         <section id="portfolio">
           <div class="section-header">
             <div class="section-kicker">Portfolio</div>
             <h2 class="section-title">Collections</h2>
-            <p class="section-subtitle">Explore a few focused galleries. Each is an intentional slice of my work.</p>
+            <p class="section-subtitle">
+              Explore a few focused galleries. Each is an intentional slice of my work.
+            </p>
           </div>
 
-          <!-- Cover images are static (no timers). Only the TOP HERO carousel auto-rotates. -->
+          <!-- Titles ABOVE each cover (desktop + mobile) -->
           <div class="portfolio-collections">
             <div class="collection-card image-hover" data-gallery="portraits" role="button" tabindex="0" aria-label="Open Portraits gallery">
               <div class="collection-label">Portraits</div>
-              <img src="images/rachel-1.JPG" alt="Portraits collection preview">
+              <img src="images/rachel-1.JPG" alt="Portraits collection preview" />
             </div>
 
             <div class="collection-card image-hover" data-gallery="couples" role="button" tabindex="0" aria-label="Open Couples gallery">
               <div class="collection-label">Couples</div>
-              <img src="images/jo-sandy-1.jpg" alt="Couples collection preview">
+              <img src="images/jo-sandy-1.jpg" alt="Couples collection preview" />
             </div>
 
             <div class="collection-card image-hover" data-gallery="events" role="button" tabindex="0" aria-label="Open Events gallery">
               <div class="collection-label">Events</div>
-              <img src="images/naomi-1.JPG" alt="Events collection preview">
+              <img src="images/naomi-1.JPG" alt="Events collection preview" />
             </div>
           </div>
 
@@ -1439,7 +1690,7 @@
           </p>
         </section>
 
-        <!-- ABOUT -->
+        <!-- ===================== ABOUT ====================== -->
         <section id="about">
           <div class="section-header">
             <div class="section-kicker">About</div>
@@ -1451,44 +1702,44 @@
               <p>
                 I’m a <strong>photographer and educator based in Dallas, Texas</strong>, who believes photography is less about perfection and more about honoring what’s real. My work leans warm, nostalgic, and people-first — the kind of images that still feel true when you pull them out of a shoebox years from now.
               </p>
+
               <p>
                 Since 2017, I’ve photographed hundreds of portraits, couples, live music, and events, always with the same goal: help people feel seen, not staged into someone else’s trend.
               </p>
+
               <p>
                 If you’re looking for stiff poses and retouched perfection, I’m probably not your photographer. If you want images that feel like you, I’d love to work together.
               </p>
 
               <div class="about-facts">
-                <div class="about-facts-label">At a glance</div>
+                <div class="about-facts-label">AT A GLANCE</div>
+
                 <div class="about-facts-grid">
                   <div class="about-fact">
                     <span class="about-fact-heading">Base</span>
                     <span class="about-fact-body">Dallas, Texas</span>
                   </div>
+
                   <div class="about-fact">
                     <span class="about-fact-heading">Since</span>
                     <span class="about-fact-body">2017 — portraits, couples, live music &amp; events</span>
                   </div>
+
                   <div class="about-fact">
                     <span class="about-fact-heading">Focus</span>
                     <span class="about-fact-body">Nostalgic, people-first photography</span>
                   </div>
+
                   <div class="about-fact">
                     <span class="about-fact-heading">Style</span>
                     <span class="about-fact-body">Warm tones, honest moments, editorial simplicity</span>
                   </div>
+
                   <div class="about-fact">
                     <span class="about-fact-heading">Approach</span>
                     <span class="about-fact-body">Intentional mindset — shoot, don’t overthink; create, don’t perform</span>
                   </div>
-                  <div class="about-fact">
-                    <span class="about-fact-heading">Gear</span>
-                    <span class="about-fact-body">Sony mirrorless + prime lens shooter</span>
-                  </div>
-                  <div class="about-fact">
-                    <span class="about-fact-heading">Clientele</span>
-                    <span class="about-fact-body">Everyday people, creatives, musicians, couples &amp; small brands</span>
-                  </div>
+
                   <div class="about-fact">
                     <span class="about-fact-heading">Delivery</span>
                     <span class="about-fact-body">Clean, curated albums with timeless edits</span>
@@ -1498,12 +1749,12 @@
             </div>
 
             <aside class="about-photo image-hover">
-              <img src="images/matthew-portrait-2.JPG" alt="Portrait of Matthew Norton">
+              <img src="images/matthew-portrait-2.JPG" alt="Portrait of Matthew Norton" />
             </aside>
           </div>
         </section>
 
-        <!-- TESTIMONIALS -->
+        <!-- ===================== TESTIMONIALS ====================== -->
         <section id="testimonials">
           <div class="section-header">
             <div class="section-kicker">Testimonials</div>
@@ -1519,11 +1770,12 @@
                 "Working with Matthew was so fun! He's such a kind person and makes you feel comfortable and confident during the shoot. I would totally recommend working with him."
               </div>
               <div class="testimonial-name">
-                Dawson Shorman |
-                <a href="https://instagram.com/dawson_shorman" target="_blank" rel="noreferrer">@dawson_shorman</a> |
-                <a href="https://instagram.com/musicbyoak" target="_blank" rel="noreferrer">@musicbyoak</a>
+                <span>Dawson Shorman</span> |
+                <a href="https://instagram.com/dawson_shorman" target="_blank" rel="noreferrer">@DAWSON_SHORMAN</a>
               </div>
-              <div class="testimonial-meta">Musician</div>
+              <div class="testimonial-meta">
+                <a href="https://instagram.com/musicbyoak" target="_blank" rel="noreferrer">@MUSICBYOAK</a>
+              </div>
             </div>
 
             <div class="testimonial-card">
@@ -1542,16 +1794,14 @@
                 “One of the very few creators on my radar with unmatched positive energy and good vibes! In the dictionary, right next to the word AUTHENTICITY, is your smiling portrait.”
               </div>
               <div class="testimonial-name">
-                Evgenii "Jay" Vlasenko |
+                J. Vlass |
                 <a href="https://instagram.com/j.vlass" target="_blank" rel="noreferrer">@j.vlass</a>
               </div>
               <div class="testimonial-meta">Photographer</div>
             </div>
 
             <div class="testimonial-card">
-              <div class="testimonial-quote">
-                “Best shooter in Dallas!”
-              </div>
+              <div class="testimonial-quote">“Best shooter in Dallas!”</div>
               <div class="testimonial-name">
                 1K Phew |
                 <a href="https://instagram.com/1kphew" target="_blank" rel="noreferrer">@1kphew</a>
@@ -1561,7 +1811,7 @@
           </div>
         </section>
 
-        <!-- CONTACT / BOOKING -->
+        <!-- ===================== CONTACT / BOOKING ====================== -->
         <section id="contact">
           <div class="section-header">
             <div class="section-kicker">Contact</div>
@@ -1573,16 +1823,19 @@
 
           <div class="contact-layout">
             <div class="contact-card">
-              <!-- Note: mailto forms inherently prefill with form field content; keeping it minimal (subject only) -->
-              <form action="mailto:matthewnortonphotos@gmail.com?subject=New%20Photo%20Inquiry" method="POST" enctype="text/plain">
+              <form
+                action="mailto:matthewnortonphotos@gmail.com?subject=New%20Photo%20Inquiry"
+                method="POST"
+                enctype="text/plain"
+              >
                 <label>Name</label>
-                <input type="text" name="Name" placeholder="Your name" required>
+                <input type="text" name="Name" placeholder="Your name" required />
 
                 <label>Email</label>
-                <input type="email" name="Email" placeholder="Your email" required>
+                <input type="email" name="Email" placeholder="Your email" required />
 
                 <label>Session Type</label>
-                <input type="text" name="Type" placeholder="Portraits, couples, brand, event…" required>
+                <input type="text" name="Type" placeholder="Portraits, couples, brand, event…" required />
 
                 <label>Message</label>
                 <textarea name="Message" placeholder="Tell me about what you're dreaming up…"></textarea>
@@ -1596,21 +1849,18 @@
 
               <div>
                 <div class="social-row-label">Email</div>
-                <a href="mailto:matthewnortonphotos@gmail.com" class="contact-email">matthewnortonphotos@gmail.com</a>
+                <a href="mailto:matthewnortonphotos@gmail.com" class="contact-email">
+                  matthewnortonphotos@gmail.com
+                </a>
               </div>
 
               <div class="contact-socials">
                 <div class="social-row-label">Elsewhere</div>
                 <div class="social-buttons">
-                  <a class="chip-link" href="https://instagram.com/matthewnortonphotos" target="_blank" rel="noreferrer">
-                    Instagram
-                  </a>
-                  <a class="chip-link" href="https://www.tiktok.com/@matthewnortonphotos" target="_blank" rel="noreferrer">
-                    TikTok
-                  </a>
-                  <a class="chip-link" href="https://direct.me/matthewnortonphotos?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnbn9KBJOyedCfxzKtIRNumpg99BVoIryVqV7-0wZdE_QsSXYyT-GSsxLPDuk_aem_-GYXmgvz978KZYxcD0anPA#" target="_blank" rel="noreferrer">
-                    Linktree
-                  </a>
+                  <a class="chip-link" href="https://instagram.com/matthewnortonphotos" target="_blank" rel="noreferrer">Instagram</a>
+                  <a class="chip-link" href="https://www.tiktok.com/@matthewnortonphotos" target="_blank" rel="noreferrer">TikTok</a>
+                  <a class="chip-link" href="https://direct.me/matthewnortonphotos?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnbn9KBJOyedCfxzKtIRNumpg99BVoIryVqV7-0wZdE_QsSXYyT-GSsxLPDuk_aem_-GYXmgvz978KZYxcD0anPA#"
+                     target="_blank" rel="noreferrer">Links</a>
                 </div>
               </div>
 
@@ -1623,7 +1873,6 @@
 
       </main>
 
-      <!-- ===== FOOTER ===== -->
       <footer>
         <div>© 2025 Matthew Norton Photos. All rights reserved.</div>
         <div>Based in Dallas, Texas. Available for travel.</div>
@@ -1632,7 +1881,9 @@
     </div>
   </div>
 
-  <!-- ===== MODAL GALLERY OVERLAY ===== -->
+  <!-- =====================================================
+       MODAL GALLERY
+  ====================================================== -->
   <div id="galleryModal" class="modal-backdrop">
     <div class="modal-gallery" role="dialog" aria-modal="true" aria-label="Gallery">
       <div class="modal-gallery-header">
@@ -1640,13 +1891,12 @@
           <span>Gallery</span>
           <span class="modal-counter" id="modalCounter">1 / 1</span>
         </div>
+
         <button class="modal-close" type="button" aria-label="Close gallery">&times;</button>
       </div>
 
       <div class="modal-slider" aria-live="polite">
-        <div class="modal-slider-track" id="modalSliderTrack">
-          <!-- slides injected by JS -->
-        </div>
+        <div class="modal-slider-track" id="modalSliderTrack"></div>
 
         <div class="modal-nav">
           <button class="modal-arrow prev" type="button" aria-label="Previous image" id="modalPrev">&#8249;</button>
@@ -1657,163 +1907,147 @@
   </div>
 
   <script>
-    // ===== PORTFOLIO GALLERIES =====
-    // Covers do NOT auto-rotate. Only hero carousel does.
+    /* =========================================================
+       GALLERIES (NO auto-rotation)
+    ========================================================= */
+
     const galleryImages = {
       portraits: [
-        "images/potraits-1.JPG",
         "images/potraits-2.JPG",
         "images/potraits-3.JPEG",
-        "images/potraits-4.PNG",
-        "images/potraits-5.JPG",
-        "images/potraits-6.JPG",
-        "images/potraits-7.JPEG",
-        "images/potraits-8.JPG",
-        "images/potraits-9.JPEG",
-        "images/potraits-10.JPG",
-        "images/potraits-11.JPG",
         "images/potraits-12.JPG",
-        "images/potraits-13.JPG",
-        "images/potraits-14.JPG",
-        "images/potraits-15.jpg",
-        "images/potraits-16.JPG",
-        "images/potraits-17.JPG",
-        "images/potraits-18.JPG",
-        "images/potraits-19.JPEG",
-        "images/potraits-20.JPG",
-        "images/potraits-21.JPG",
-        "images/potraits-22.JPG",
-        "images/potraits-23.JPEG",
-        "images/potraits-24.JPG",
-        "images/potraits-25.JPG",
-        "images/potraits-26.jpg",
-        "images/potraits-27.JPG",
-        "images/potraits-28.JPEG",
+        "images/potraits-6.JPG",
         "images/potraits-29.JPG",
-        "images/potraits-30.JPG",
-        "images/potraits-31.JPG",
-        "images/potraits-32.PNG",
-        "images/potraits-33.PNG"
+        "images/potraits-23.JPEG",
+        "images/potraits-8.JPG",
+        "images/potraits-25.JPG",
+        "images/potraits-5.JPG",
+        "images/potraits-11.JPG",
+        "images/potraits-9.JPEG",
+        "images/potraits-18.JPG",
+        "images/potraits-13.JPG",
+        "images/potraits-28.JPEG",
+        "images/potraits-7.JPEG",
+        "images/potraits-19.JPEG",
+        "images/potraits-4.PNG",
+        "images/potraits-16.JPG",
+        "images/potraits-14.JPG",
+        "images/potraits-26.jpg",
+        "images/potraits-15.jpg",
+        "images/potraits-22.JPG",
+        "images/potraits-33.PNG",
+        "images/potraits-20.JPG"
       ],
       couples: [
         "images/couples-1.jpg",
         "images/couples-2.jpg",
-        "images/couples-3.jpg",
-        "images/couples-4.jpg",
-        "images/couples-5.jpg",
-        "images/couples-6.jpg",
-        "images/couples-7.jpg",
-        "images/couples-8.jpg",
-        "images/couples-9.JPG",
-        "images/couples-10.JPG",
-        "images/couples-11.JPG",
-        "images/couples-12.JPG",
-        "images/couples-13.jpg",
-        "images/couples-14.jpg",
-        "images/couples-15.jpg",
-        "images/couples-16.jpg",
-        "images/couples-17.jpg",
-        "images/couples-18.jpg",
-        "images/couples-19.jpg",
-        "images/couples-20.jpg",
-        "images/couples-21.jpg",
-        "images/couples-22.jpg",
-        "images/couples-23.jpg",
-        "images/couples-24.jpg",
-        "images/couples-25.jpg",
-        "images/couples-26.jpg",
-        "images/couples-27.jpg",
-        "images/couples-28.jpg",
-        "images/couples-29.png",
-        "images/couples-30.JPG"
+        "images/couples-3.jpg"
       ],
-      // Events: only Naomi cover for now (as requested)
       events: [
         "images/naomi-1.JPG"
       ]
     };
 
-    // ===== MOBILE: dropdown open/close + active section highlighting =====
-    const brandHome = document.getElementById('brandHome');
-    const mobileToggle = document.getElementById('mobileMenuToggle');
-    const mobilePanel = document.getElementById('mobileMenuPanel');
-    const mobileViewPortfolio = document.getElementById('mobileViewPortfolio');
-    const mobileLinksContainer = document.getElementById('mobileMenuLinks');
+    /* =========================================================
+       HEADER INTERACTIONS
+    ========================================================= */
 
-    brandHome.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      // close menu if open (mobile)
-      if (mobilePanel) mobilePanel.classList.remove('active');
+    const brandHome = document.getElementById("brandHome");
+    const mobileToggle = document.getElementById("mobileMenuToggle");
+    const mobilePanel = document.getElementById("mobileMenuPanel");
+    const mobileLinksContainer = document.getElementById("mobileMenuLinks");
+    const headerViewPortfolioMobile = document.getElementById("headerViewPortfolioMobile");
+
+    brandHome.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      mobilePanel.classList.remove("active");
     });
 
-    mobileViewPortfolio.addEventListener('click', () => {
-      document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
-      mobilePanel.classList.remove('active');
+    headerViewPortfolioMobile.addEventListener("click", () => {
+      document.getElementById("portfolio").scrollIntoView({ behavior: "smooth" });
+      mobilePanel.classList.remove("active");
     });
 
-    mobileToggle.addEventListener('click', () => {
-      mobilePanel.classList.toggle('active');
+    mobileToggle.addEventListener("click", () => {
+      mobilePanel.classList.toggle("active");
     });
 
-    // Close dropdown after tapping a link (mobile)
-    mobileLinksContainer.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', () => {
-        mobilePanel.classList.remove('active');
-      });
+    /* Close dropdown after tapping a link */
+    mobileLinksContainer.querySelectorAll('a[href^="#"]').forEach((a) => {
+      a.addEventListener("click", () => mobilePanel.classList.remove("active"));
     });
 
-    // Active link highlighting (IntersectionObserver)
-    const sectionIds = ["portfolio", "about", "features", "testimonials"];
-    const mobileLinks = Array.from(mobileLinksContainer.querySelectorAll('a[data-target]'));
+    /* =========================================================
+       MOBILE ACTIVE SECTION HIGHLIGHTING
+       - Bold only
+       - Not stuck on Features at top
+    ========================================================= */
 
-    function setActiveMobileLink(id) {
-      mobileLinks.forEach(link => {
-        link.classList.toggle('active', link.dataset.target === id);
+    const mobileLinks = Array.from(mobileLinksContainer.querySelectorAll("a[data-target]"));
+
+    function setActiveMobileLink(idOrNull) {
+      mobileLinks.forEach((link) => {
+        link.classList.toggle("active", link.dataset.target === idOrNull);
       });
     }
 
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver((entries) => {
-        // pick the most visible intersecting section
-        const visible = entries
-          .filter(e => e.isIntersecting)
-          .sort((a,b) => (b.intersectionRatio - a.intersectionRatio))[0];
+    function computeActiveSectionByScroll() {
+      const y = window.scrollY || window.pageYOffset || 0;
+      const aboutEl = document.getElementById("about");
+      if (!aboutEl) return null;
 
-        if (visible && visible.target && visible.target.id) {
-          setActiveMobileLink(visible.target.id);
-        }
-      }, {
-        root: null,
-        threshold: [0.2, 0.35, 0.5, 0.65],
-        rootMargin: "-20% 0px -55% 0px"
-      });
+      const aboutTop = aboutEl.getBoundingClientRect().top + y;
 
-      sectionIds.forEach(id => {
+      /* If we haven't reached About yet, nothing should be active. */
+      if (y < aboutTop - 180) return null;
+
+      /* Otherwise pick the last section that crossed the activation line */
+      const activationLine = y + 140;
+      const order = ["about", "features", "testimonials"];
+
+      let active = "about";
+
+      for (const id of order) {
         const el = document.getElementById(id);
-        if (el) io.observe(el);
-      });
+        if (!el) continue;
 
-      // initialize
-      setActiveMobileLink("portfolio");
+        const top = el.getBoundingClientRect().top + y;
+
+        if (top <= activationLine) active = id;
+      }
+
+      return active;
     }
 
-    // ===== MODAL SLIDER (seamless looping; click arrows; no auto-rotation) =====
-    const modal = document.getElementById('galleryModal');
-    const sliderTrack = document.getElementById('modalSliderTrack');
-    const closeBtn = document.querySelector('.modal-close');
-    const prevBtn = document.getElementById('modalPrev');
-    const nextBtn = document.getElementById('modalNext');
-    const counterEl = document.getElementById('modalCounter');
+    function updateMobileActive() {
+      setActiveMobileLink(computeActiveSectionByScroll());
+    }
 
-    let currentGallery = [];          // original images
-    let galleryWithClones = [];       // [last, ...original, first] if len > 1
-    let currentIndex = 0;             // index within galleryWithClones
+    window.addEventListener("scroll", updateMobileActive, { passive: true });
+    window.addEventListener("resize", updateMobileActive);
+    updateMobileActive();
+
+    /* =========================================================
+       MODAL GALLERY (NO auto-rotation)
+       - Seamless loop with clones if > 1 image
+    ========================================================= */
+
+    const modal = document.getElementById("galleryModal");
+    const sliderTrack = document.getElementById("modalSliderTrack");
+    const closeBtn = document.querySelector(".modal-close");
+    const prevBtn = document.getElementById("modalPrev");
+    const nextBtn = document.getElementById("modalNext");
+    const counterEl = document.getElementById("modalCounter");
+
+    let currentGallery = [];
+    let galleryWithClones = [];
+    let currentIndex = 0;
     let isModalTransitioning = false;
 
     function updateModalNavVisibility() {
       const many = currentGallery.length > 1;
-      prevBtn.classList.toggle('is-hidden', !many);
-      nextBtn.classList.toggle('is-hidden', !many);
+      prevBtn.classList.toggle("is-hidden", !many);
+      nextBtn.classList.toggle("is-hidden", !many);
     }
 
     function updateCounter() {
@@ -1822,20 +2056,19 @@
         counterEl.textContent = `1 / 1`;
         return;
       }
-      // currentIndex is in cloned array; real index = currentIndex - 1 (1..total)
       const realIndex = Math.min(Math.max(currentIndex - 1, 0), total - 1);
       counterEl.textContent = `${realIndex + 1} / ${total}`;
     }
 
     function renderSlides(images) {
-      sliderTrack.innerHTML = '';
+      sliderTrack.innerHTML = "";
       images.forEach((src) => {
-        const slide = document.createElement('div');
-        slide.className = 'modal-slide';
+        const slide = document.createElement("div");
+        slide.className = "modal-slide";
 
-        const img = document.createElement('img');
+        const img = document.createElement("img");
         img.src = src;
-        img.alt = '';
+        img.alt = "";
 
         slide.appendChild(img);
         sliderTrack.appendChild(slide);
@@ -1843,8 +2076,8 @@
     }
 
     function setModalTransform(index, withTransition = true) {
-      sliderTrack.style.transition = withTransition ? 'transform 0.7s ease-in-out' : 'none';
-      sliderTrack.style.transform = 'translateX(-' + (index * 100) + '%)';
+      sliderTrack.style.transition = withTransition ? "transform 0.7s ease-in-out" : "none";
+      sliderTrack.style.transform = "translateX(-" + (index * 100) + "%)";
     }
 
     function openGallery(key) {
@@ -1852,32 +2085,29 @@
       updateModalNavVisibility();
 
       if (currentGallery.length > 1) {
-        // clones for seamless wrap
         galleryWithClones = [
           currentGallery[currentGallery.length - 1],
           ...currentGallery,
           currentGallery[0]
         ];
-        currentIndex = 1; // start on first real slide
+        currentIndex = 1;
       } else {
         galleryWithClones = [...currentGallery];
         currentIndex = 0;
       }
 
       renderSlides(galleryWithClones);
-
-      // Start position
       setModalTransform(currentIndex, false);
-      // force reflow then restore transition
+
       void sliderTrack.offsetWidth;
-      sliderTrack.style.transition = 'transform 0.7s ease-in-out';
+      sliderTrack.style.transition = "transform 0.7s ease-in-out";
 
       updateCounter();
-      modal.classList.add('active');
+      modal.classList.add("active");
     }
 
     function closeGallery() {
-      modal.classList.remove('active');
+      modal.classList.remove("active");
     }
 
     function goToSlide(nextIndex) {
@@ -1886,6 +2116,7 @@
 
       isModalTransitioning = true;
       currentIndex = nextIndex;
+
       setModalTransform(currentIndex, true);
       updateCounter();
     }
@@ -1893,86 +2124,86 @@
     function handleModalTransitionEnd() {
       if (currentGallery.length <= 1) return;
       if (!isModalTransitioning) return;
+
       isModalTransitioning = false;
 
       const total = currentGallery.length;
-      // If we've moved to the clone at either end, jump (no transition) to the matching real slide
+
       if (currentIndex === 0) {
-        // jumped to "last clone" (at start) -> snap to last real (index = total)
         currentIndex = total;
         setModalTransform(currentIndex, false);
+
         void sliderTrack.offsetWidth;
-        sliderTrack.style.transition = 'transform 0.7s ease-in-out';
+        sliderTrack.style.transition = "transform 0.7s ease-in-out";
         updateCounter();
       } else if (currentIndex === total + 1) {
-        // jumped to "first clone" (at end) -> snap to first real (index = 1)
         currentIndex = 1;
         setModalTransform(currentIndex, false);
+
         void sliderTrack.offsetWidth;
-        sliderTrack.style.transition = 'transform 0.7s ease-in-out';
+        sliderTrack.style.transition = "transform 0.7s ease-in-out";
         updateCounter();
       }
     }
 
-    sliderTrack.addEventListener('transitionend', handleModalTransitionEnd);
+    sliderTrack.addEventListener("transitionend", handleModalTransitionEnd);
 
-    // Open modal on click (and Enter key for accessibility)
-    document.querySelectorAll('.collection-card').forEach(card => {
-      card.addEventListener('click', () => openGallery(card.dataset.gallery));
-      card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
+    document.querySelectorAll(".collection-card").forEach((card) => {
+      card.addEventListener("click", () => openGallery(card.dataset.gallery));
+      card.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           openGallery(card.dataset.gallery);
         }
       });
     });
 
-    prevBtn.addEventListener('click', () => {
-      if (currentGallery.length <= 1) return;
-      goToSlide(currentIndex - 1);
+    prevBtn.addEventListener("click", () => {
+      if (currentGallery.length > 1) goToSlide(currentIndex - 1);
     });
 
-    nextBtn.addEventListener('click', () => {
-      if (currentGallery.length <= 1) return;
-      goToSlide(currentIndex + 1);
+    nextBtn.addEventListener("click", () => {
+      if (currentGallery.length > 1) goToSlide(currentIndex + 1);
     });
 
-    closeBtn.addEventListener('click', closeGallery);
+    closeBtn.addEventListener("click", closeGallery);
 
-    modal.addEventListener('click', (event) => {
+    modal.addEventListener("click", (event) => {
       if (event.target === modal) closeGallery();
     });
 
-    // Keyboard navigation: Esc / arrows
-    document.addEventListener('keydown', (e) => {
-      if (!modal.classList.contains('active')) return;
-      if (e.key === 'Escape') closeGallery();
-      if (e.key === 'ArrowLeft' && currentGallery.length > 1) goToSlide(currentIndex - 1);
-      if (e.key === 'ArrowRight' && currentGallery.length > 1) goToSlide(currentIndex + 1);
+    document.addEventListener("keydown", (e) => {
+      if (!modal.classList.contains("active")) return;
+
+      if (e.key === "Escape") closeGallery();
+      if (e.key === "ArrowLeft" && currentGallery.length > 1) goToSlide(currentIndex - 1);
+      if (e.key === "ArrowRight" && currentGallery.length > 1) goToSlide(currentIndex + 1);
     });
 
-    // ===== TESTIMONIAL CLICK TOGGLE (bold on click as well as hover) =====
-    document.querySelectorAll('.testimonial-card').forEach(card => {
-      card.addEventListener('click', () => {
-        card.classList.toggle('active');
-      });
+    /* =========================================================
+       TOGGLE BOLD ON WHAT I SHOOT + TESTIMONIALS
+    ========================================================= */
+
+    document.querySelectorAll(".shoot-item").forEach((card) => {
+      card.addEventListener("click", () => card.classList.toggle("active"));
     });
 
-    // ===== WHAT I SHOOT CLICK TOGGLE (bold supporting text on click as well as hover) =====
-    document.querySelectorAll('.shoot-item').forEach(card => {
-      card.addEventListener('click', () => {
-        card.classList.toggle('active');
-      });
+    document.querySelectorAll(".testimonial-card").forEach((card) => {
+      card.addEventListener("click", () => card.classList.toggle("active"));
     });
 
-    // ===== HERO IMAGE CAROUSEL (looping, pause on hover) =====
-    document.addEventListener('DOMContentLoaded', function () {
-      const track = document.querySelector('.hero-carousel-track');
-      const heroCarousel = document.querySelector('.hero-carousel');
+    /* =========================================================
+       HERO CAROUSEL (ONLY auto-rotating; 5 seconds)
+    ========================================================= */
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const track = document.getElementById("heroCarouselTrack");
+      const heroCarousel = document.querySelector(".hero-carousel");
       if (!track || !heroCarousel) return;
 
       let slides = Array.from(track.children);
       const originalSlideCount = slides.length;
+      if (originalSlideCount <= 1) return;
 
       const firstClone = slides[0].cloneNode(true);
       track.appendChild(firstClone);
@@ -1983,25 +2214,28 @@
 
       function goToHeroSlide(index) {
         isTransitioning = true;
-        track.style.transition = 'transform 0.7s ease-in-out';
-        track.style.transform = 'translateX(-' + (index * 100) + '%)';
+        track.style.transition = "transform 0.7s ease-in-out";
+        track.style.transform = "translateX(-" + (index * 100) + "%)";
       }
 
       function handleHeroTransitionEnd() {
         isTransitioning = false;
+
         if (heroIndex === originalSlideCount) {
-          track.style.transition = 'none';
+          track.style.transition = "none";
           heroIndex = 0;
-          track.style.transform = 'translateX(0%)';
+          track.style.transform = "translateX(0%)";
+
           void track.offsetWidth;
-          track.style.transition = 'transform 0.7s ease-in-out';
+          track.style.transition = "transform 0.7s ease-in-out";
         }
       }
 
-      track.addEventListener('transitionend', handleHeroTransitionEnd);
+      track.addEventListener("transitionend", handleHeroTransitionEnd);
 
       function startCarousel() {
-        if (carouselInterval !== null || originalSlideCount <= 1) return;
+        if (carouselInterval !== null) return;
+
         carouselInterval = setInterval(function () {
           if (isTransitioning) return;
           heroIndex += 1;
@@ -2017,23 +2251,23 @@
       }
 
       startCarousel();
-      heroCarousel.addEventListener('mouseenter', stopCarousel);
-      heroCarousel.addEventListener('mouseleave', startCarousel);
+
+      heroCarousel.addEventListener("mouseenter", stopCarousel);
+      heroCarousel.addEventListener("mouseleave", startCarousel);
     });
 
-    // ===== REVIEW FORM (mailto to matthewnortonphotos@gmail.com) =====
-    // Note: mailto cannot be truly "blank" in Apple Mail if the OS suggests prior content.
-    // We keep it as clean as possible and avoid extra signature lines.
-    document.getElementById('reviewForm').addEventListener('submit', function (e) {
+    /* =========================================================
+       REVIEW FORM -> mailto
+    ========================================================= */
+
+    document.getElementById("reviewForm").addEventListener("submit", function (e) {
       e.preventDefault();
 
-      const name = document.getElementById('reviewName').value.trim();
-      const review = document.getElementById('reviewText').value.trim();
+      const name = document.getElementById("reviewName").value.trim();
+      const review = document.getElementById("reviewText").value.trim();
 
-      const subject = encodeURIComponent('New Website Review');
-      const body = encodeURIComponent(
-        `Name: ${name}\n\nReview:\n${review}`
-      );
+      const subject = encodeURIComponent("New Website Review");
+      const body = encodeURIComponent(`Name: ${name}\n\nReview:\n${review}`);
 
       window.location.href = `mailto:matthewnortonphotos@gmail.com?subject=${subject}&body=${body}`;
     });
