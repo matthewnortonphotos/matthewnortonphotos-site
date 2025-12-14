@@ -205,6 +205,23 @@
     }
     .nav-toggle:hover { background: rgba(253,247,241,0.9); }
 
+    /* Mobile-only portfolio button */
+    .btn-portfolio-mobile {
+      display: none;
+      border-radius: var(--radius-pill);
+      padding: 9px 14px;
+      border: 1px solid var(--color-ink);
+      background: transparent;
+      color: var(--color-ink);
+      cursor: pointer;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      font-family: var(--font-heading);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .btn-portfolio-mobile:hover { background: #fff; }
+
     /* ===== GLOBAL SECTION STYLES ===== */
     main {
       display: flex;
@@ -316,18 +333,19 @@
       max-width: 520px;
     }
 
+    /* Expands visually without causing line reflow/wrap changes */
     .hero-tagline strong {
       color: var(--color-ink);
       font-weight: 600;
       display: inline-block;
+      vertical-align: baseline;
       cursor: pointer;
       transition: transform 0.2s ease-out;
       transform-origin: left center;
     }
-
     .hero-tagline strong:hover,
     .hero-tagline strong.active {
-      transform: scale(1.02);
+      transform: scaleX(1.03);
     }
 
     .hero-actions {
@@ -587,7 +605,7 @@
     .book-cta-primary.is-disabled {
       opacity: 0.72;
       cursor: default;
-      pointer-events: none; /* disables click */
+      pointer-events: none;
       user-select: none;
     }
 
@@ -668,7 +686,6 @@
       transition: font-weight 0.2s ease-out, color 0.2s ease-out;
     }
 
-    /* Bold ONLY the supporting text on hover/click, like testimonials */
     .shoot-item:hover p,
     .shoot-item.active p {
       font-weight: 600;
@@ -681,6 +698,22 @@
       grid-template-columns: repeat(3, minmax(0,1fr));
       gap: 12px;
       margin-top: 14px;
+    }
+
+    .collection-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .collection-label {
+      font-family: var(--font-heading);
+      font-size: 12px;
+      letter-spacing: 0.2em; /* matches AT A GLANCE kerning vibe */
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--color-ink);
+      padding-left: 2px;
     }
 
     .collection-card {
@@ -778,7 +811,7 @@
       display: flex;
       width: 100%;
       height: 100%;
-      transition: transform 0.7s ease-in-out; /* matches hero feel */
+      transition: transform 0.7s ease-in-out;
     }
 
     .modal-slide {
@@ -786,13 +819,14 @@
       width: 100%;
       height: 100%;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: center;      /* centers vertically */
+      justify-content: center;  /* centers horizontally */
       padding: 10px;
     }
 
+    /* Keep sizing consistent across ALL galleries on desktop + mobile */
     .modal-slide img {
-      max-height: 100%;
+      max-height: 70vh;
       height: auto;
       width: auto;
       max-width: 100%;
@@ -876,7 +910,7 @@
 
     .about-facts-label {
       font-family: var(--font-heading);
-      font-size: 12px; /* bigger to separate from above */
+      font-size: 12px; /* bigger */
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--color-ink-soft);
@@ -1075,6 +1109,7 @@
       .nav { flex-wrap: wrap; gap: 10px; }
 
       .nav-toggle { display: inline-flex; }
+      .btn-portfolio-mobile { display: inline-flex; } /* only on mobile */
 
       .nav-right {
         width: 100%;
@@ -1112,6 +1147,7 @@
 
       .book-cover-wrap { max-width: 210px; }
 
+      .modal-slide img { max-height: 62vh; }
       .modal-arrow { width: 42px; height: 42px; }
     }
   </style>
@@ -1136,6 +1172,11 @@
 
           <div class="nav-right" id="navRight">
             <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+
+            <button class="btn-portfolio-mobile" type="button"
+              onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">
+              View Portfolio
+            </button>
 
             <div class="nav-links" id="navLinks">
               <a href="#portfolio">Portfolio</a>
@@ -1164,7 +1205,7 @@
             </h1>
 
             <p class="hero-tagline">
-              I believe a meaningful photograph doesn’t just capture a moment — it connects one. My work is about
+              I believe a meaningful photograph doesn’t just capture a moment — it connects one. My work is about&nbsp;
               <strong id="heroEmphasis">truth over perfection, curiosity over trends, and images that still matter years from now.</strong>
             </p>
 
@@ -1230,10 +1271,7 @@
             </ul>
 
             <div class="book-ctas">
-              <!-- Disabled (not clickable) -->
               <span class="book-cta-primary is-disabled" aria-disabled="true">Coming soon</span>
-
-              <!-- Active -->
               <a class="book-cta-secondary" href="images/5-curiosity-prompts.pdf" target="_blank" rel="noreferrer">
                 Free resource
               </a>
@@ -1317,14 +1355,25 @@
           </div>
 
           <div class="portfolio-collections">
-            <div class="collection-card image-hover" data-gallery="portraits">
-              <img src="images/rachel-1.JPG" alt="Portraits collection preview">
+            <div class="collection-wrap">
+              <div class="collection-label">PORTRAITS</div>
+              <div class="collection-card image-hover" data-gallery="portraits">
+                <img src="images/rachel-1.JPG" alt="Portraits collection preview">
+              </div>
             </div>
-            <div class="collection-card image-hover" data-gallery="couples">
-              <img src="images/jo-sandy-1.jpg" alt="Couples collection preview">
+
+            <div class="collection-wrap">
+              <div class="collection-label">COUPLES</div>
+              <div class="collection-card image-hover" data-gallery="couples">
+                <img src="images/jo-sandy-1.jpg" alt="Couples collection preview">
+              </div>
             </div>
-            <div class="collection-card image-hover" data-gallery="events">
-              <img src="images/naomi-1.JPG" alt="Events collection preview">
+
+            <div class="collection-wrap">
+              <div class="collection-label">EVENTS</div>
+              <div class="collection-card image-hover" data-gallery="events">
+                <img src="images/naomi-1.JPG" alt="Events collection preview">
+              </div>
             </div>
           </div>
 
@@ -1551,7 +1600,6 @@
 
   <script>
     // ===== PORTFOLIO GALLERIES =====
-    // NOTE: Portraits are set to live in the /images folder.
     const galleryImages = {
       portraits: [
         "images/potraits-1.JPG",
@@ -1625,8 +1673,7 @@
       ]
     };
 
-    // ===== MODAL SLIDER (click arrows; no auto-rotation) =====
-    // Updated to loop seamlessly from last -> first (forward) using clones (like the hero carousel).
+    // ===== MODAL SLIDER (seamless loop like hero; click arrows; no auto-rotation) =====
     const modal = document.getElementById('galleryModal');
     const sliderTrack = document.getElementById('modalSliderTrack');
     const closeBtn = document.querySelector('.modal-close');
@@ -1635,8 +1682,8 @@
     const counterEl = document.getElementById('modalCounter');
 
     let currentGallery = [];
-    let currentIndex = 0;          // index in the "track" (includes clones)
-    let logicalIndex = 0;          // index in the real images array
+    let currentIndex = 0;   // index in track (includes clones)
+    let logicalIndex = 0;   // index in real images
     let isModalTransitioning = false;
 
     function buildTrackImages(images) {
@@ -1644,7 +1691,7 @@
       if (images.length === 1) return [images[0]];
       const first = images[0];
       const last = images[images.length - 1];
-      return [last, ...images, first]; // clones on both ends
+      return [last, ...images, first];
     }
 
     function renderSlides(trackImages) {
@@ -1668,11 +1715,7 @@
     }
 
     function setTrackPosition(trackIndex, withTransition = true) {
-      if (withTransition) {
-        sliderTrack.style.transition = 'transform 0.7s ease-in-out';
-      } else {
-        sliderTrack.style.transition = 'none';
-      }
+      sliderTrack.style.transition = withTransition ? 'transform 0.7s ease-in-out' : 'none';
       sliderTrack.style.transform = 'translateX(-' + (trackIndex * 100) + '%)';
     }
 
@@ -1683,12 +1726,8 @@
       const trackImages = buildTrackImages(currentGallery);
       renderSlides(trackImages);
 
-      // Start position:
-      // - If 1 image: index 0
-      // - If many: index 1 (first real image, because index 0 is "last clone")
       currentIndex = (currentGallery.length > 1) ? 1 : 0;
 
-      // Prevent initial jank
       setTrackPosition(currentIndex, false);
       void sliderTrack.offsetWidth;
       setTrackPosition(currentIndex, true);
@@ -1702,35 +1741,25 @@
     }
 
     function goNext() {
-      if (!currentGallery.length) return;
-
       const total = currentGallery.length;
+      if (total <= 1 || isModalTransitioning) return;
 
-      // Single image: do nothing
-      if (total === 1) return;
-
-      if (isModalTransitioning) return;
       isModalTransitioning = true;
-
       currentIndex += 1;
       logicalIndex = (logicalIndex + 1) % total;
+
       setTrackPosition(currentIndex, true);
       updateCounter();
     }
 
     function goPrev() {
-      if (!currentGallery.length) return;
-
       const total = currentGallery.length;
+      if (total <= 1 || isModalTransitioning) return;
 
-      // Single image: do nothing
-      if (total === 1) return;
-
-      if (isModalTransitioning) return;
       isModalTransitioning = true;
-
       currentIndex -= 1;
       logicalIndex = (logicalIndex - 1 + total) % total;
+
       setTrackPosition(currentIndex, true);
       updateCounter();
     }
@@ -1744,10 +1773,7 @@
       }
 
       // Track layout: [lastClone, ...realImages, firstClone]
-      // Indices: 0 = lastClone, 1..total = real images, total+1 = firstClone
       if (currentIndex === 0) {
-        // We moved to lastClone via prev from first real.
-        // Jump to last real (index = total) without transition.
         setTrackPosition(total, false);
         currentIndex = total;
         void sliderTrack.offsetWidth;
@@ -1755,8 +1781,6 @@
       }
 
       if (currentIndex === total + 1) {
-        // We moved to firstClone via next from last real.
-        // Jump to first real (index = 1) without transition.
         setTrackPosition(1, false);
         currentIndex = 1;
         void sliderTrack.offsetWidth;
@@ -1769,22 +1793,17 @@
     sliderTrack.addEventListener('transitionend', handleModalTransitionEnd);
 
     document.querySelectorAll('.collection-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const key = card.dataset.gallery;
-        openGallery(key);
-      });
+      card.addEventListener('click', () => openGallery(card.dataset.gallery));
     });
 
     prevBtn.addEventListener('click', goPrev);
     nextBtn.addEventListener('click', goNext);
-
     closeBtn.addEventListener('click', closeGallery);
 
     modal.addEventListener('click', (event) => {
       if (event.target === modal) closeGallery();
     });
 
-    // Keyboard navigation: Esc / arrows
     document.addEventListener('keydown', (e) => {
       if (!modal.classList.contains('active')) return;
       if (e.key === 'Escape') closeGallery();
@@ -1792,26 +1811,20 @@
       if (e.key === 'ArrowRight') goNext();
     });
 
-    // ===== TESTIMONIAL CLICK TOGGLE (bold on click as well as hover) =====
+    // ===== TESTIMONIAL CLICK TOGGLE =====
     document.querySelectorAll('.testimonial-card').forEach(card => {
-      card.addEventListener('click', () => {
-        card.classList.toggle('active');
-      });
+      card.addEventListener('click', () => card.classList.toggle('active'));
     });
 
-    // ===== WHAT I SHOOT CLICK TOGGLE (bold supporting text on click as well as hover) =====
+    // ===== WHAT I SHOOT CLICK TOGGLE =====
     document.querySelectorAll('.shoot-item').forEach(card => {
-      card.addEventListener('click', () => {
-        card.classList.toggle('active');
-      });
+      card.addEventListener('click', () => card.classList.toggle('active'));
     });
 
-    // ===== HERO EMPHASIS CLICK TOGGLE (stays expanded) =====
+    // ===== HERO EMPHASIS CLICK TOGGLE =====
     const heroEmphasis = document.getElementById('heroEmphasis');
     if (heroEmphasis) {
-      heroEmphasis.addEventListener('click', () => {
-        heroEmphasis.classList.toggle('active');
-      });
+      heroEmphasis.addEventListener('click', () => heroEmphasis.classList.toggle('active'));
     }
 
     // ===== MOBILE NAV TOGGLE =====
@@ -1825,7 +1838,6 @@
         navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       });
 
-      // Close the menu after tapping a link (mobile-friendly)
       navLinks.querySelectorAll('a').forEach(a => {
         a.addEventListener('click', () => {
           if (navRight.classList.contains('open')) {
@@ -1892,8 +1904,7 @@
       heroCarousel.addEventListener('mouseleave', startCarousel);
     });
 
-    // ===== REVIEW FORM (mailto to matthewnortonphotos@gmail.com) =====
-    // Removed the site footer line so it opens as "fresh" as mailto allows.
+    // ===== REVIEW FORM (clean mailto body) =====
     document.getElementById('reviewForm').addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -1908,8 +1919,7 @@
       window.location.href = `mailto:matthewnortonphotos@gmail.com?subject=${subject}&body=${body}`;
     });
 
-    // ===== INQUIRY FORM (mailto built by JS to avoid extra auto-filled bits) =====
-    // Note: Email apps may still append the user's default signature (we can't control that from a website).
+    // ===== INQUIRY FORM (clean mailto body) =====
     const inquiryForm = document.getElementById('inquiryForm');
     if (inquiryForm) {
       inquiryForm.addEventListener('submit', function (e) {
@@ -1932,4 +1942,5 @@
   </script>
 </body>
 </html>
+
 
