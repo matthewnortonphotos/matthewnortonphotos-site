@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -202,6 +201,7 @@
 
     /* ===== MOBILE HEADER CONTROLS ===== */
     .mobile-controls { display: none; width: 100%; }
+
     .mobile-controls-row {
       display: flex;
       align-items: center;
@@ -276,8 +276,8 @@
 
     .mobile-menu a {
       font-family: var(--font-heading);
-      font-size: 11px;                 /* match header/button scale */
-      font-weight: 400;                /* no bold states */
+      font-size: 11px; /* match header/button scale */
+      font-weight: 400; /* no bold states */
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--color-ink);
@@ -330,7 +330,10 @@
 
     /* ===== IMAGE HOVER HIGHLIGHT ===== */
     .image-hover { position: relative; overflow: hidden; }
-    .image-hover img { transition: transform 0.35s ease-out, filter 0.35s ease-out; }
+
+    .image-hover img {
+      transition: transform 0.35s ease-out, filter 0.35s ease-out;
+    }
 
     .image-hover::after {
       content: "";
@@ -623,6 +626,7 @@
       color: #FDF7F1;
       border: 1px solid rgba(249, 206, 137, 0.7);
     }
+
     .book-cta-secondary:hover { background: rgba(15, 23, 42, 0.9); }
 
     .book-note {
@@ -1200,6 +1204,169 @@
       flex-wrap: wrap;
     }
 
+    /* ===== DEEPLY CURIOUS POP-UP (added) ===== */
+    .dc-popup-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 80;
+      padding: 18px;
+    }
+    .dc-popup-backdrop.is-open { display: flex; }
+
+    .dc-popup {
+      width: min(420px, 92vw);
+      aspect-ratio: 1 / 1; /* square card */
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.14);
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(249, 169, 58, 0.32), transparent 55%),
+        linear-gradient(135deg, #050814, #111827);
+      box-shadow: 0 22px 70px rgba(0,0,0,0.55);
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 0;
+    }
+
+    .dc-popup-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid rgba(253,247,241,0.25);
+      background: rgba(0,0,0,0.28);
+      color: #FDF7F1;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      line-height: 1;
+      backdrop-filter: blur(10px);
+    }
+    .dc-popup-close:hover { background: rgba(0,0,0,0.45); }
+
+    .dc-popup-left {
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dc-popup-left img {
+      width: 100%;
+      max-width: 170px;
+      aspect-ratio: 2 / 3;
+      object-fit: cover;
+      border-radius: 14px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+    }
+
+    .dc-popup-right {
+      padding: 18px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+      color: #FDF7F1;
+    }
+
+    .dc-popup-kicker {
+      font-family: var(--font-heading);
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(249, 206, 137, 0.92);
+    }
+
+    .dc-popup-title {
+      font-family: "Gotham Condensed", "MNTitle", "Hesland", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 900;
+      font-size: 26px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      line-height: 1.05;
+    }
+
+    .dc-popup-subtitle {
+      font-family: "Gotham Condensed", "MNSubtitle", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(249, 206, 137, 0.96);
+      margin-top: -2px;
+    }
+
+    .dc-popup-line {
+      font-family: var(--font-heading);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(229, 224, 213, 0.92);
+    }
+
+    .dc-popup-ctas {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .dc-popup-soon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-pill);
+      padding: 9px 14px;
+      font-family: var(--font-heading);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: #F9A93A;
+      color: #050814;
+      border: none;
+      opacity: 0.82;
+      user-select: none;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .dc-popup-free {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-pill);
+      padding: 9px 14px;
+      font-family: var(--font-heading);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: 1px solid rgba(249, 206, 137, 0.7);
+      color: #FDF7F1;
+      background: transparent;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .dc-popup-free:hover { background: rgba(15, 23, 42, 0.9); }
+
+    @media (max-width: 520px) {
+      .dc-popup {
+        grid-template-columns: 1fr;
+        aspect-ratio: auto;
+        width: min(420px, 92vw);
+      }
+      .dc-popup-left { padding: 16px 16px 8px; }
+      .dc-popup-right { padding: 12px 16px 16px; }
+    }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 960px) {
       .hero, .about-layout, .contact-layout, .book-section { grid-template-columns: 1fr; }
@@ -1224,7 +1391,9 @@
 
       .shoot-grid, .portfolio-collections { grid-template-columns: 1fr; }
       .about-facts-grid { grid-template-columns: 1fr; }
+
       .about-photo { max-width: none; justify-self: stretch; }
+
       .book-cover-wrap { max-width: 210px; }
 
       /* Keep the 4 chips on one line on mobile */
@@ -1377,7 +1546,6 @@
 
             <div class="book-ctas">
               <span class="book-cta-primary is-disabled" aria-disabled="true">Coming soon</span>
-
               <a class="book-cta-secondary" href="images/5-curiosity-prompts.pdf" target="_blank" rel="noreferrer">
                 Free resource
               </a>
@@ -1555,7 +1723,6 @@
                 <div class="partner-card">
                   <div class="partner-title">Camp Snap</div>
                   <div class="partner-desc">Screen-free digital cameras that keep you present.</div>
-
                   <div class="partner-row">
                     <span class="partner-save">$5 off your order</span>
                     <a class="partner-btn"
@@ -1570,7 +1737,6 @@
                 <div class="partner-card">
                   <div class="partner-title">Retropia</div>
                   <div class="partner-desc">Vintage-inspired gear that brings nostalgic charm back to your photos.</div>
-
                   <div class="partner-row">
                     <span class="partner-save">10% off the Oreo Lens</span>
                     <a class="partner-btn"
@@ -1587,7 +1753,6 @@
                 </p>
               </div>
               <!-- ===== /PARTNERS ===== -->
-
             </div>
 
             <aside class="about-photo image-hover">
@@ -1721,6 +1886,32 @@
         <div>Based in Dallas, Texas. Available for travel.</div>
       </footer>
 
+    </div>
+  </div>
+
+  <!-- ===== DEEPLY CURIOUS POP-UP (added) ===== -->
+  <div id="dcPopupBackdrop" class="dc-popup-backdrop" aria-hidden="true">
+    <div class="dc-popup" role="dialog" aria-modal="true" aria-label="Deeply Curious announcement">
+      <button class="dc-popup-close" id="dcPopupClose" type="button" aria-label="Close">&times;</button>
+
+      <div class="dc-popup-left">
+        <img src="images/deeply-curious.png" alt="Deeply Curious ebook cover">
+      </div>
+
+      <div class="dc-popup-right">
+        <div class="dc-popup-kicker">New e-book</div>
+        <div class="dc-popup-title">Deeply Curious</div>
+        <div class="dc-popup-subtitle">Staying Inspired Behind the Lens</div>
+        <div class="dc-popup-line">For photographers &amp; creatives</div>
+        <div class="dc-popup-line">Reconnect to wonder</div>
+
+        <div class="dc-popup-ctas">
+          <span class="dc-popup-soon" aria-disabled="true">Coming soon</span>
+          <a class="dc-popup-free" href="images/5-curiosity-prompts.pdf" target="_blank" rel="noreferrer">
+            Free resource
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1920,14 +2111,13 @@
     const counterEl = document.getElementById('modalCounter');
 
     let currentGallery = [];
-    let currentIndex = 0;     // index within renderedSlides
-    let renderedSlides = [];  // includes clones
+    let currentIndex = 0; // index within renderedSlides
+    let renderedSlides = []; // includes clones
     let isModalTransitioning = false;
 
     function buildRenderedSlides(images) {
       const total = images.length;
       if (total <= 1) return images.slice();
-
       // clones for seamless looping
       const first = images[0];
       const last = images[total - 1];
@@ -1988,7 +2178,6 @@
       renderedSlides = buildRenderedSlides(currentGallery);
 
       renderSlides(renderedSlides);
-
       sliderTrack.style.transition = 'none';
 
       if (currentGallery.length <= 1) {
@@ -2014,7 +2203,6 @@
     function handleModalTransitionEnd() {
       isModalTransitioning = false;
       const total = currentGallery.length;
-
       if (total <= 1) return;
 
       // if we hit the clones, snap (no rewind visual)
@@ -2157,6 +2345,49 @@
 
       window.location.href = `mailto:matthewnortonphotos@gmail.com?subject=${subject}&body=${body}`;
     });
+
+    // ===== DEEPLY CURIOUS POP-UP (added) =====
+    (function () {
+      const backdrop = document.getElementById('dcPopupBackdrop');
+      const closeBtn = document.getElementById('dcPopupClose');
+      if (!backdrop || !closeBtn) return;
+
+      const STORAGE_KEY = 'dc_popup_seen_v1';
+      const DELAY_MS = 8000; // ~8 seconds after load
+
+      function openPopup() {
+        backdrop.classList.add('is-open');
+        backdrop.setAttribute('aria-hidden', 'false');
+      }
+
+      function closePopup() {
+        backdrop.classList.remove('is-open');
+        backdrop.setAttribute('aria-hidden', 'true');
+        try { sessionStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
+      }
+
+      // Close on X
+      closeBtn.addEventListener('click', closePopup);
+
+      // Close on backdrop click
+      backdrop.addEventListener('click', (e) => {
+        if (e.target === backdrop) closePopup();
+      });
+
+      // Close on ESC
+      document.addEventListener('keydown', (e) => {
+        if (!backdrop.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closePopup();
+      });
+
+      // Show once per session
+      let alreadySeen = false;
+      try { alreadySeen = sessionStorage.getItem(STORAGE_KEY) === '1'; } catch (e) {}
+
+      if (!alreadySeen) {
+        window.setTimeout(openPopup, DELAY_MS);
+      }
+    })();
   </script>
 </body>
 </html>
