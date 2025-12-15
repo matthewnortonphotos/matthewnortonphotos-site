@@ -936,6 +936,117 @@
 
     .about-fact-body { color: var(--color-ink-soft); }
 
+    /* ===== PARTNERS (About bottom) ===== */
+    .partners-block {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--color-border-soft);
+    }
+
+    .partners-label {
+      font-family: var(--font-heading);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-ink-soft);
+      margin-bottom: 10px;
+    }
+
+    .partners-intro {
+      font-size: 13px;
+      color: var(--color-ink-soft);
+      margin-bottom: 12px;
+      max-width: 56ch;
+    }
+
+    .partner-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border-soft);
+      background: #fff;
+      padding: 14px 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 10px;
+      transition: background 0.2s ease-out, transform 0.2s ease-out;
+    }
+
+    .partner-card:hover {
+      background: #f6f0e8;
+      transform: translateY(-1px);
+    }
+
+    .partner-title {
+      font-family: var(--font-heading);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-ink);
+    }
+
+    .partner-desc {
+      font-size: 13px;
+      color: var(--color-ink-soft);
+      margin-top: -2px;
+    }
+
+    .partner-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+
+    /* Save pill uses BLUE */
+    .partner-save {
+      font-family: var(--font-heading);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-blue);
+      padding: 5px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(50,74,86,0.28);
+      background: rgba(50,74,86,0.08);
+      white-space: nowrap;
+    }
+
+    /* Partner buttons use BLUE */
+    .partner-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 16px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--color-blue);
+      background: transparent;
+      color: var(--color-blue);
+      cursor: pointer;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      font-family: var(--font-heading);
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: background 0.18s ease-out, transform 0.18s ease-out, color 0.18s ease-out, border-color 0.18s ease-out;
+    }
+
+    .partner-btn:hover {
+      background: var(--color-blue);
+      border-color: var(--color-blue);
+      color: #FDF7F1;
+      transform: translateY(-1px);
+    }
+
+    .partners-disclosure {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--color-ink-soft);
+      opacity: 0.85;
+      max-width: 62ch;
+    }
+
     /* ===== TESTIMONIALS ===== */
     .testimonials-grid {
       display: grid;
@@ -1305,7 +1416,7 @@
             </a>
 
             <a class="feature-pill" href="https://www.magcloud.com/browse/issue/1669333" target="_blank" rel="noreferrer">
-              <span>Autumn in Greece | HORIZONT Issue 5 Vol. 5</span>
+              <span>Best of Autumn in Greece | HORIZONT Issue 5 Vol. 5</span>
             </a>
           </div>
         </section>
@@ -1432,6 +1543,50 @@
                   </div>
                 </div>
               </div>
+
+              <!-- ===== PARTNERS I PERSONALLY USE (added) ===== -->
+              <div class="partners-block">
+                <div class="partners-label">Partners I personally use</div>
+                <p class="partners-intro">
+                  Simple tools I recommend for anyone who loves making honest, nostalgic images.
+                </p>
+
+                <div class="partner-card">
+                  <div class="partner-title">Camp Snap</div>
+                  <div class="partner-desc">Screen-free digital cameras that keep you present.</div>
+
+                  <div class="partner-row">
+                    <span class="partner-save">Save $5 on your order.</span>
+                    <a class="partner-btn"
+                       href="https://campsnapphoto.com/MATTHEWNORTOPHOTOS"
+                       target="_blank"
+                       rel="nofollow noopener">
+                      Shop →
+                    </a>
+                  </div>
+                </div>
+
+                <div class="partner-card">
+                  <div class="partner-title">Retropia</div>
+                  <div class="partner-desc">Vintage-inspired gear that brings nostalgic charm back to your photos.</div>
+
+                  <div class="partner-row">
+                    <span class="partner-save">Save 10% on the Disposable Camera Lens.</span>
+                    <a class="partner-btn"
+                       href="https://retro-pia.com/MATTHEW01393"
+                       target="_blank"
+                       rel="nofollow noopener">
+                      Shop →
+                    </a>
+                  </div>
+                </div>
+
+                <p class="partners-disclosure">
+                  These are affiliate links. When you purchase through them, I earn a small commission at no extra cost to you.
+                </p>
+              </div>
+              <!-- ===== /PARTNERS ===== -->
+
             </div>
 
             <aside class="about-photo image-hover">
