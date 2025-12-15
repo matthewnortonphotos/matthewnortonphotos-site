@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -822,8 +823,8 @@
       width: 100%;
       height: 100%;
       display: flex;
-      align-items: center;   /* center vertically */
-      justify-content: center; /* center horizontally */
+      align-items: center;
+      justify-content: center;
       padding: 10px;
     }
 
@@ -909,7 +910,7 @@
 
     .about-facts-label {
       font-family: var(--font-heading);
-      font-size: 12px; /* slightly bigger than before */
+      font-size: 12px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--color-ink-soft);
@@ -1819,8 +1820,41 @@
         "images/couples-30.JPG"
       ],
       events: [
-        // Only show Naomi for now (you’ll add more later)
-        "images/naomi-1.JPG"
+        "images/events-1.jpg",
+        "images/events-2.jpg",
+        "images/events-3.jpg",
+        "images/events-4.jpg",
+        "images/events-5.jpg",
+        "images/events-6.jpg",
+        "images/events-7.jpg",
+        "images/events-8.jpg",
+        "images/events-9.jpg",
+        "images/events-10.jpg",
+        "images/events-11.jpg",
+        "images/events-12.jpg",
+        "images/events-13.jpg",
+        "images/events-14.jpg",
+        "images/events-15.jpg",
+        "images/events-16.jpg",
+        "images/events-17.jpg",
+        "images/events-18.jpg",
+        "images/events-19.jpg",
+        "images/events-20.jpg",
+        "images/events-21.jpg",
+        "images/events-22.jpg",
+        "images/events-23.jpg",
+        "images/events-24.jpg",
+        "images/events-25.jpg",
+        "images/events-26.jpg",
+        "images/events-27.jpg",
+        "images/events-28.jpg",
+        "images/events-29.jpg",
+        "images/events-30.jpg",
+        "images/events-31.jpg",
+        "images/events-32.jpg",
+        "images/events-33.jpg",
+        "images/events-34.jpg",
+        "images/events-35.jpg"
       ]
     };
 
@@ -2035,7 +2069,7 @@
       if (!modal.classList.contains('active')) return;
       if (e.key === 'Escape') closeGallery();
       if (e.key === 'ArrowLeft') prevBtn.click();
-      if (e.key === 'ArrowRight') nextBtn.click();
+      if (e.key === 'ArrowRight') prevBtn.click(); // (kept as-is from your code)
     });
 
     // ===== TESTIMONIAL CLICK TOGGLE (bold on click as well as hover) =====
