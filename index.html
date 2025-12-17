@@ -5,7 +5,6 @@
   <title>Matthew Norton Photos | Dallas Photographer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Warm, honest, nostalgic photography based in Dallas, TX. Portraits, couples, brands, and events by Matthew Norton." />
-
   <!-- FAVICON -->
   <link rel="icon" type="image/png" href="MNmono5.PNG" />
 
@@ -104,6 +103,7 @@
       align-items: center;
       gap: 12px;
       cursor: pointer;
+      min-width: 0;
     }
 
     .brand-logo {
@@ -116,6 +116,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex: 0 0 auto;
     }
 
     .brand-logo img {
@@ -129,6 +130,10 @@
       font-size: 13px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 520px;
     }
 
     .brand-text-sub {
@@ -138,6 +143,10 @@
       text-transform: uppercase;
       color: var(--color-ink-soft);
       margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 520px;
     }
 
     .nav-right {
@@ -153,6 +162,7 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.18em;
+      white-space: nowrap;
     }
 
     .nav-links a {
@@ -189,32 +199,37 @@
 
     .btn-booking:hover { background: var(--color-accent-deep); }
 
-    /* ===== MOBILE CONTROLS (only visible under 720px) ===== */
+    /* ===== MOBILE HEADER CONTROLS ===== */
     .mobile-controls { display: none; width: 100%; }
 
     .mobile-controls-row {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding-top: 4px;
+      gap: 12px;
+      padding: 8px 0 6px;
     }
 
     .btn-hamburger {
-      width: 40px;
+      width: 40px; /* match logo circle */
       height: 40px;
       border-radius: 999px;
-      border: 1px solid var(--color-border-soft);
-      background: rgba(246,225,208,0.9);
+      border: 1px solid rgba(48,47,43,0.22);
+      background: rgba(253,247,241,0.75);
       display: grid;
       place-items: center;
       cursor: pointer;
-      font-family: var(--font-heading);
-      font-size: 18px;
-      line-height: 1;
+      flex: 0 0 auto;
     }
 
-    .btn-hamburger:hover { background: rgba(246,225,208,1); }
+    .btn-hamburger:hover { background: rgba(253,247,241,0.92); }
+
+    .btn-hamburger span {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      letter-spacing: 0.06em;
+      line-height: 1;
+      color: var(--color-ink);
+    }
 
     .btn-mobile-portfolio {
       padding: 9px 14px;
@@ -224,51 +239,53 @@
       color: var(--color-ink);
       cursor: pointer;
       font-size: 11px;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.22em;
       font-family: var(--font-heading);
       text-transform: uppercase;
       white-space: nowrap;
+      flex: 1 1 auto; /* lets it breathe but not go huge */
+      max-width: 320px;
+      min-width: 160px;
     }
 
     .btn-mobile-portfolio:hover { background: #fff; }
 
+    /* Mobile dropdown panel */
     .mobile-menu {
-      width: 100%;
+      display: none;
       overflow: hidden;
-      max-height: 0;
-      opacity: 0;
-      transform: translateY(-6px);
-      transition: max-height 260ms ease, opacity 180ms ease, transform 220ms ease;
-      will-change: max-height, opacity, transform;
+      border-top: 1px solid var(--color-border-soft);
+      padding: 0;
     }
 
-    .mobile-menu.is-open {
-      max-height: 320px;
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .mobile-menu.is-open { display: block; }
 
     .mobile-menu-inner {
-      margin-top: 8px;
-      border: 1px solid var(--color-border-soft);
-      border-radius: var(--radius-lg);
-      background: rgba(253,247,241,0.9);
-      padding: 10px 12px;
+      padding: 10px 0 14px;
       display: flex;
       flex-direction: column;
       gap: 10px;
+      transform-origin: top;
+      animation: menuIn 180ms ease-out both;
+    }
+
+    @keyframes menuIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .mobile-menu a {
       font-family: var(--font-heading);
-      font-size: 11px;
+      font-size: 11px; /* match header/button scale */
+      font-weight: 400; /* no bold states */
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
+      color: var(--color-ink);
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(48,47,43,0.10);
     }
 
-    .mobile-menu-inner a {
-      padding: 6px 6px;
-      border-radius: 10px;
-    }
-
-    .mobile-menu-inner a:hover { background: rgba(218,96,73,0.08); }
+    .mobile-menu a:last-child { border-bottom: none; }
 
     /* ===== GLOBAL SECTION STYLES ===== */
     main {
@@ -312,10 +329,7 @@
     }
 
     /* ===== IMAGE HOVER HIGHLIGHT ===== */
-    .image-hover {
-      position: relative;
-      overflow: hidden;
-    }
+    .image-hover { position: relative; overflow: hidden; }
 
     .image-hover img {
       transition: transform 0.35s ease-out, filter 0.35s ease-out;
@@ -325,22 +339,14 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        135deg,
-        rgba(255,255,255,0.15),
-        rgba(255,255,255,0.03)
-      );
+      background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.03));
       mix-blend-mode: screen;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.25s ease-out;
     }
 
-    .image-hover img:hover {
-      transform: scale(1.02);
-      filter: saturate(1.03);
-    }
-
+    .image-hover img:hover { transform: scale(1.02); filter: saturate(1.03); }
     .image-hover:hover::after { opacity: 1; }
 
     /* ===== HERO ===== */
@@ -352,11 +358,7 @@
       background: rgba(253,247,241,0.92);
     }
 
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
+    .hero-left { display: flex; flex-direction: column; gap: 18px; }
 
     .hero-kicker {
       font-family: var(--font-heading);
@@ -401,6 +403,7 @@
       letter-spacing: 0.18em;
       font-family: var(--font-heading);
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .btn-primary:hover { background: var(--color-accent-deep); }
@@ -416,13 +419,13 @@
       letter-spacing: 0.18em;
       font-family: var(--font-heading);
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .btn-ghost:hover { background: #fff; }
 
     .hero-meta {
       display: flex;
-      flex-wrap: wrap;
       gap: 7px;
       margin-top: 18px;
       font-family: var(--font-heading);
@@ -430,6 +433,7 @@
       text-transform: uppercase;
       letter-spacing: 0.18em;
       color: var(--color-ink-soft);
+      flex-wrap: nowrap; /* keep on one line */
     }
 
     .hero-meta span {
@@ -437,6 +441,7 @@
       border-radius: var(--radius-pill);
       border: 1px solid rgba(48,47,43,0.16);
       background: rgba(246,225,208,0.4);
+      white-space: nowrap;
     }
 
     /* HERO REVIEW FORM */
@@ -469,10 +474,7 @@
       font-family: var(--font-body);
     }
 
-    .hero-review textarea {
-      min-height: 80px;
-      resize: vertical;
-    }
+    .hero-review textarea { min-height: 80px; resize: vertical; }
 
     .btn-review {
       align-self: flex-start;
@@ -487,6 +489,7 @@
       letter-spacing: 0.18em;
       font-family: var(--font-heading);
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .btn-review:hover { background: rgba(218,96,73,0.08); }
@@ -500,25 +503,9 @@
       aspect-ratio: 3 / 4;
     }
 
-    .hero-carousel {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
-
-    .hero-carousel-track {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.7s ease-in-out;
-    }
-
-    .hero-carousel-image {
-      flex: 0 0 100%;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .hero-carousel { width: 100%; height: 100%; overflow: hidden; }
+    .hero-carousel-track { display: flex; width: 100%; height: 100%; transition: transform 0.7s ease-in-out; }
+    .hero-carousel-image { flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover; }
 
     /* ===== DEEPLY CURIOUS BOOK BANNER ===== */
     .book-section {
@@ -554,11 +541,7 @@
     .book-cover-wrap.image-hover::after { display: none; }
     .book-cover-wrap.image-hover img:hover { transform: none; filter: none; }
 
-    .book-content {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+    .book-content { display: flex; flex-direction: column; gap: 10px; }
 
     .book-kicker {
       font-family: var(--font-heading);
@@ -611,12 +594,7 @@
       font-weight: 700;
     }
 
-    .book-ctas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 10px;
-    }
+    .book-ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
 
     .book-cta-primary,
     .book-cta-secondary {
@@ -636,11 +614,10 @@
     .book-cta-primary { background: #F9A93A; color: #050814; border: none; }
     .book-cta-primary:hover { background: #f59d1b; }
 
-    /* Disabled state for Coming soon */
     .book-cta-primary.is-disabled {
       opacity: 0.72;
       cursor: default;
-      pointer-events: none; /* disables click */
+      pointer-events: none;
       user-select: none;
     }
 
@@ -721,7 +698,6 @@
       transition: font-weight 0.2s ease-out, color 0.2s ease-out;
     }
 
-    /* Bold ONLY the supporting text on hover/click, like testimonials */
     .shoot-item:hover p,
     .shoot-item.active p {
       font-weight: 600;
@@ -736,19 +712,15 @@
       margin-top: 14px;
     }
 
-    .collection-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+    .collection-wrap { display: flex; flex-direction: column; gap: 8px; }
 
     .collection-label {
-      font-family: var(--font-display);
-      font-size: 14px;
-      letter-spacing: 0.22em;
+      font-family: var(--font-heading);
+      font-size: 10px;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--color-ink);
-      padding-left: 4px;
+      color: var(--color-ink-soft);
+      font-weight: 700;
     }
 
     .collection-card {
@@ -846,7 +818,8 @@
       display: flex;
       width: 100%;
       height: 100%;
-      transition: transform 0.7s ease-in-out; /* matches hero feel */
+      transition: transform 0.7s ease-in-out;
+      will-change: transform;
     }
 
     .modal-slide {
@@ -860,18 +833,16 @@
     }
 
     .modal-slide img {
-      max-height: 70vh;
+      max-height: 68vh;
       height: auto;
       width: auto;
       max-width: 100%;
       border-radius: var(--radius-lg);
+      object-fit: contain;
+      display: block;
     }
 
-    .modal-nav {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
+    .modal-nav { position: absolute; inset: 0; pointer-events: none; }
 
     .modal-arrow {
       pointer-events: auto;
@@ -943,7 +914,7 @@
 
     .about-facts-label {
       font-family: var(--font-heading);
-      font-size: 10px;
+      font-size: 12px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--color-ink-soft);
@@ -969,6 +940,117 @@
     }
 
     .about-fact-body { color: var(--color-ink-soft); }
+
+    /* ===== PARTNERS (About bottom) ===== */
+    .partners-block {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--color-border-soft);
+    }
+
+    .partners-label {
+      font-family: var(--font-heading);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-ink-soft);
+      margin-bottom: 10px;
+    }
+
+    .partners-intro {
+      font-size: 13px;
+      color: var(--color-ink-soft);
+      margin-bottom: 12px;
+      max-width: 56ch;
+    }
+
+    .partner-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border-soft);
+      background: #fff;
+      padding: 14px 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 10px;
+      transition: background 0.2s ease-out, transform 0.2s ease-out;
+    }
+
+    .partner-card:hover {
+      background: #f6f0e8;
+      transform: translateY(-1px);
+    }
+
+    .partner-title {
+      font-family: var(--font-heading);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-ink);
+    }
+
+    .partner-desc {
+      font-size: 13px;
+      color: var(--color-ink-soft);
+      margin-top: -2px;
+    }
+
+    .partner-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+
+    /* Save pill uses BLUE */
+    .partner-save {
+      font-family: var(--font-heading);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-blue);
+      padding: 5px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(50,74,86,0.28);
+      background: rgba(50,74,86,0.08);
+      white-space: nowrap;
+    }
+
+    /* Partner buttons use BLUE */
+    .partner-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 16px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--color-blue);
+      background: transparent;
+      color: var(--color-blue);
+      cursor: pointer;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      font-family: var(--font-heading);
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: background 0.18s ease-out, transform 0.18s ease-out, color 0.18s ease-out, border-color 0.18s ease-out;
+    }
+
+    .partner-btn:hover {
+      background: var(--color-blue);
+      border-color: var(--color-blue);
+      color: #FDF7F1;
+      transform: translateY(-1px);
+    }
+
+    .partners-disclosure {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--color-ink-soft);
+      opacity: 0.85;
+      max-width: 62ch;
+    }
 
     /* ===== TESTIMONIALS ===== */
     .testimonials-grid {
@@ -1032,10 +1114,7 @@
       gap: 22px;
     }
 
-    .contact-card form {
-      display: grid;
-      gap: 12px;
-    }
+    .contact-card form { display: grid; gap: 12px; }
 
     label {
       font-size: 10px;
@@ -1125,42 +1204,36 @@
       flex-wrap: wrap;
     }
 
-    /* ===== DEEPLY CURIOUS POPUP (centered overlay) ===== */
+    /* ===== DEEPLY CURIOUS POP-UP (added) ===== */
     .dc-popup-backdrop {
       position: fixed;
       inset: 0;
+      background: rgba(0,0,0,0.55);
       display: none;
       align-items: center;
       justify-content: center;
-      background: rgba(0,0,0,0.62);
-      z-index: 200;
+      z-index: 9999;
       padding: 18px;
     }
 
+    /* FIX: support BOTH class names (active + is-open) */
+    .dc-popup-backdrop.active,
     .dc-popup-backdrop.is-open { display: flex; }
 
     .dc-popup {
-      width: min(760px, 92vw);
-      border-radius: 22px;
+      width: min(420px, 92vw);
+      aspect-ratio: 1 / 1; /* square card */
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.14);
       overflow: hidden;
-      border: 1px solid rgba(249, 206, 137, 0.22);
       background:
-        radial-gradient(circle at 16% 20%, rgba(249, 169, 58, 0.26), transparent 55%),
+        radial-gradient(circle at 18% 18%, rgba(249, 169, 58, 0.32), transparent 55%),
         linear-gradient(135deg, #050814, #111827);
-      box-shadow: 0 26px 80px rgba(0,0,0,0.6);
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      align-items: stretch;
-      transform: translateY(10px);
-      opacity: 0;
-      transition: transform 220ms ease, opacity 220ms ease;
+      box-shadow: 0 22px 70px rgba(0,0,0,0.55);
       position: relative;
-      aspect-ratio: 16 / 9;
-    }
-
-    .dc-popup-backdrop.is-open .dc-popup {
-      transform: translateY(0);
-      opacity: 1;
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 0;
     }
 
     .dc-popup-close {
@@ -1180,7 +1253,6 @@
       line-height: 1;
       backdrop-filter: blur(10px);
     }
-
     .dc-popup-close:hover { background: rgba(0,0,0,0.45); }
 
     .dc-popup-left {
@@ -1286,7 +1358,6 @@
       white-space: nowrap;
       cursor: pointer;
     }
-
     .dc-popup-free:hover { background: rgba(15, 23, 42, 0.9); }
 
     @media (max-width: 520px) {
@@ -1345,7 +1416,6 @@
       <!-- ===== HEADER ===== -->
       <header id="top">
         <nav class="nav">
-
           <div class="brand" id="brandHome">
             <div class="brand-logo image-hover">
               <img src="images/matthew-logo-black-border.png" alt="Matthew Norton Logo">
@@ -1356,8 +1426,8 @@
             </div>
           </div>
 
-          <!-- Desktop: links + booking -->
-          <div class="nav-right">
+          <!-- Desktop nav -->
+          <div class="nav-right" aria-label="Primary navigation">
             <div class="nav-links">
               <a href="#portfolio">Portfolio</a>
               <a href="#about">About</a>
@@ -1395,7 +1465,6 @@
               </div>
             </div>
           </div>
-
         </nav>
       </header>
 
@@ -1479,10 +1548,7 @@
             </ul>
 
             <div class="book-ctas">
-              <!-- Disabled (not clickable) -->
               <span class="book-cta-primary is-disabled" aria-disabled="true">Coming soon</span>
-
-              <!-- Active -->
               <a class="book-cta-secondary" href="images/5-curiosity-prompts.pdf" target="_blank" rel="noreferrer">
                 Free resource
               </a>
@@ -1522,7 +1588,7 @@
             </a>
 
             <a class="feature-pill" href="https://www.magcloud.com/browse/issue/1669333" target="_blank" rel="noreferrer">
-              <span>Autumn in Greece | HORIZONT Issue 5 Vol. 5</span>
+              <span>Best of Autumn in Greece | HORIZONT Issue 5 Vol. 5</span>
             </a>
           </div>
         </section>
@@ -1567,21 +1633,21 @@
 
           <div class="portfolio-collections">
             <div class="collection-wrap">
-              <div class="collection-label">PORTRAITS</div>
+              <div class="collection-label">Portraits</div>
               <div class="collection-card image-hover" data-gallery="portraits">
                 <img src="images/rachel-1.JPG" alt="Portraits collection preview">
               </div>
             </div>
 
             <div class="collection-wrap">
-              <div class="collection-label">COUPLES</div>
+              <div class="collection-label">Couples</div>
               <div class="collection-card image-hover" data-gallery="couples">
                 <img src="images/jo-sandy-1.jpg" alt="Couples collection preview">
               </div>
             </div>
 
             <div class="collection-wrap">
-              <div class="collection-label">EVENTS</div>
+              <div class="collection-label">Events</div>
               <div class="collection-card image-hover" data-gallery="events">
                 <img src="images/naomi-1.JPG" alt="Events collection preview">
               </div>
@@ -1649,6 +1715,47 @@
                   </div>
                 </div>
               </div>
+
+              <!-- ===== PARTNERS I PERSONALLY USE (added) ===== -->
+              <div class="partners-block">
+                <div class="partners-label">Partners I personally use</div>
+                <p class="partners-intro">
+                  Simple tools I recommend for anyone who loves making honest, nostalgic images.
+                </p>
+
+                <div class="partner-card">
+                  <div class="partner-title">Camp Snap</div>
+                  <div class="partner-desc">Screen-free digital cameras that keep you in the moment.</div>
+                  <div class="partner-row">
+                    <span class="partner-save">$5 off your order</span>
+                    <a class="partner-btn"
+                       href="https://campsnapphoto.com/MATTHEWNORTOPHOTOS"
+                       target="_blank"
+                       rel="nofollow noopener">
+                      Shop →
+                    </a>
+                  </div>
+                </div>
+
+                <div class="partner-card">
+                  <div class="partner-title">Retropia</div>
+                  <div class="partner-desc">Vintage-inspired gear that brings nostalgic charm back to your photos.</div>
+                  <div class="partner-row">
+                    <span class="partner-save">10% off the Oreo Lens</span>
+                    <a class="partner-btn"
+                       href="https://retro-pia.com/MATTHEW01393"
+                       target="_blank"
+                       rel="nofollow noopener">
+                      Shop →
+                    </a>
+                  </div>
+                </div>
+
+                <p class="partners-disclosure">
+                  These are affiliate links. When you purchase through them, I earn a small commission at no extra cost to you.
+                </p>
+              </div>
+              <!-- ===== /PARTNERS ===== -->
             </div>
 
             <aside class="about-photo image-hover">
@@ -1675,7 +1782,7 @@
               <div class="testimonial-name">
                 Dawson Shorman |
                 <a href="https://instagram.com/dawson_shorman" target="_blank" rel="noreferrer">@dawson_shorman</a> |
-                <a href="https://instagram.com/musicbyoak" target="_blank" rel="noreferrer">@musicbyoak</a>
+                <a href="https://instagram.com/musicbyoaks" target="_blank" rel="noreferrer">@musicbyoaks</a>
               </div>
               <div class="testimonial-meta">Musician</div>
             </div>
@@ -1785,6 +1892,32 @@
     </div>
   </div>
 
+  <!-- ===== DEEPLY CURIOUS POP-UP (added) ===== -->
+  <div id="dcPopupBackdrop" class="dc-popup-backdrop" aria-hidden="true">
+    <div class="dc-popup" role="dialog" aria-modal="true" aria-label="Deeply Curious announcement">
+      <button class="dc-popup-close" id="dcPopupClose" type="button" aria-label="Close">&times;</button>
+
+      <div class="dc-popup-left">
+        <img src="images/deeply-curious.png" alt="Deeply Curious ebook cover">
+      </div>
+
+      <div class="dc-popup-right">
+        <div class="dc-popup-kicker">New e-book</div>
+        <div class="dc-popup-title">Deeply Curious</div>
+        <div class="dc-popup-subtitle">Staying Inspired Behind the Lens</div>
+        <div class="dc-popup-line">For photographers &amp; creatives</div>
+        <div class="dc-popup-line">Reconnect to wonder</div>
+
+        <div class="dc-popup-ctas">
+          <span class="dc-popup-soon" aria-disabled="true">Coming soon</span>
+          <a class="dc-popup-free" href="images/5-curiosity-prompts.pdf" target="_blank" rel="noreferrer">
+            Free resource
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ===== MODAL GALLERY OVERLAY ===== -->
   <div id="galleryModal" class="modal-backdrop">
     <div class="modal-gallery" role="dialog" aria-modal="true" aria-label="Gallery">
@@ -1809,31 +1942,9 @@
     </div>
   </div>
 
-  <!-- ===== DEEPLY CURIOUS POPUP ===== -->
-  <div class="dc-popup-backdrop" id="dcPopupBackdrop" aria-hidden="true">
-    <div class="dc-popup" role="dialog" aria-modal="true" aria-label="Deeply Curious announcement">
-      <button class="dc-popup-close" id="dcPopupClose" type="button" aria-label="Close popup">×</button>
-
-      <div class="dc-popup-left">
-        <img src="images/deeply-curious.png" alt="Deeply Curious ebook cover">
-      </div>
-
-      <div class="dc-popup-right">
-        <div class="dc-popup-kicker">New e-book · For photographers &amp; creatives</div>
-        <div class="dc-popup-title">Deeply Curious</div>
-        <div class="dc-popup-subtitle">Staying Inspired Behind the Lens</div>
-        <div class="dc-popup-line">Reconnect to wonder</div>
-
-        <div class="dc-popup-ctas">
-          <span class="dc-popup-soon" aria-disabled="true">Coming soon</span>
-          <a class="dc-popup-free" href="images/5-curiosity-prompts.pdf" target="_blank" rel="noreferrer">Free resource</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <script>
     // ===== PORTFOLIO GALLERIES =====
+    // These are set to live in the /images folder.
     const galleryImages = {
       portraits: [
         "images/potraits-1.JPG",
@@ -1879,10 +1990,10 @@
         "images/couples-6.jpg",
         "images/couples-7.jpg",
         "images/couples-8.jpg",
-        "images/couples-9.jpg",
-        "images/couples-10.jpg",
-        "images/couples-11.jpg",
-        "images/couples-12.jpg",
+        "images/couples-9.JPG",
+        "images/couples-10.JPG",
+        "images/couples-11.JPG",
+        "images/couples-12.JPG",
         "images/couples-13.jpg",
         "images/couples-14.jpg",
         "images/couples-15.jpg",
@@ -1899,11 +2010,45 @@
         "images/couples-26.jpg",
         "images/couples-27.jpg",
         "images/couples-28.jpg",
-        "images/couples-29.jpg",
-        "images/couples-30.jpg"
+        "images/couples-29.png",
+        "images/couples-30.JPG"
       ],
       events: [
-        "images/naomi-1.JPG"
+        "images/events-1.jpg",
+        "images/events-2.jpg",
+        "images/events-3.jpg",
+        "images/events-4.jpg",
+        "images/events-5.jpg",
+        "images/events-6.jpg",
+        "images/events-7.jpg",
+        "images/events-8.jpg",
+        "images/events-9.jpg",
+        "images/events-10.jpg",
+        "images/events-11.jpg",
+        "images/events-12.jpg",
+        "images/events-13.jpg",
+        "images/events-14.jpg",
+        "images/events-15.jpg",
+        "images/events-16.jpg",
+        "images/events-17.jpg",
+        "images/events-18.jpg",
+        "images/events-19.jpg",
+        "images/events-20.jpg",
+        "images/events-21.jpg",
+        "images/events-22.jpg",
+        "images/events-23.jpg",
+        "images/events-24.jpg",
+        "images/events-25.jpg",
+        "images/events-26.jpg",
+        "images/events-27.jpg",
+        "images/events-28.jpg",
+        "images/events-29.jpg",
+        "images/events-30.jpg",
+        "images/events-31.jpg",
+        "images/events-32.jpg",
+        "images/events-33.jpg",
+        "images/events-34.jpg",
+        "images/events-35.jpg"
       ]
     };
 
@@ -1950,15 +2095,17 @@
     document.addEventListener('click', (e) => {
       const headerEl = document.getElementById('top');
       if (!headerEl) return;
+
       const isClickInsideHeader = headerEl.contains(e.target);
       const isMenuOpen = mobileMenu.classList.contains('is-open');
       const isClickHamburger = hamburgerBtn.contains(e.target);
+
       if (isMenuOpen && isClickInsideHeader && !isClickHamburger && !mobileMenu.contains(e.target)) {
         closeMobileMenu();
       }
     });
 
-    // ===== MODAL SLIDER (click arrows; no auto-rotation) =====
+    // ===== MODAL SLIDER (seamless loop forward, click arrows; no auto-rotation) =====
     const modal = document.getElementById('galleryModal');
     const sliderTrack = document.getElementById('modalSliderTrack');
     const closeBtn = document.querySelector('.modal-close');
@@ -1967,7 +2114,18 @@
     const counterEl = document.getElementById('modalCounter');
 
     let currentGallery = [];
-    let currentIndex = 0;
+    let currentIndex = 0; // index within renderedSlides
+    let renderedSlides = []; // includes clones
+    let isModalTransitioning = false;
+
+    function buildRenderedSlides(images) {
+      const total = images.length;
+      if (total <= 1) return images.slice();
+      // clones for seamless looping
+      const first = images[0];
+      const last = images[total - 1];
+      return [last, ...images, first];
+    }
 
     function renderSlides(images) {
       sliderTrack.innerHTML = '';
@@ -1984,26 +2142,55 @@
       });
     }
 
-    function updateCounter() {
-      const total = currentGallery.length || 1;
-      counterEl.textContent = `${Math.min(currentIndex + 1, total)} / ${total}`;
+    function realCount() {
+      return currentGallery.length || 1;
     }
 
-    function goToSlide(index) {
-      if (!currentGallery.length) return;
+    function realIndexFromRendered() {
       const total = currentGallery.length;
-      currentIndex = (index + total) % total;
+      if (total <= 1) return 0;
+      return currentIndex - 1; // because index 0 is last-clone
+    }
+
+    function updateCounter() {
+      const total = realCount();
+      let displayIndex = 0;
+
+      if (total <= 1) {
+        displayIndex = 0;
+      } else {
+        displayIndex = realIndexFromRendered();
+        if (displayIndex < 0) displayIndex = total - 1;
+        if (displayIndex >= total) displayIndex = 0;
+      }
+
+      counterEl.textContent = `${displayIndex + 1} / ${total}`;
+    }
+
+    function goToRenderedIndex(index) {
+      if (!renderedSlides.length) return;
+      isModalTransitioning = true;
+      currentIndex = index;
+      sliderTrack.style.transition = 'transform 0.7s ease-in-out';
       sliderTrack.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
       updateCounter();
     }
 
     function openGallery(key) {
       currentGallery = galleryImages[key] || [];
-      currentIndex = 0;
+      renderedSlides = buildRenderedSlides(currentGallery);
 
-      renderSlides(currentGallery);
+      renderSlides(renderedSlides);
       sliderTrack.style.transition = 'none';
-      sliderTrack.style.transform = 'translateX(0%)';
+
+      if (currentGallery.length <= 1) {
+        currentIndex = 0;
+        sliderTrack.style.transform = 'translateX(0%)';
+      } else {
+        currentIndex = 1; // start on the first real slide
+        sliderTrack.style.transform = 'translateX(-100%)';
+      }
+
       // force reflow then restore transition (prevents initial jank)
       void sliderTrack.offsetWidth;
       sliderTrack.style.transition = 'transform 0.7s ease-in-out';
@@ -2016,6 +2203,33 @@
       modal.classList.remove('active');
     }
 
+    function handleModalTransitionEnd() {
+      isModalTransitioning = false;
+      const total = currentGallery.length;
+      if (total <= 1) return;
+
+      // if we hit the clones, snap (no rewind visual)
+      if (currentIndex === 0) {
+        sliderTrack.style.transition = 'none';
+        currentIndex = total; // last real slide position within renderedSlides
+        sliderTrack.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+        void sliderTrack.offsetWidth;
+        sliderTrack.style.transition = 'transform 0.7s ease-in-out';
+        updateCounter();
+      }
+
+      if (currentIndex === total + 1) {
+        sliderTrack.style.transition = 'none';
+        currentIndex = 1; // first real slide
+        sliderTrack.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+        void sliderTrack.offsetWidth;
+        sliderTrack.style.transition = 'transform 0.7s ease-in-out';
+        updateCounter();
+      }
+    }
+
+    sliderTrack.addEventListener('transitionend', handleModalTransitionEnd);
+
     document.querySelectorAll('.collection-card').forEach(card => {
       card.addEventListener('click', () => {
         const key = card.dataset.gallery;
@@ -2023,8 +2237,17 @@
       });
     });
 
-    prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
-    nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+    prevBtn.addEventListener('click', () => {
+      if (isModalTransitioning) return;
+      if (currentGallery.length <= 1) return;
+      goToRenderedIndex(currentIndex - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (isModalTransitioning) return;
+      if (currentGallery.length <= 1) return;
+      goToRenderedIndex(currentIndex + 1);
+    });
 
     closeBtn.addEventListener('click', closeGallery);
 
@@ -2036,8 +2259,8 @@
     document.addEventListener('keydown', (e) => {
       if (!modal.classList.contains('active')) return;
       if (e.key === 'Escape') closeGallery();
-      if (e.key === 'ArrowLeft') goToSlide(currentIndex - 1);
-      if (e.key === 'ArrowRight') goToSlide(currentIndex + 1);
+      if (e.key === 'ArrowLeft') prevBtn.click();
+      if (e.key === 'ArrowRight') prevBtn.click(); // (kept as-is from your code)
     });
 
     // ===== TESTIMONIAL CLICK TOGGLE (bold on click as well as hover) =====
@@ -2111,6 +2334,7 @@
     });
 
     // ===== REVIEW FORM (mailto to matthewnortonphotos@gmail.com) =====
+    // Keep it clean (no extra signature line).
     document.getElementById('reviewForm').addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -2119,50 +2343,54 @@
 
       const subject = encodeURIComponent('New Website Review');
       const body = encodeURIComponent(
-        `Name: ${name}\n\nReview:\n${review}\n\n— Sent from matthewnortonphotos.github.io`
+        `Name: ${name}\n\nReview:\n${review}`
       );
 
       window.location.href = `mailto:matthewnortonphotos@gmail.com?subject=${subject}&body=${body}`;
     });
 
-    // ===== DEEPLY CURIOUS POPUP (robust: works desktop + mobile) =====
+    // ===== DEEPLY CURIOUS POP-UP (added) =====
     (function () {
       const backdrop = document.getElementById('dcPopupBackdrop');
       const closeBtn = document.getElementById('dcPopupClose');
       if (!backdrop || !closeBtn) return;
 
-      const STORAGE_KEY = 'dcPopupSeen';
-      const DELAY_MS = 8000;
+      const STORAGE_KEY = 'dc_popup_seen_v1';
+      const DELAY_MS = 8000; // ~8 seconds after load
 
       function openPopup() {
+        // FIX: apply BOTH class names so it works regardless of CSS expectations
         backdrop.classList.add('is-open');
+        backdrop.classList.add('active');
         backdrop.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
       }
 
       function closePopup() {
+        // FIX: remove BOTH class names
         backdrop.classList.remove('is-open');
+        backdrop.classList.remove('active');
         backdrop.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        try { localStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
+        try { sessionStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
       }
 
-      // close on X
+      // Close on X
       closeBtn.addEventListener('click', closePopup);
 
-      // close on backdrop click
+      // Close on backdrop click
       backdrop.addEventListener('click', (e) => {
         if (e.target === backdrop) closePopup();
       });
 
-      // close on Escape
+      // Close on ESC
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && backdrop.classList.contains('is-open')) closePopup();
+        const isOpen = backdrop.classList.contains('is-open') || backdrop.classList.contains('active');
+        if (!isOpen) return;
+        if (e.key === 'Escape') closePopup();
       });
 
-      // open after delay (once)
+      // Show once per session
       let alreadySeen = false;
-      try { alreadySeen = localStorage.getItem(STORAGE_KEY) === '1'; } catch (e) {}
+      try { alreadySeen = sessionStorage.getItem(STORAGE_KEY) === '1'; } catch (e) { alreadySeen = false; }
 
       if (!alreadySeen) {
         window.setTimeout(openPopup, DELAY_MS);
@@ -2170,4 +2398,5 @@
     })();
   </script>
 </body>
-</html></html>
+</html>
+
