@@ -616,10 +616,11 @@
 
     .book-cta-primary.is-disabled {
       opacity: 0.72;
-      cursor: default;
-      pointer-events: none;
+      cursor: pointer;
       user-select: none;
     }
+
+    .book-cta-primary.is-disabled:hover { background: #f59d1b; }
 
     .book-cta-secondary {
       background: transparent;
@@ -937,6 +938,12 @@
       text-transform: uppercase;
       color: var(--color-ink-soft);
       margin-bottom: 4px;
+      transition: font-weight 0.18s ease-out, letter-spacing 0.18s ease-out;
+    }
+
+    .about-fact:hover .about-fact-heading {
+      font-weight: 700;
+      letter-spacing: 0.20em;
     }
 
     .about-fact-body { color: var(--color-ink-soft); }
@@ -1016,7 +1023,12 @@
       border: 1px solid rgba(50,74,86,0.28);
       background: rgba(50,74,86,0.08);
       white-space: nowrap;
+      display: inline-flex;
+      transition: transform 0.18s ease-out;
     }
+
+    .partner-save:hover { transform: scale(1.04); }
+    .partner-save:active { transform: scale(1.04); }
 
     /* Partner buttons use BLUE */
     .partner-btn {
@@ -1338,9 +1350,11 @@
       border: none;
       opacity: 0.82;
       user-select: none;
-      pointer-events: none;
       white-space: nowrap;
+      cursor: pointer;
     }
+
+    .dc-popup-soon:hover { background: #f59d1b; }
 
     .dc-popup-free {
       display: inline-flex;
@@ -1432,8 +1446,8 @@
               <a href="#portfolio">Portfolio</a>
               <a href="#about">About</a>
               <a href="#what-i-shoot">What I Shoot</a>
-              <a href="#features">Features</a>
               <a href="#testimonials">Testimonials</a>
+              <a href="#features">Features</a>
             </div>
             <button class="btn-booking" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
               Booking
@@ -1458,10 +1472,11 @@
 
             <div class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
               <div class="mobile-menu-inner">
+                <a href="#portfolio" data-close-menu="true">Portfolio</a>
                 <a href="#about" data-close-menu="true">About</a>
                 <a href="#what-i-shoot" data-close-menu="true">What I Shoot</a>
-                <a href="#features" data-close-menu="true">Features</a>
                 <a href="#testimonials" data-close-menu="true">Testimonials</a>
+                <a href="#features" data-close-menu="true">Features</a>
               </div>
             </div>
           </div>
@@ -1494,12 +1509,12 @@
               </button>
             </div>
 
-            <!-- Swap order: Portraits, Couples, Events, Brands (Brands last) -->
+            <!-- Pills: Portraits, Couples, Events, Brands (Brands last; no link) -->
             <div class="hero-meta">
-              <span>Portraits</span>
-              <span>Couples</span>
-              <span>Events</span>
-              <span>Brands</span>
+              <span data-hero-pill="portraits">Portraits</span>
+              <span data-hero-pill="couples">Couples</span>
+              <span data-hero-pill="events">Events</span>
+              <span data-hero-pill="brands">Brands</span>
             </div>
 
             <!-- WRITE A REVIEW (mailto built by JS for reliable formatting) -->
@@ -1557,69 +1572,6 @@
             <p class="book-note">
               HELPFUL ASSETS FOR PHOTOGRAPHERS WHO WANT THEIR SPARK BACK.
             </p>
-          </div>
-        </section>
-
-        <!-- FEATURES & HIGHLIGHTS -->
-        <section id="features">
-          <div class="section-header">
-            <div class="section-kicker">Features &amp; Highlights</div>
-            <h2 class="section-title">Selected press &amp; conversations</h2>
-            <p class="section-subtitle">
-              A few places my work and story have shown up. If you feel like reading, you're in the right place.
-            </p>
-          </div>
-
-          <div class="features-pills">
-            <a class="feature-pill" href="https://shoutoutdfw.com/meet-matthew-norton-urban-portrait-photographer-content-creator/" target="_blank" rel="noreferrer">
-              <span>Local Stories Article | SHOUTOUT DFW</span>
-            </a>
-
-            <a class="feature-pill" href="https://open.spotify.com/episode/5gyh492IbkKOBcJWlrVlIM" target="_blank" rel="noreferrer">
-              <span>Working with Models | The Real Model Talk Podcast</span>
-            </a>
-
-            <a class="feature-pill" href="https://www.magcloud.com/browse/issue/1674798?__r=1813141" target="_blank" rel="noreferrer">
-              <span>Suburban Dancefloor | HORIZONT Issue 5 Vol. 10</span>
-            </a>
-
-            <a class="feature-pill" href="https://www.magcloud.com/browse/issue/1671303?__r=1813141" target="_blank" rel="noreferrer">
-              <span>Young Elegance | HORIZONT Issue 5 Vol. 9</span>
-            </a>
-
-            <a class="feature-pill" href="https://www.magcloud.com/browse/issue/1669333" target="_blank" rel="noreferrer">
-              <span>Best of Autumn in Greece | HORIZONT Issue 5 Vol. 5</span>
-            </a>
-          </div>
-        </section>
-
-        <!-- WHAT I SHOOT -->
-        <section id="what-i-shoot">
-          <div class="section-header">
-            <div class="section-kicker">What I shoot</div>
-            <h2 class="section-title">People, stories &amp; honest moments</h2>
-            <p class="section-subtitle">
-              I’m a portrait photographer at heart, but my work often overlaps into couples, brands, and live events — wherever people and story meet.
-            </p>
-          </div>
-
-          <div class="shoot-grid">
-            <div class="shoot-item">
-              <h3>Portraits</h3>
-              <p>Individuals, creatives, musicians, and founders who want images that feel like them, not like a template.</p>
-            </div>
-            <div class="shoot-item">
-              <h3>Couples</h3>
-              <p>Engagements, anniversaries, and just-because sessions that focus on shared quirks and real connection.</p>
-            </div>
-            <div class="shoot-item">
-              <h3>Brands</h3>
-              <p>Small businesses, personal brands, and campaigns that need honest imagery instead of stock-photo energy.</p>
-            </div>
-            <div class="shoot-item">
-              <h3>Events</h3>
-              <p>Conferences, worship nights, and live gatherings captured documentary-style — present, not performative.</p>
-            </div>
           </div>
         </section>
 
@@ -1698,14 +1650,6 @@
                     <span class="about-fact-body">Warm tones, honest moments, editorial simplicity</span>
                   </div>
                   <div class="about-fact">
-                    <span class="about-fact-heading">Approach</span>
-                    <span class="about-fact-body">Intentional mindset — shoot, don’t overthink; create, don’t perform</span>
-                  </div>
-                  <div class="about-fact">
-                    <span class="about-fact-heading">Gear</span>
-                    <span class="about-fact-body">Sony mirrorless + prime lens shooter</span>
-                  </div>
-                  <div class="about-fact">
                     <span class="about-fact-heading">Clientele</span>
                     <span class="about-fact-body">Everyday people, creatives, musicians, couples &amp; small brands</span>
                   </div>
@@ -1715,52 +1659,82 @@
                   </div>
                 </div>
               </div>
-
-              <!-- ===== PARTNERS I PERSONALLY USE (added) ===== -->
-              <div class="partners-block">
-                <div class="partners-label">Partners I personally use</div>
-                <p class="partners-intro">
-                  Simple tools I recommend for anyone who loves making honest, nostalgic images.
-                </p>
-
-                <div class="partner-card">
-                  <div class="partner-title">Camp Snap</div>
-                  <div class="partner-desc">Screen-free digital cameras that keep you in the moment.</div>
-                  <div class="partner-row">
-                    <span class="partner-save">$5 off your order</span>
-                    <a class="partner-btn"
-                       href="https://campsnapphoto.com/MATTHEWNORTOPHOTOS"
-                       target="_blank"
-                       rel="nofollow noopener">
-                      Shop →
-                    </a>
-                  </div>
-                </div>
-
-                <div class="partner-card">
-                  <div class="partner-title">Retropia</div>
-                  <div class="partner-desc">Vintage-inspired gear that brings nostalgic charm back to your photos.</div>
-                  <div class="partner-row">
-                    <span class="partner-save">10% off the Oreo Lens</span>
-                    <a class="partner-btn"
-                       href="https://retro-pia.com/MATTHEW01393"
-                       target="_blank"
-                       rel="nofollow noopener">
-                      Shop →
-                    </a>
-                  </div>
-                </div>
-
-                <p class="partners-disclosure">
-                  These are affiliate links. When you purchase through them, I earn a small commission at no extra cost to you.
-                </p>
-              </div>
-              <!-- ===== /PARTNERS ===== -->
             </div>
 
             <aside class="about-photo image-hover">
               <img src="images/matthew-portrait-2.JPG" alt="Portrait of Matthew Norton">
             </aside>
+          </div>
+
+          <!-- ===== PARTNERS I PERSONALLY USE (full width on desktop; mobile unchanged) ===== -->
+          <div class="partners-block">
+            <div class="partners-label">Partners I personally use</div>
+            <p class="partners-intro">
+              Simple tools I recommend for anyone who loves making honest, nostalgic images.
+            </p>
+
+            <div class="partner-card">
+              <div class="partner-title">Camp Snap</div>
+              <div class="partner-desc">Screen-free digital cameras that keep you in the moment.</div>
+              <div class="partner-row">
+                <span class="partner-save">$5 off your order</span>
+                <a class="partner-btn"
+                   href="https://campsnapphoto.com/MATTHEWNORTOPHOTOS"
+                   target="_blank"
+                   rel="nofollow noopener">
+                  Shop →
+                </a>
+              </div>
+            </div>
+
+            <div class="partner-card">
+              <div class="partner-title">Retropia</div>
+              <div class="partner-desc">Vintage-inspired gear that brings nostalgic charm back to your photos.</div>
+              <div class="partner-row">
+                <span class="partner-save">10% off the Oreo Lens</span>
+                <a class="partner-btn"
+                   href="https://retro-pia.com/MATTHEW01393"
+                   target="_blank"
+                   rel="nofollow noopener">
+                  Shop →
+                </a>
+              </div>
+            </div>
+
+            <p class="partners-disclosure">
+              These are affiliate links. When you purchase through them, I earn a small commission at no extra cost to you.
+            </p>
+          </div>
+          <!-- ===== /PARTNERS ===== -->
+        </section>
+
+        <!-- WHAT I SHOOT -->
+        <section id="what-i-shoot">
+          <div class="section-header">
+            <div class="section-kicker">What I shoot</div>
+            <h2 class="section-title">People, stories &amp; honest moments</h2>
+            <p class="section-subtitle">
+              I’m a portrait photographer at heart, but my work often overlaps into couples, brands, and live events — wherever people and story meet.
+            </p>
+          </div>
+
+          <div class="shoot-grid">
+            <div class="shoot-item" data-shoot-link="portraits">
+              <h3>Portraits</h3>
+              <p>Individuals, creatives, musicians, and founders who want images that feel like them, not like a template.</p>
+            </div>
+            <div class="shoot-item" data-shoot-link="couples">
+              <h3>Couples</h3>
+              <p>Engagements, anniversaries, and just-because sessions that focus on shared quirks and real connection.</p>
+            </div>
+            <div class="shoot-item" data-shoot-link="events">
+              <h3>Events</h3>
+              <p>Conferences, worship nights, and live gatherings captured documentary-style — present, not performative.</p>
+            </div>
+            <div class="shoot-item" data-shoot-link="brands" style="cursor: default;">
+              <h3>Brands</h3>
+              <p>Small businesses, personal brands, and campaigns that need honest imagery instead of stock-photo energy.</p>
+            </div>
           </div>
         </section>
 
@@ -1822,6 +1796,39 @@
           </div>
         </section>
 
+        <!-- FEATURES & HIGHLIGHTS -->
+        <section id="features">
+          <div class="section-header">
+            <div class="section-kicker">Features &amp; Highlights</div>
+            <h2 class="section-title">Selected press &amp; conversations</h2>
+            <p class="section-subtitle">
+              A few places my work and story have shown up. If you feel like reading, you're in the right place.
+            </p>
+          </div>
+
+          <div class="features-pills">
+            <a class="feature-pill" href="https://shoutoutdfw.com/meet-matthew-norton-urban-portrait-photographer-content-creator/" target="_blank" rel="noreferrer">
+              <span>Local Stories Article | SHOUTOUT DFW</span>
+            </a>
+
+            <a class="feature-pill" href="https://open.spotify.com/episode/5gyh492IbkKOBcJWlrVlIM" target="_blank" rel="noreferrer">
+              <span>Working with Models | The Real Model Talk Podcast</span>
+            </a>
+
+            <a class="feature-pill" href="https://www.magcloud.com/browse/issue/1674798?__r=1813141" target="_blank" rel="noreferrer">
+              <span>Suburban Dancefloor | HORIZONT Issue 5 Vol. 10</span>
+            </a>
+
+            <a class="feature-pill" href="https://www.magcloud.com/browse/issue/1671303?__r=1813141" target="_blank" rel="noreferrer">
+              <span>Young Elegance | HORIZONT Issue 5 Vol. 9</span>
+            </a>
+
+            <a class="feature-pill" href="https://www.magcloud.com/browse/issue/1669333" target="_blank" rel="noreferrer">
+              <span>Best of Autumn in Greece | HORIZONT Issue 5 Vol. 5</span>
+            </a>
+          </div>
+        </section>
+
         <!-- CONTACT / BOOKING -->
         <section id="contact">
           <div class="section-header">
@@ -1869,7 +1876,7 @@
                     TikTok
                   </a>
                   <a class="chip-link" href="https://direct.me/matthewnortonphotos?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnbn9KBJOyedCfxzKtIRNumpg99BVoIryVqV7-0wZdE_QsSXYyT-GSsxLPDuk_aem_-GYXmgvz978KZYxcD0anPA#" target="_blank" rel="noreferrer">
-                    Linktree
+                    My Links
                   </a>
                 </div>
               </div>
@@ -1983,27 +1990,13 @@
       ],
       couples: [
         "images/couples-1.jpg",
-        "images/couples-2.jpg",
-        "images/couples-3.jpg",
         "images/couples-4.jpg",
         "images/couples-5.jpg",
         "images/couples-6.jpg",
-        "images/couples-7.jpg",
-        "images/couples-8.jpg",
         "images/couples-9.JPG",
         "images/couples-10.JPG",
-        "images/couples-11.JPG",
-        "images/couples-12.JPG",
         "images/couples-13.jpg",
-        "images/couples-14.jpg",
         "images/couples-15.jpg",
-        "images/couples-16.jpg",
-        "images/couples-17.jpg",
-        "images/couples-18.jpg",
-        "images/couples-19.jpg",
-        "images/couples-20.jpg",
-        "images/couples-21.jpg",
-        "images/couples-22.jpg",
         "images/couples-23.jpg",
         "images/couples-24.jpg",
         "images/couples-25.jpg",
@@ -2270,10 +2263,34 @@
       });
     });
 
-    // ===== WHAT I SHOOT CLICK TOGGLE (bold supporting text on click as well as hover) =====
+    // ===== WHAT I SHOOT CLICK / LINKING =====
+    // Portraits/Couples/Events: scroll to Portfolio then open the matching gallery.
+    // Brands: no link (stays visually consistent; does nothing).
     document.querySelectorAll('.shoot-item').forEach(card => {
+      const key = card.getAttribute('data-shoot-link');
+
+      if (key === 'brands') {
+        card.addEventListener('click', () => {
+          // Do nothing (still allows existing hover styling).
+        });
+        return;
+      }
+
       card.addEventListener('click', () => {
-        card.classList.toggle('active');
+        document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
+        window.setTimeout(() => openGallery(key), 450);
+      });
+    });
+
+    // ===== HERO PILLS (Portraits / Couples / Events / Brands) =====
+    document.querySelectorAll('.hero-meta span').forEach(pill => {
+      const key = pill.getAttribute('data-hero-pill');
+      pill.style.cursor = 'pointer';
+
+      pill.addEventListener('click', () => {
+        if (key === 'brands') return; // no link
+        document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
+        window.setTimeout(() => openGallery(key), 450);
       });
     });
 
@@ -2399,4 +2416,5 @@
   </script>
 </body>
 </html>
+
 
