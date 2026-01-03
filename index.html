@@ -1889,7 +1889,7 @@
 
 
               <p>
-                If forms aren’t your thing, reach out directly via e-mail or just DM me on Instagram and share what you’re dreaming up. Let's create something unforgettable together. Let's create something unforgettable together.
+                If forms aren’t your thing, reach out directly via e-mail or just DM me on Instagram and share what you’re dreaming up. Let's create something unforgettable together.
               </p>
             </div>
           </div>
@@ -2199,6 +2199,35 @@
       modal.classList.add('active');
     }
 
+    // ===== QUICK LINKS TO PORTFOLIO GALLERIES (Hero pills + What I Shoot) =====
+    function scrollToPortfolioAndOpen(key) {
+      const portfolio = document.getElementById('portfolio');
+      if (portfolio) portfolio.scrollIntoView({ behavior: 'smooth' });
+      // small delay so the scroll starts before opening modal (works on desktop + mobile)
+      window.setTimeout(() => { openGallery(key); }, 450);
+    }
+
+    // Hero pills (Portraits / Couples / Events). Brands does nothing.
+    document.querySelectorAll('.hero-meta span').forEach((pill) => {
+      const label = (pill.textContent || '').trim().toLowerCase();
+      const map = { portraits: 'portraits', couples: 'couples', events: 'events' };
+      const key = map[label];
+      if (!key) return; // Brands or unknown
+      pill.style.cursor = 'pointer';
+      pill.addEventListener('click', () => scrollToPortfolioAndOpen(key));
+    });
+
+    // What I Shoot cards: Portraits / Couples / Events link to portfolio galleries. Brands does nothing.
+    document.querySelectorAll('#what-i-shoot .shoot-item').forEach((card) => {
+      const h3 = card.querySelector('h3');
+      const label = (h3 ? h3.textContent : '').trim().toLowerCase();
+      const map = { portraits: 'portraits', couples: 'couples', events: 'events' };
+      const key = map[label];
+      if (!key) return; // Brands
+      card.addEventListener('click', () => scrollToPortfolioAndOpen(key));
+    });
+
+
     function closeGallery() {
       modal.classList.remove('active');
     }
@@ -2260,7 +2289,7 @@
       if (!modal.classList.contains('active')) return;
       if (e.key === 'Escape') closeGallery();
       if (e.key === 'ArrowLeft') prevBtn.click();
-      if (e.key === 'ArrowRight') prevBtn.click(); // (kept as-is from your code)
+      if (e.key === 'ArrowRight') nextBtn.click();
     });
 
     // ===== TESTIMONIAL CLICK TOGGLE (bold on click as well as hover) =====
@@ -2417,3 +2446,4 @@
   </script>
 </body>
 </html>
+
