@@ -444,6 +444,8 @@
       white-space: nowrap;
     }
 
+    .hero-meta span[data-hero-pill] { cursor: pointer; }
+
     /* HERO REVIEW FORM */
     .hero-review {
       margin-top: 20px;
@@ -500,7 +502,10 @@
       border: 1px solid var(--color-border-soft);
       background: #111;
       position: relative;
-      aspect-ratio: 3 / 4;
+      aspect-ratio: 2 / 3;
+      max-width: 340px;
+      width: 100%;
+      justify-self: end;
     }
 
     .hero-carousel { width: 100%; height: 100%; overflow: hidden; }
@@ -1151,7 +1156,7 @@
     .contact-side {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 18px;
       font-size: 13px;
       color: var(--color-ink-soft);
     }
@@ -1387,7 +1392,7 @@
     /* ===== RESPONSIVE ===== */
     @media (max-width: 960px) {
       .hero, .about-layout, .contact-layout, .book-section { grid-template-columns: 1fr; }
-      .hero-right { order: -1; }
+      .hero-right { order: -1; max-width: none; }
       .book-cover-wrap { justify-self: center; max-width: 230px; }
       .portfolio-collections { grid-template-columns: repeat(2, minmax(0,1fr)); }
       .testimonials-grid { grid-template-columns: 1fr; }
@@ -1875,7 +1880,7 @@
 
 
               <div>
-                <div class="social-row-label">Email</div>
+                <div class="social-row-label">E-MAIL</div>
                 <a href="mailto:matthewnortonphotos@gmail.com" class="contact-email">matthewnortonphotos@gmail.com</a>
               </div>
 
@@ -1884,7 +1889,7 @@
 
 
               <p>
-                If forms aren’t your thing, reach out directly via e-mail or just DM me on Instagram and share what you’re dreaming up. Let's create something unforgettable together.
+                If forms aren’t your thing, reach out directly via e-mail or just DM me on Instagram and share what you’re dreaming up. Let's create something unforgettable together. Let's create something unforgettable together.
               </p>
             </div>
           </div>
