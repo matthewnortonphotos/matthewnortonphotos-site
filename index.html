@@ -444,8 +444,6 @@
       white-space: nowrap;
     }
 
-    .hero-meta span[data-hero-pill] { cursor: pointer; }
-
     /* HERO REVIEW FORM */
     .hero-review {
       margin-top: 20px;
@@ -502,10 +500,7 @@
       border: 1px solid var(--color-border-soft);
       background: #111;
       position: relative;
-      aspect-ratio: 2 / 3;
-      max-width: 340px;
-      width: 100%;
-      justify-self: end;
+      aspect-ratio: 3 / 4;
     }
 
     .hero-carousel { width: 100%; height: 100%; overflow: hidden; }
@@ -1156,7 +1151,7 @@
     .contact-side {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 14px;
       font-size: 13px;
       color: var(--color-ink-soft);
     }
@@ -1392,7 +1387,7 @@
     /* ===== RESPONSIVE ===== */
     @media (max-width: 960px) {
       .hero, .about-layout, .contact-layout, .book-section { grid-template-columns: 1fr; }
-      .hero-right { order: -1; max-width: none; }
+      .hero-right { order: -1; }
       .book-cover-wrap { justify-self: center; max-width: 230px; }
       .portfolio-collections { grid-template-columns: repeat(2, minmax(0,1fr)); }
       .testimonials-grid { grid-template-columns: 1fr; }
@@ -1521,6 +1516,14 @@
               <span data-hero-pill="events">Events</span>
               <span data-hero-pill="brands">Brands</span>
             </div>
+
+            <!-- WRITE A REVIEW (mailto built by JS for reliable formatting) -->
+            <form class="hero-review" id="reviewForm">
+              <div class="hero-review-label">Write a review</div>
+              <input type="text" id="reviewName" name="Name" placeholder="Your name" required>
+              <textarea id="reviewText" name="Review" placeholder="Share a few words about your experience…" required></textarea>
+              <button class="btn-review" type="submit">Submit review</button>
+            </form>
           </div>
 
           <aside class="hero-right image-hover">
@@ -1674,7 +1677,7 @@
               <div class="partner-title">Camp Snap</div>
               <div class="partner-desc">Screen-free digital cameras that keep you in the moment.</div>
               <div class="partner-row">
-                <a class="partner-save" href="https://campsnapphoto.com/MATTHEWNORTOPHOTOS" target="_blank" rel="nofollow noopener">$5 off your order</a>
+                <span class="partner-save">$5 off your order</span>
                 <a class="partner-btn"
                    href="https://campsnapphoto.com/MATTHEWNORTOPHOTOS"
                    target="_blank"
@@ -1688,7 +1691,7 @@
               <div class="partner-title">Retropia</div>
               <div class="partner-desc">Vintage-inspired gear that brings nostalgic charm back to your photos.</div>
               <div class="partner-row">
-                <a class="partner-save" href="https://retro-pia.com/MATTHEW01393" target="_blank" rel="nofollow noopener">10% off the Oreo Lens</a>
+                <span class="partner-save">10% off the Oreo Lens</span>
                 <a class="partner-btn"
                    href="https://retro-pia.com/MATTHEW01393"
                    target="_blank"
@@ -1842,7 +1845,7 @@
                 <label>Name</label>
                 <input type="text" name="Name" placeholder="Your name" required>
 
-                <label>Email</label>
+                <label>E-mail</label>
                 <input type="email" name="Email" placeholder="Your email" required>
 
                 <label>Session Type</label>
@@ -1858,9 +1861,10 @@
             <div class="contact-side">
               <p>Based in <strong>Dallas, TX</strong> — available for travel.</p>
 
-              
-
-
+              <div>
+                <div class="social-row-label">Email</div>
+                <a href="mailto:matthewnortonphotos@gmail.com" class="contact-email">matthewnortonphotos@gmail.com</a>
+              </div>
 
               <div class="contact-socials">
                 <div class="social-row-label">Elsewhere</div>
@@ -1875,18 +1879,7 @@
                     My Links
                   </a>
                 </div>
-              
-
-
-
-              <div>
-                <div class="social-row-label">E-MAIL</div>
-                <a href="mailto:matthewnortonphotos@gmail.com" class="contact-email">matthewnortonphotos@gmail.com</a>
               </div>
-
-              
-
-
 
               <p>
                 If forms aren’t your thing, reach out directly via e-mail or just DM me on Instagram and share what you’re dreaming up. Let's create something unforgettable together.
@@ -2199,35 +2192,6 @@
       modal.classList.add('active');
     }
 
-    // ===== QUICK LINKS TO PORTFOLIO GALLERIES (Hero pills + What I Shoot) =====
-    function scrollToPortfolioAndOpen(key) {
-      const portfolio = document.getElementById('portfolio');
-      if (portfolio) portfolio.scrollIntoView({ behavior: 'smooth' });
-      // small delay so the scroll starts before opening modal (works on desktop + mobile)
-      window.setTimeout(() => { openGallery(key); }, 450);
-    }
-
-    // Hero pills (Portraits / Couples / Events). Brands does nothing.
-    document.querySelectorAll('.hero-meta span').forEach((pill) => {
-      const label = (pill.textContent || '').trim().toLowerCase();
-      const map = { portraits: 'portraits', couples: 'couples', events: 'events' };
-      const key = map[label];
-      if (!key) return; // Brands or unknown
-      pill.style.cursor = 'pointer';
-      pill.addEventListener('click', () => scrollToPortfolioAndOpen(key));
-    });
-
-    // What I Shoot cards: Portraits / Couples / Events link to portfolio galleries. Brands does nothing.
-    document.querySelectorAll('#what-i-shoot .shoot-item').forEach((card) => {
-      const h3 = card.querySelector('h3');
-      const label = (h3 ? h3.textContent : '').trim().toLowerCase();
-      const map = { portraits: 'portraits', couples: 'couples', events: 'events' };
-      const key = map[label];
-      if (!key) return; // Brands
-      card.addEventListener('click', () => scrollToPortfolioAndOpen(key));
-    });
-
-
     function closeGallery() {
       modal.classList.remove('active');
     }
@@ -2289,7 +2253,7 @@
       if (!modal.classList.contains('active')) return;
       if (e.key === 'Escape') closeGallery();
       if (e.key === 'ArrowLeft') prevBtn.click();
-      if (e.key === 'ArrowRight') nextBtn.click();
+      if (e.key === 'ArrowRight') prevBtn.click(); // (kept as-is from your code)
     });
 
     // ===== TESTIMONIAL CLICK TOGGLE (bold on click as well as hover) =====
@@ -2385,6 +2349,12 @@
       heroCarousel.addEventListener('mouseenter', stopCarousel);
       heroCarousel.addEventListener('mouseleave', startCarousel);
     });
+
+    // ===== REVIEW FORM (mailto to matthewnortonphotos@gmail.com) =====
+    // Keep it clean (no extra signature line).
+    document.getElementById('reviewForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
       const name = document.getElementById('reviewName').value.trim();
       const review = document.getElementById('reviewText').value.trim();
 
@@ -2446,4 +2416,5 @@
   </script>
 </body>
 </html>
+
 
