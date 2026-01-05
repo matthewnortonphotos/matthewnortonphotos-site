@@ -1069,7 +1069,7 @@
       max-width: 62ch;
     }
 
-    
+
     /* Partners grid layout (desktop: 2 on left, 1 on right) */
     .partners-grid {
       display: grid;
@@ -1900,7 +1900,7 @@
             <div class="contact-side">
               <p>Based in <strong>Dallas, TX</strong> — available for travel.</p>
 
-              
+
 
 
 
@@ -1917,7 +1917,7 @@
                     My Links
                   </a>
                 </div>
-              
+
 
 
 
@@ -1926,7 +1926,7 @@
                 <a href="mailto:matthewnortonphotos@gmail.com" class="contact-email">matthewnortonphotos@gmail.com</a>
               </div>
 
-              
+
 
 
 
@@ -2426,16 +2426,6 @@
       startCarousel();
       heroCarousel.addEventListener('mouseenter', stopCarousel);
       heroCarousel.addEventListener('mouseleave', startCarousel);
-    });
-      const name = document.getElementById('reviewName').value.trim();
-      const review = document.getElementById('reviewText').value.trim();
-
-      const subject = encodeURIComponent('New Website Review');
-      const body = encodeURIComponent(
-        `Name: ${name}\n\nReview:\n${review}`
-      );
-
-      window.location.href = `mailto:matthewnortonphotos@gmail.com?subject=${subject}&body=${body}`;
     });
 
     // ===== DEEPLY CURIOUS POP-UP (added) =====
