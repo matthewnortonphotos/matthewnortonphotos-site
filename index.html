@@ -444,6 +444,8 @@
       white-space: nowrap;
     }
 
+    .hero-meta span[data-hero-pill] { cursor: pointer; }
+
     /* HERO REVIEW FORM */
     .hero-review {
       margin-top: 20px;
@@ -500,7 +502,10 @@
       border: 1px solid var(--color-border-soft);
       background: #111;
       position: relative;
-      aspect-ratio: 3 / 4;
+      aspect-ratio: 2 / 3;
+      max-width: 340px;
+      width: 100%;
+      justify-self: end;
     }
 
     .hero-carousel { width: 100%; height: 100%; overflow: hidden; }
@@ -1064,7 +1069,26 @@
       max-width: 62ch;
     }
 
-    /* ===== TESTIMONIALS ===== */
+    
+    /* Partners grid layout (desktop: 2 on left, 1 on right) */
+    .partners-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+
+    .partners-col {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    @media (max-width: 960px) {
+      .partners-grid { grid-template-columns: 1fr; }
+    }
+
+/* ===== TESTIMONIALS ===== */
     .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0,1fr));
@@ -1151,12 +1175,12 @@
     .contact-side {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 18px;
       font-size: 13px;
       color: var(--color-ink-soft);
     }
 
-    .contact-e-mail {
+    .contact-email {
       font-family: var(--font-heading);
       text-transform: uppercase;
       letter-spacing: 0.16em;
@@ -1387,7 +1411,7 @@
     /* ===== RESPONSIVE ===== */
     @media (max-width: 960px) {
       .hero, .about-layout, .contact-layout, .book-section { grid-template-columns: 1fr; }
-      .hero-right { order: -1; }
+      .hero-right { order: -1; max-width: none; }
       .book-cover-wrap { justify-self: center; max-width: 230px; }
       .portfolio-collections { grid-template-columns: repeat(2, minmax(0,1fr)); }
       .testimonials-grid { grid-template-columns: 1fr; }
@@ -1516,14 +1540,6 @@
               <span data-hero-pill="events">Events</span>
               <span data-hero-pill="brands">Brands</span>
             </div>
-
-            <!-- WRITE A REVIEW (mailto built by JS for reliable formatting) -->
-            <form class="hero-review" id="reviewForm">
-              <div class="hero-review-label">Write a review</div>
-              <input type="text" id="reviewName" name="Name" placeholder="Your name" required>
-              <textarea id="reviewText" name="Review" placeholder="Share a few words about your experience…" required></textarea>
-              <button class="btn-review" type="submit">Submit review</button>
-            </form>
           </div>
 
           <aside class="hero-right image-hover">
@@ -1563,7 +1579,7 @@
             </ul>
 
             <div class="book-ctas">
-              <span class="book-cta-primary is-disabled" aria-disabled="true">Coming soon</span>
+              <a class="book-cta-primary" href="https://matthewnortonphotos.gumroad.com/l/deeplycurious" target="_blank" rel="noreferrer noopener">Buy now</a>
               <a class="book-cta-secondary" href="images/5-curiosity-prompts.pdf" target="_blank" rel="noreferrer">
                 Free resource
               </a>
@@ -1672,36 +1688,59 @@
             <p class="partners-intro">
               Simple tools I recommend for anyone who loves making honest, nostalgic images.
             </p>
+            <div class="partners-grid">
+              <div class="partners-col partners-col-left">
 
-            <div class="partner-card">
-              <div class="partner-title">Camp Snap</div>
-              <div class="partner-desc">Screen-free digital cameras that keep you in the moment.</div>
-              <div class="partner-row">
-                <span class="partner-save">$5 off your order</span>
-                <a class="partner-btn"
-                   href="https://campsnapphoto.com/MATTHEWNORTOPHOTOS"
-                   target="_blank"
-                   rel="nofollow noopener">
-                  Shop →
-                </a>
+                <div class="partner-card">
+                  <div class="partner-title">Camp Snap</div>
+                  <div class="partner-desc">Screen-free digital cameras that keep you in the moment.</div>
+                  <div class="partner-row">
+                    <a class="partner-save" href="https://campsnapphoto.com/MATTHEWNORTOPHOTOS" target="_blank" rel="nofollow noopener">$5 off your order</a>
+                    <a class="partner-btn"
+                       href="https://campsnapphoto.com/MATTHEWNORTOPHOTOS"
+                       target="_blank"
+                       rel="nofollow noopener">
+                      Shop →
+                    </a>
+                  </div>
+                </div>
+
+                <div class="partner-card">
+                  <div class="partner-title">Retropia</div>
+                  <div class="partner-desc">Vintage-inspired gear that brings nostalgic charm back to your photos.</div>
+                  <div class="partner-row">
+                    <a class="partner-save" href="https://retro-pia.com/MATTHEW01393" target="_blank" rel="nofollow noopener">10% off the Oreo Lens</a>
+                    <a class="partner-btn"
+                       href="https://retro-pia.com/MATTHEW01393"
+                       target="_blank"
+                       rel="nofollow noopener">
+                      Shop →
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="partners-col partners-col-right">
+
+                <div class="partner-card">
+                  <div class="partner-title">Flashback</div>
+                  <div class="partner-desc">A durable, 90s-inspired camera that helps you slow down and stay immersed in the moment — not your phone screen.</div>
+                  <div class="partner-row">
+                    <a class="partner-save" href="https://joinflashback.co/MATTHEW97093" target="_blank" rel="nofollow noopener">Shop Flashback</a>
+                    <a class="partner-btn"
+                       href="https://joinflashback.co/MATTHEW97093"
+                       target="_blank"
+                       rel="nofollow noopener">
+                      Shop →
+                    </a>
+                  </div>
+                </div>
+
               </div>
             </div>
 
-            <div class="partner-card">
-              <div class="partner-title">Retropia</div>
-              <div class="partner-desc">Vintage-inspired gear that brings nostalgic charm back to your photos.</div>
-              <div class="partner-row">
-                <span class="partner-save">10% off the Oreo Lens</span>
-                <a class="partner-btn"
-                   href="https://retro-pia.com/MATTHEW01393"
-                   target="_blank"
-                   rel="nofollow noopener">
-                  Shop →
-                </a>
-              </div>
-            </div>
-
-            <p class="partners-disclosure">
+<p class="partners-disclosure">
               These are affiliate links. When you purchase through them, I earn a small commission at no extra cost to you.
             </p>
           </div>
@@ -1845,8 +1884,8 @@
                 <label>Name</label>
                 <input type="text" name="Name" placeholder="Your name" required>
 
-                <label>E-mail</label>
-                <input type="e-mail" name="E-mail" placeholder="Your e-mail" required>
+                <label>Email</label>
+                <input type="email" name="Email" placeholder="Your email" required>
 
                 <label>Session Type</label>
                 <input type="text" name="Type" placeholder="Portraits, couples, brand, event…" required>
@@ -1861,6 +1900,10 @@
             <div class="contact-side">
               <p>Based in <strong>Dallas, TX</strong> — available for travel.</p>
 
+              
+
+
+
               <div class="contact-socials">
                 <div class="social-row-label">Elsewhere</div>
                 <div class="social-buttons">
@@ -1874,13 +1917,19 @@
                     My Links
                   </a>
                 </div>
+              
+
+
+
+              <div>
+                <div class="social-row-label">E-MAIL</div>
+                <a href="mailto:matthewnortonphotos@gmail.com" class="contact-email">matthewnortonphotos@gmail.com</a>
               </div>
 
-            <div>
-                <div class="social-row-label">E-mail</div>
-                <a href="mailto:matthewnortonphotos@gmail.com" class="contact-e-mail">matthewnortonphotos@gmail.com</a>
-              </div>
               
+
+
+
               <p>
                 If forms aren’t your thing, reach out directly via e-mail or just DM me on Instagram and share what you’re dreaming up. Let's create something unforgettable together.
               </p>
@@ -1916,7 +1965,7 @@
         <div class="dc-popup-line">Reconnect to wonder</div>
 
         <div class="dc-popup-ctas">
-          <span class="dc-popup-soon" aria-disabled="true">Coming soon</span>
+          <a class="dc-popup-soon" href="https://matthewnortonphotos.gumroad.com/l/deeplycurious" target="_blank" rel="noreferrer noopener">Buy now</a>
           <a class="dc-popup-free" href="images/5-curiosity-prompts.pdf" target="_blank" rel="noreferrer">
             Free resource
           </a>
@@ -2192,6 +2241,35 @@
       modal.classList.add('active');
     }
 
+    // ===== QUICK LINKS TO PORTFOLIO GALLERIES (Hero pills + What I Shoot) =====
+    function scrollToPortfolioAndOpen(key) {
+      const portfolio = document.getElementById('portfolio');
+      if (portfolio) portfolio.scrollIntoView({ behavior: 'smooth' });
+      // small delay so the scroll starts before opening modal (works on desktop + mobile)
+      window.setTimeout(() => { openGallery(key); }, 450);
+    }
+
+    // Hero pills (Portraits / Couples / Events). Brands does nothing.
+    document.querySelectorAll('.hero-meta span').forEach((pill) => {
+      const label = (pill.textContent || '').trim().toLowerCase();
+      const map = { portraits: 'portraits', couples: 'couples', events: 'events' };
+      const key = map[label];
+      if (!key) return; // Brands or unknown
+      pill.style.cursor = 'pointer';
+      pill.addEventListener('click', () => scrollToPortfolioAndOpen(key));
+    });
+
+    // What I Shoot cards: Portraits / Couples / Events link to portfolio galleries. Brands does nothing.
+    document.querySelectorAll('#what-i-shoot .shoot-item').forEach((card) => {
+      const h3 = card.querySelector('h3');
+      const label = (h3 ? h3.textContent : '').trim().toLowerCase();
+      const map = { portraits: 'portraits', couples: 'couples', events: 'events' };
+      const key = map[label];
+      if (!key) return; // Brands
+      card.addEventListener('click', () => scrollToPortfolioAndOpen(key));
+    });
+
+
     function closeGallery() {
       modal.classList.remove('active');
     }
@@ -2253,7 +2331,7 @@
       if (!modal.classList.contains('active')) return;
       if (e.key === 'Escape') closeGallery();
       if (e.key === 'ArrowLeft') prevBtn.click();
-      if (e.key === 'ArrowRight') prevBtn.click(); // (kept as-is from your code)
+      if (e.key === 'ArrowRight') nextBtn.click();
     });
 
     // ===== TESTIMONIAL CLICK TOGGLE (bold on click as well as hover) =====
@@ -2349,12 +2427,6 @@
       heroCarousel.addEventListener('mouseenter', stopCarousel);
       heroCarousel.addEventListener('mouseleave', startCarousel);
     });
-
-    // ===== REVIEW FORM (mailto to matthewnortonphotos@gmail.com) =====
-    // Keep it clean (no extra signature line).
-    document.getElementById('reviewForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-
       const name = document.getElementById('reviewName').value.trim();
       const review = document.getElementById('reviewText').value.trim();
 
@@ -2416,5 +2488,3 @@
   </script>
 </body>
 </html>
-
-
