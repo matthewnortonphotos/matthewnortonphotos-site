@@ -11,6 +11,8 @@ To add or replace photographs:
 
 The tool applies EXIF orientation, converts embedded color profiles to sRGB, and generates up to 480-, 960-, and 1600-pixel-wide WebP files at quality 86. It never enlarges or overwrites an original. Existing copies newer than their source are reused; delete those copies if changing encoding settings. The small logo uses 80- and 160-pixel copies.
 
+The optimizer versions the image-manifest URL with its content hash so returning visitors load the matching gallery list after updates.
+
 The first homepage photo loads eagerly. Later carousel photos are requested as needed and decoded before advancing. Lower page images use browser lazy loading. Galleries request the visible photo plus its neighbors, with responsive selection based on the available display size; failed requests keep the previous photograph visible and can be retried.
 
 The live GitHub Pages site deploys from `main`; a separate branch does not publish the change.

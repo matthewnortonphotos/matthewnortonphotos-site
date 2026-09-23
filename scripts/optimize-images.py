@@ -5,6 +5,7 @@ Requires Pillow with WebP support: python3 -m pip install Pillow
 Run from any directory: python3 scripts/optimize-images.py
 """
 import io
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -85,8 +86,13 @@ def main():
         return tag[:-1] + attrs + '>'
 
     page = re.sub(r'<img\b[^>]*>', update_image, page)
-    if 'src="scripts/image-manifest.js"' not in page:
-        page = page.replace('  <script>', '  <script src="scripts/image-manifest.js"></script>\n  <script>', 1)
+    version = hashlib.sha256((ROOT / "scripts" / "image-manifest.js").read_bytes()).hexdigest()[:12]
+    manifest_tag = f'<script src="scripts/image-manifest.js?v={version}"></script>'
+    pattern = r'<script src="scripts/image-manifest\.js(?:\?[^"]*)?"></script>'
+    if re.search(pattern, page):
+        page = re.sub(pattern, lambda match: manifest_tag, page)
+    else:
+        page = page.replace('  <script>', '  ' + manifest_tag + '\n  <script>', 1)
     PAGE.write_text(page)
     print(json.dumps({"original_bytes": total_original, "web_bytes_all_sizes": total_web, "image_count": len(sources)}))
 

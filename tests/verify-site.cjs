@@ -54,8 +54,10 @@ check('All script blocks parse and the form submits over HTTPS', () => {
 check('Local HTML asset references exist, with no obsolete favicon', () => {
   for (const match of html.matchAll(/(?:src|href)="([^"#]+)"/g)) {
     if (/^(https?:|mailto:)/.test(match[1])) continue;
-    assert.ok(fs.existsSync(match[1]), match[1]);
+    assert.ok(fs.existsSync(match[1].split('?')[0]), match[1]);
   }
   assert.ok(!html.includes('MNmono5.PNG'));
+  const version = require('node:crypto').createHash('sha256').update(manifest).digest('hex').slice(0,12);
+  assert.ok(html.includes('scripts/image-manifest.js?v=' + version), 'manifest URL must match its contents');
 });
 console.log(`${checks} integrity checks passed.`);
