@@ -25,6 +25,8 @@ check('Grouping preserves every photo and relative portrait/landscape order', ()
   for (const [key, sources] of Object.entries(galleryImages)) {
     const pages = plain(groupGalleryPhotos(sources));
     const flat = pages.flat();
+    assert.equal(pages[0].length, 1, key);
+    assert.ok(optimizedImages[pages[0][0]].height > optimizedImages[pages[0][0]].width, key + ' must open vertically');
     assert.deepEqual([...flat].sort(), [...sources].sort(), key);
     assert.deepEqual(flat.filter(s => !landscape(s)), plain(sources.filter(s => !landscape(s))), key);
     assert.deepEqual(flat.filter(landscape), plain(sources.filter(landscape)), key);
@@ -36,6 +38,8 @@ check('Only partner landscapes move in an interleaved sequence', () => {
   const input=['p1','l1','p2','l2','p3','l3'];
   input.forEach(source => {optimizedImages[source]={width:source[0]==='l'?3:2,height:source[0]==='l'?2:3};});
   assert.deepEqual(plain(groupGalleryPhotos(input)), [['p1'],['l1','l2'],['p2'],['p3'],['l3']]);
+  assert.deepEqual(plain(groupGalleryPhotos(['l1','l2','p1','p2','l3'])), [['p1'],['l1','l2'],['p2'],['l3']]);
+  assert.deepEqual(plain(groupGalleryPhotos(['l1','l2','l3'])), [['l1','l2'],['l3']]);
 });
 check('Stranger Portraits retain the supplied subject order and video mapping', () => {
   const expected=[['Al Perkins','Da8Z5cmxQ5V'],['Sergeant Alex Shirley','DdSKHM8Rj_R'],['Alena','Db05rxtR5fg'],['Randy and Toni','Dc114KlRvy4'],['Jacquelyn','DdUFl2oxqap'],['Veronica and Teddy','DcSCElfNCTS']];

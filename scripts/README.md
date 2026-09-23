@@ -17,11 +17,11 @@ The live GitHub Pages site deploys from `main`; a separate branch does not publi
 
 ## Galleries and supplied assets
 
-`galleryImages` in `index.html` retains the original photo sequence. `groupGalleryPhotos` pairs successive landscapes at the first landscape's position, moving only the second member of each pair; portraits retain their relative order. One unpaired landscape remains solo. All pages use the same portrait-sized frame, with two contained landscape images stacked in paired pages. A counter counts pages, not individual photographs.
+`galleryImages` in `index.html` retains the original photo sequence. `groupGalleryPhotos` pairs successive landscapes at the first landscape's position, moving the second member of each pair. The first vertical page is then promoted to the opener when needed; portraits retain their relative order. One unpaired landscape remains solo. All pages use the same portrait-sized frame, with two contained landscape images stacked in paired pages. A counter counts pages, not individual photographs.
 
 `strangerDetails` maps each Stranger Portrait to its displayed name, location and Instagram reel. The Al Perkins cover and gallery opener use the same portrait. Originals are preserved in `images/strangers`; `_config.yml` excludes that source folder from Pages, while generated copies in `images/web` remain public.
 
-Supplied monochrome social icons are served as 64px transparent PNGs at 24px display size. The supplied favicon artwork has 32px and 64px square copies under `assets/favicons`. `favicon.js` observes `prefers-color-scheme` and switches the black/light and white/dark versions on preference changes. This follows the preference the browser exposes, which can differ from a custom browser toolbar theme.
+Supplied monochrome social icons are served as 64px transparent PNGs at 44px display size. The supplied favicon artwork has 32px and 64px square copies under `assets/favicons`. `favicon.js` observes `prefers-color-scheme` and switches the black/light and white/dark versions on preference changes. This follows the preference the browser exposes, which can differ from a custom browser toolbar theme.
 
 ## Inquiry form
 

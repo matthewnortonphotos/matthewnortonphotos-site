@@ -2,15 +2,22 @@
 .portfolio-collections { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .collection-card { position: relative; display: block; width: 100%; padding: 0; color: #fff; font: inherit; text-align: left; }
 .collection-card:focus-visible { outline: 3px solid var(--color-accent-deep); outline-offset: 4px; }
-.collection-cta { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; padding: 13px 15px; background: #302f2b; font-size: 13px; font-weight: 600; }
+.collection-cta { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; padding: 13px 15px; background: transparent; text-shadow: 0 1px 3px #000, 0 0 8px #000; font-size: 13px; font-weight: 600; }
 .collection-cta span { font-size: 20px; }
 .hero-support { white-space: normal; text-align: center; line-height: 1.6; max-width: 100%; }
 .hero-left, .hero-right { min-width: 0; }
-.social-buttons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 440px; }
-.social-buttons .chip-link { gap: 10px; min-height: 48px; background: #e5c9b3; color: #302f2b; font-size: 11px; letter-spacing: .08em; padding: 10px; }
-.social-buttons .chip-link:hover { background: #dabda5; }
-.social-buttons .chip-link img { width: 24px; height: 24px; object-fit: contain; flex-shrink: 0; }
-.social-buttons .chip-link:last-child { grid-column: 1 / -1; background: transparent; }
+/* The pill and the outer edges of the icons share one grid. */
+.social-buttons { display: grid; grid-template-columns: repeat(4, 44px); gap: 14px 16px; width: max-content; max-width: 100%; }
+.social-icon { display: block; width: 44px; height: 44px; border: 0; background: transparent; border-radius: 50%; }
+.social-icon img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.social-icon:hover { opacity: .7; }
+.social-icon:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 4px; }
+.social-buttons .my-links { grid-column: 1 / -1; width: 100%; min-height: 44px; background: transparent; }
+.social-buttons .my-links:hover { background: rgba(48,47,43,.06); }
+/* Prose follows its section or column instead of an artificial short measure. */
+.section-subtitle, .portfolio-note, .hero-tagline, .book-body, .partners-intro, .partners-disclosure { max-width: none; white-space: normal; overflow-wrap: anywhere; }
+.book-content, .about-text, .contact-side { min-width: 0; }
+.contact-side p, .about-text p { overflow-wrap: anywhere; }
 .contact-email { overflow-wrap: anywhere; }
 .contact-card input, .contact-card textarea { font-size: 16px; }
 .inquiry-honeypot { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
@@ -25,12 +32,12 @@ body.gallery-open { overflow: hidden; }
 .modal-slide { padding: 0 35px; }
 .gallery-page { width: min(100%, calc(var(--gallery-height) * 2 / 3)); height: 100%; display: grid; grid-template-rows: minmax(0, 1fr); gap: 10px; }
 .gallery-page-pair { grid-template-rows: repeat(2, minmax(0, 1fr)); }
-.gallery-photo { margin: 0; min-width: 0; min-height: 0; display: flex; flex-direction: column; justify-content: center; }
+.gallery-photo { position: relative; margin: 0; min-width: 0; min-height: 0; display: flex; flex-direction: column; justify-content: center; }
 .gallery-image-area { min-height: 0; flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .modal-slide .gallery-image-area img { width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 3px; }
-.gallery-caption { flex: none; display: flex; flex-direction: column; gap: 3px; padding: 10px 12px; background: #302f2b; color: #f6e1d0; font-size: 12px; line-height: 1.4; }
+.gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; pointer-events: none; display: flex; flex-direction: column; gap: 3px; padding: 10px 12px; background: transparent; border: 0; color: #fff; text-shadow: 0 1px 3px #000, 0 0 8px #000; overflow-wrap: anywhere; font-size: 12px; line-height: 1.4; }
 .gallery-caption strong { font-size: 14px; }
-.gallery-caption a { text-decoration: underline; text-underline-offset: 3px; padding: 6px 0; min-height: 30px; }
+.gallery-caption a { pointer-events: auto; text-decoration: underline; text-underline-offset: 3px; padding: 6px 0; min-height: 30px; }
 .modal-arrow { width: 34px; height: 48px; border-radius: 8px; background: #302f2b; }
 .modal-arrow.prev { left: 0; }
 .modal-arrow.next { right: 0; }

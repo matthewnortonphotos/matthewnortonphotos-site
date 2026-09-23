@@ -26,10 +26,11 @@
     const cards=[...d.querySelectorAll('button.collection-card')];assert(cards.length===4,'missing cover');assert(cards.every(c=>c.textContent.includes('View gallery')),'missing action');
   });
   await test('Mobile gallery stacks two landscapes without changing frame height',async()=>{
-    await open('portraits');assert(active().querySelectorAll('img').length===2,'not a pair');
-    const h=active().getBoundingClientRect().height;const photos=[...active().querySelectorAll('img')].map(i=>i.getBoundingClientRect());
+    await open('portraits');assert(active().querySelectorAll('img').length===1,'opener not solo');
+    const opener=active().querySelector('img');assert(opener.naturalHeight>opener.naturalWidth,'opener not vertical');
+    const h=active().getBoundingClientRect().height;await next();assert(active().querySelectorAll('img').length===2,'not a pair');const photos=[...active().querySelectorAll('img')].map(i=>i.getBoundingClientRect());
     assert(photos[0].bottom<=photos[1].top,'landscapes overlap');
-    await next();assert(active().querySelectorAll('img').length===1,'portrait not solo');assert(Math.abs(active().getBoundingClientRect().height-h)<1,'frame height changed');
+    assert(Math.abs(active().getBoundingClientRect().height-h)<1,'frame height changed');
     assert(d.documentElement.scrollWidth<=390,'horizontal overflow');w.closeGallery();
   });
   await test('All six named portraits have matched photo/video links and footer locations',async()=>{
@@ -40,6 +41,9 @@
       assert(caption.textContent.includes(name)&&caption.textContent.includes('📍 '+location),'wrong caption for '+name);
       assert([...slide.querySelectorAll('a')].every(a=>a.href.includes(video)&&a.target==='_blank'),'wrong video for '+name);
       assert(slide.querySelector('img').naturalWidth>0,'photo missing');
+      const photo=slide.querySelector('img').getBoundingClientRect(),text=caption.getBoundingClientRect();
+      assert(w.getComputedStyle(caption).backgroundColor==='rgba(0, 0, 0, 0)','caption has fill');
+      assert(text.top>=photo.top&&text.bottom<=photo.bottom+1,'caption not over photo');
       if(i<5)await next();
     }
     await next();assert(d.getElementById('modalCounter').textContent==='1 / 6','forward wrap failed');
@@ -54,6 +58,9 @@
     assert(d.querySelector('.hero-support').href==='https://buymeacoffee.com/matthewnortonphotos','coffee URL wrong');
     assert(d.querySelector('footer').textContent.includes('2026'),'copyright');
     const icons=[...d.querySelectorAll('.social-buttons img')];await Promise.all(icons.map(i=>i.decode()));assert(icons.length===4&&icons.every(i=>i.naturalWidth),'icons missing');
+    assert(icons.every(i=>i.parentElement.getAttribute('aria-label')&&!i.parentElement.textContent.trim()&&w.getComputedStyle(i.parentElement).backgroundColor==='rgba(0, 0, 0, 0)'),'icons not floating accessible links');
+    const first=icons[0].getBoundingClientRect(),last=icons[3].getBoundingClientRect(),pill=d.querySelector('.my-links').getBoundingClientRect();
+    assert(Math.abs(first.left-pill.left)<1&&Math.abs(last.right-pill.right)<1&&first.top===last.top,'pill and icon row misaligned');
   });
   await test('Form validates required fields, includes autofill labels, and uses HTTPS',async()=>{
     assert(!d.getElementById('inquiryForm').checkValidity(),'empty form validates');
@@ -83,9 +90,9 @@
     finish({ok:true,json:async()=>({ok:false,error:'BUSY'})});await until(()=>!d.getElementById('inquirySubmit').disabled);assert(!form.elements.Message.readOnly,'field stayed locked');
   });
   await test('Desktop gallery has equal portrait/pair frames and no image overflow',async()=>{
-    frame.width=1440;frame.height=900;await sleep(120);await open('events');const first=active().getBoundingClientRect();assert(active().querySelectorAll('img').length===2,'no landscape pair');
+    frame.width=1440;frame.height=900;await sleep(120);await open('events');const first=active().getBoundingClientRect();assert(active().querySelectorAll('img').length===1,'opener not solo');assert(active().querySelector('img').naturalHeight>active().querySelector('img').naturalWidth,'opener not vertical');
     for(const img of active().querySelectorAll('img')){const box=img.getBoundingClientRect();assert(box.left>=first.left&&box.right<=first.right,'image overflow');}
-    const height=first.height;await next();await next();await next();assert(active().querySelectorAll('img').length===1,'portrait not solo');assert(Math.abs(active().getBoundingClientRect().height-height)<1,'height changed');w.closeGallery();
+    const height=first.height;await next();assert(active().querySelectorAll('img').length===2,'landscapes not paired');assert(Math.abs(active().getBoundingClientRect().height-height)<1,'height changed');w.closeGallery();
   });
   await test('Favicon changes to supplied dark and light files on preference events',async()=>{
     const code=await(await fetch('/scripts/favicon.js')).text();let callback;const theme={matches:true,addEventListener:(event,fn)=>callback=fn};
@@ -96,15 +103,26 @@
     frame.width=320;frame.height=640;await sleep(100);await open('strangers');await next();
     assert(d.documentElement.scrollWidth<=320,'page overflow');const box=d.querySelector('.modal-gallery').getBoundingClientRect();assert(box.left>=0&&box.right<=320&&box.top>=0&&box.bottom<=640,'modal overflow');w.closeGallery();
   });
+  await test('Prose flows within its section at phone, tablet and desktop widths',async()=>{
+    for(const width of [320,390,768,1440]){
+      frame.width=width;frame.height=900;await sleep(120);
+      assert(d.documentElement.scrollWidth<=width,'page overflow at '+width);
+      const note=d.querySelector('.portfolio-note').getBoundingClientRect(),covers=d.querySelector('.portfolio-collections').getBoundingClientRect();
+      assert(note.top>=covers.bottom&&Math.abs(note.width-covers.width)<1,'portfolio note constrained or overlapping at '+width);
+      for(const paragraph of d.querySelectorAll('.section-subtitle,.hero-tagline,.book-body,.partners-intro,.partners-disclosure')){
+        const box=paragraph.getBoundingClientRect(),parent=paragraph.parentElement.getBoundingClientRect();
+        assert(box.left>=parent.left-1&&box.right<=parent.right+1&&box.bottom<=parent.bottom+1,'prose outside column at '+width);
+      }
+      for(const label of d.querySelectorAll('.collection-cta')) assert(w.getComputedStyle(label).backgroundColor==='rgba(0, 0, 0, 0)','cover label has fill');
+    }
+  });
   await test('Failed landscape in a pair keeps previous page visible',async()=>{
     await load(320,640);w=frame.contentWindow;d=frame.contentDocument;
     const originalLoad=w.loadImage;
     w.loadImage=(image,priority)=>image.dataset.original==='images/events-2.jpg'
       ? Promise.reject(new Error('Simulated image failure')) : originalLoad(image,priority);
-    d.querySelector('[data-gallery="events"]').click();
-    await until(()=>d.getElementById('galleryLoadStatus').textContent.includes('could not load'));
-    await next();const before=d.getElementById('modalCounter').textContent;
-    d.getElementById('modalPrev').click();
+    await open('events');const before=d.getElementById('modalCounter').textContent;
+    d.getElementById('modalNext').click();
     await until(()=>d.getElementById('galleryLoadStatus').textContent.includes('could not load'));
     assert(d.getElementById('modalCounter').textContent===before,'failed slide replaced current');
     assert([...active().querySelectorAll('img')].every(img=>img.naturalWidth),'visible pair incomplete');

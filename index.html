@@ -1538,7 +1538,7 @@
             <div class="hero-kicker">Dallas, TX · Available for travel</div>
 
             <h1 class="hero-title">
-              Honest, nostalgic photography.<br>
+              Honest, nostalgic photography.
             </h1>
 
             <p class="hero-tagline">
@@ -1948,19 +1948,19 @@
               <div class="contact-socials">
                 <div class="social-row-label">Elsewhere</div>
                 <div class="social-buttons">
-                  <a class="chip-link" href="https://instagram.com/matthewnortonphotos" target="_blank" rel="noreferrer">
-                    <img src="assets/social/instagram.png" width="24" height="24" alt="" aria-hidden="true">Instagram
+                  <a class="social-icon" aria-label="Instagram" title="Instagram" href="https://instagram.com/matthewnortonphotos" target="_blank" rel="noreferrer">
+                    <img src="assets/social/instagram.png" width="44" height="44" alt="" aria-hidden="true">
                   </a>
-                  <a class="chip-link" href="https://www.tiktok.com/@matthewnortonphotos" target="_blank" rel="noreferrer">
-                    <img src="assets/social/tiktok.png" width="24" height="24" alt="" aria-hidden="true">TikTok
+                  <a class="social-icon" aria-label="TikTok" title="TikTok" href="https://www.tiktok.com/@matthewnortonphotos" target="_blank" rel="noreferrer">
+                    <img src="assets/social/tiktok.png" width="44" height="44" alt="" aria-hidden="true">
                   </a>
-                  <a class="chip-link" href="https://www.facebook.com/share/1bNFntE4LK/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
-                    <img src="assets/social/facebook.png" width="24" height="24" alt="" aria-hidden="true">Facebook
+                  <a class="social-icon" aria-label="Facebook" title="Facebook" href="https://www.facebook.com/share/1bNFntE4LK/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/social/facebook.png" width="44" height="44" alt="" aria-hidden="true">
                   </a>
-                  <a class="chip-link" href="https://youtube.com/@matthewnortonphotos?si=IepGR7XtM0oeabZ1" target="_blank" rel="noopener noreferrer">
-                    <img src="assets/social/youtube.png" width="24" height="24" alt="" aria-hidden="true">YouTube
+                  <a class="social-icon" aria-label="YouTube" title="YouTube" href="https://youtube.com/@matthewnortonphotos?si=IepGR7XtM0oeabZ1" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/social/youtube.png" width="44" height="44" alt="" aria-hidden="true">
                   </a>
-                  <a class="chip-link" href="https://direct.me/matthewnortonphotos?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnbn9KBJOyedCfxzKtIRNumpg99BVoIryVqV7-0wZdE_QsSXYyT-GSsxLPDuk_aem_-GYXmgvz978KZYxcD0anPA#" target="_blank" rel="noreferrer">
+                  <a class="chip-link my-links" href="https://direct.me/matthewnortonphotos?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnbn9KBJOyedCfxzKtIRNumpg99BVoIryVqV7-0wZdE_QsSXYyT-GSsxLPDuk_aem_-GYXmgvz978KZYxcD0anPA#" target="_blank" rel="noreferrer">
                     My Links
                   </a>
                 </div>
@@ -2230,7 +2230,7 @@
     }
 
     // Pair successive landscape photos at the first photo's position. Portraits
-    // retain their relative order; only the second landscape in each pair moves.
+    // retain their relative order. Promote the first vertical page to the opener.
     function groupGalleryPhotos(images) {
       const landscape = source => optimizedImages[source].width > optimizedImages[source].height;
       const partners = new Map();
@@ -2241,8 +2241,12 @@
         if (first === null) first = index;
         else { partners.set(first, index); moved.add(index); first = null; }
       });
-      return images.flatMap((source, index) => moved.has(index) ? [] :
+      const pages = images.flatMap((source, index) => moved.has(index) ? [] :
         [[source, ...(partners.has(index) ? [images[partners.get(index)]] : [])]]);
+      const firstPortrait = pages.findIndex(page => page.length === 1 &&
+        optimizedImages[page[0]].height > optimizedImages[page[0]].width);
+      if (firstPortrait > 0) pages.unshift(pages.splice(firstPortrait, 1)[0]);
+      return pages;
     }
 
     const modal = document.getElementById('galleryModal');
