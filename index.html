@@ -436,7 +436,7 @@
       text-transform: uppercase;
       letter-spacing: 0.18em;
       color: var(--color-ink-soft);
-      flex-wrap: nowrap; /* keep on one line */
+      flex-wrap: wrap; /* Keep every pill visible on narrow screens. */
     }
 
     .hero-meta span {
@@ -1555,11 +1555,12 @@
               </button>
             </div>
 
-            <!-- Pills: Portraits, Couples, Events, Brands (Brands last; no link) -->
+            <!-- Gallery pills; Brands remains last with no gallery. -->
             <div class="hero-meta">
               <span data-hero-pill="portraits">Portraits</span>
               <span data-hero-pill="couples">Couples</span>
               <span data-hero-pill="events">Events</span>
+              <span data-hero-pill="strangers">Stranger Portraits</span>
               <span data-hero-pill="brands">Brands</span>
             </div>
             <a class="btn-review hero-support" href="https://buymeacoffee.com/matthewnortonphotos" target="_blank" rel="noopener noreferrer">Buy me a coffee, leave a review ↗</a>
@@ -2484,13 +2485,21 @@
       window.setTimeout(() => { openGallery(key); }, 450);
     }
 
-    // Hero pills (Portraits / Couples / Events). Brands does nothing.
+    // Hero gallery pills. Brands does nothing.
     document.querySelectorAll('.hero-meta span').forEach((pill) => {
       const label = (pill.textContent || '').trim().toLowerCase();
-      const map = { portraits: 'portraits', couples: 'couples', events: 'events' };
+      const map = { portraits: 'portraits', couples: 'couples', events: 'events', 'stranger portraits': 'strangers' };
       const key = map[label];
       if (!key) return; // Brands or unknown
       pill.style.cursor = 'pointer';
+      pill.setAttribute('role', 'button');
+      pill.tabIndex = 0;
+      pill.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          scrollToPortfolioAndOpen(key);
+        }
+      });
       pill.addEventListener('click', () => scrollToPortfolioAndOpen(key));
     });
 
