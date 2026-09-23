@@ -68,7 +68,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    img { max-width: 100%; display: block; }
+    img { max-width: 100%; height: auto; display: block; }
     a { color: inherit; text-decoration: none; }
 
     .page {
@@ -816,8 +816,9 @@
       border-radius: var(--radius-lg);
       border: 1px solid rgba(255,255,255,0.12);
       background: #0b0b0b;
-      flex: 1;
-      min-height: 300px;
+      flex: 0 1 auto;
+      height: calc(68vh + 20px);
+      min-height: 0;
     }
 
     .modal-slider-track {
@@ -847,6 +848,22 @@
       object-fit: contain;
       display: block;
     }
+
+    .gallery-load-status {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 85%;
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      font-size: 13px;
+      text-align: center;
+      pointer-events: none;
+    }
+    .gallery-load-status:empty { display: none; }
 
     .modal-nav { position: absolute; inset: 0; pointer-events: none; }
 
@@ -1442,6 +1459,7 @@
       .hero-meta span { padding: 4px 8px; }
 
       .modal-slide img { max-height: 62vh; }
+      .modal-slider { height: calc(62vh + 20px); }
       .modal-arrow { width: 42px; height: 42px; }
     }
   </style>
@@ -1456,7 +1474,7 @@
         <nav class="nav">
           <div class="brand" id="brandHome">
             <div class="brand-logo image-hover">
-              <img src="images/matthew-logo-black-border.png" alt="Matthew Norton Logo">
+              <img alt="Matthew Norton Logo" data-original="images/matthew-logo-black-border.png" src="images/web/matthew-logo-black-border.png-160.webp" srcset="images/web/matthew-logo-black-border.png-80.webp 80w, images/web/matthew-logo-black-border.png-160.webp 160w" sizes="40px" width="678" height="680" decoding="async">
             </div>
             <div>
               <div class="brand-text-main">Matthew Norton Photos</div>
@@ -1545,11 +1563,11 @@
           <aside class="hero-right image-hover">
             <div class="hero-carousel">
               <div class="hero-carousel-track">
-                <img class="hero-carousel-image" src="images/austin-michael-1.JPG" alt="Portrait by Matthew Norton - Austin Michael">
-                <img class="hero-carousel-image" src="images/bethany-1.jpg" alt="Portrait by Matthew Norton - Bethany">
-                <img class="hero-carousel-image" src="images/dawson-1.JPEG" alt="Portrait by Matthew Norton - Dawson">
-                <img class="hero-carousel-image" src="images/birdie-1.JPG" alt="Portrait by Matthew Norton - Birdie">
-                <img class="hero-carousel-image" src="images/lukis-1.JPG" alt="Portrait by Matthew Norton - Lukis">
+                <img class="hero-carousel-image" alt="Portrait by Matthew Norton - Austin Michael" data-original="images/austin-michael-1.JPG" src="images/web/austin-michael-1.JPG-960.webp" srcset="images/web/austin-michael-1.JPG-480.webp 480w, images/web/austin-michael-1.JPG-960.webp 960w, images/web/austin-michael-1.JPG-1600.webp 1600w" sizes="(max-width: 720px) calc(100vw - 60px), (max-width: 960px) calc(100vw - 92px), 340px" width="1887" height="2624" decoding="async" loading="eager" fetchpriority="high">
+                <img class="hero-carousel-image" alt="Portrait by Matthew Norton - Bethany" data-original="images/bethany-1.jpg" data-src="images/web/bethany-1.jpg-960.webp" data-srcset="images/web/bethany-1.jpg-480.webp 480w, images/web/bethany-1.jpg-960.webp 960w, images/web/bethany-1.jpg-1600.webp 1600w" sizes="(max-width: 720px) calc(100vw - 60px), (max-width: 960px) calc(100vw - 92px), 340px" width="3558" height="5337" decoding="async">
+                <img class="hero-carousel-image" alt="Portrait by Matthew Norton - Dawson" data-original="images/dawson-1.JPEG" data-src="images/web/dawson-1.JPEG-960.webp" data-srcset="images/web/dawson-1.JPEG-480.webp 480w, images/web/dawson-1.JPEG-960.webp 960w, images/web/dawson-1.JPEG-1600.webp 1600w" sizes="(max-width: 720px) calc(100vw - 60px), (max-width: 960px) calc(100vw - 92px), 340px" width="4000" height="6000" decoding="async">
+                <img class="hero-carousel-image" alt="Portrait by Matthew Norton - Birdie" data-original="images/birdie-1.JPG" data-src="images/web/birdie-1.JPG-960.webp" data-srcset="images/web/birdie-1.JPG-480.webp 480w, images/web/birdie-1.JPG-960.webp 960w, images/web/birdie-1.JPG-1600.webp 1600w" sizes="(max-width: 720px) calc(100vw - 60px), (max-width: 960px) calc(100vw - 92px), 340px" width="2469" height="3703" decoding="async">
+                <img class="hero-carousel-image" alt="Portrait by Matthew Norton - Lukis" data-original="images/lukis-1.JPG" data-src="images/web/lukis-1.JPG-960.webp" data-srcset="images/web/lukis-1.JPG-480.webp 480w, images/web/lukis-1.JPG-960.webp 960w, images/web/lukis-1.JPG-1600.webp 1600w" sizes="(max-width: 720px) calc(100vw - 60px), (max-width: 960px) calc(100vw - 92px), 340px" width="2624" height="3936" decoding="async">
               </div>
             </div>
           </aside>
@@ -1558,7 +1576,7 @@
         <!-- DEEPLY CURIOUS BOOK BANNER -->
         <section id="book" class="book-section">
           <div class="book-cover-wrap image-hover">
-            <img src="images/deeply-curious.png" alt="Deeply Curious: Staying Inspired Behind the Lens - ebook cover">
+            <img alt="Deeply Curious: Staying Inspired Behind the Lens - ebook cover" data-original="images/deeply-curious.png" src="images/web/deeply-curious.png-512.webp" srcset="images/web/deeply-curious.png-480.webp 480w, images/web/deeply-curious.png-512.webp 512w" sizes="260px" width="512" height="800" decoding="async" loading="lazy">
           </div>
           <div class="book-content">
             <div class="book-kicker">New e-book · For photographers &amp; creatives</div>
@@ -1603,21 +1621,21 @@
             <div class="collection-wrap">
               <div class="collection-label">Portraits</div>
               <div class="collection-card image-hover" data-gallery="portraits">
-                <img src="images/rachel-1.JPG" alt="Portraits collection preview">
+                <img alt="Portraits collection preview" data-original="images/rachel-1.JPG" src="images/web/rachel-1.JPG-960.webp" srcset="images/web/rachel-1.JPG-480.webp 480w, images/web/rachel-1.JPG-960.webp 960w, images/web/rachel-1.JPG-1600.webp 1600w" sizes="(max-width: 720px) calc(100vw - 60px), (max-width: 960px) 44vw, 350px" width="3451" height="5177" decoding="async" loading="lazy">
               </div>
             </div>
 
             <div class="collection-wrap">
               <div class="collection-label">Couples</div>
               <div class="collection-card image-hover" data-gallery="couples">
-                <img src="images/jo-sandy-1.jpg" alt="Couples collection preview">
+                <img alt="Couples collection preview" data-original="images/jo-sandy-1.jpg" src="images/web/jo-sandy-1.jpg-960.webp" srcset="images/web/jo-sandy-1.jpg-480.webp 480w, images/web/jo-sandy-1.jpg-960.webp 960w, images/web/jo-sandy-1.jpg-1600.webp 1600w" sizes="(max-width: 720px) calc(100vw - 60px), (max-width: 960px) 44vw, 350px" width="3089" height="4633" decoding="async" loading="lazy">
               </div>
             </div>
 
             <div class="collection-wrap">
               <div class="collection-label">Events</div>
               <div class="collection-card image-hover" data-gallery="events">
-                <img src="images/naomi-1.JPG" alt="Events collection preview">
+                <img alt="Events collection preview" data-original="images/naomi-1.JPG" src="images/web/naomi-1.JPG-960.webp" srcset="images/web/naomi-1.JPG-480.webp 480w, images/web/naomi-1.JPG-960.webp 960w, images/web/naomi-1.JPG-1400.webp 1400w" sizes="(max-width: 720px) calc(100vw - 60px), (max-width: 960px) 44vw, 350px" width="1400" height="2100" decoding="async" loading="lazy">
               </div>
             </div>
           </div>
@@ -1678,7 +1696,7 @@
             </div>
 
             <aside class="about-photo image-hover">
-              <img src="images/matthew-portrait-2.JPG" alt="Portrait of Matthew Norton">
+              <img alt="Portrait of Matthew Norton" data-original="images/matthew-portrait-2.JPG" src="images/web/matthew-portrait-2.JPG-960.webp" srcset="images/web/matthew-portrait-2.JPG-480.webp 480w, images/web/matthew-portrait-2.JPG-960.webp 960w, images/web/matthew-portrait-2.JPG-1600.webp 1600w" sizes="(max-width: 720px) calc(100vw - 60px), (max-width: 960px) 44vw, 350px" width="3819" height="5728" decoding="async" loading="lazy">
             </aside>
           </div>
 
@@ -1954,7 +1972,7 @@
       <button class="dc-popup-close" id="dcPopupClose" type="button" aria-label="Close">&times;</button>
 
       <div class="dc-popup-left">
-        <img src="images/deeply-curious.png" alt="Deeply Curious ebook cover">
+        <img alt="Deeply Curious ebook cover" data-original="images/deeply-curious.png" src="images/web/deeply-curious.png-512.webp" srcset="images/web/deeply-curious.png-480.webp 480w, images/web/deeply-curious.png-512.webp 512w" sizes="260px" width="512" height="800" decoding="async" loading="lazy">
       </div>
 
       <div class="dc-popup-right">
@@ -1990,6 +2008,7 @@
           <!-- slides injected by JS -->
         </div>
 
+        <div id="galleryLoadStatus" class="gallery-load-status" role="status" aria-live="polite"></div>
         <div class="modal-nav">
           <button class="modal-arrow prev" type="button" aria-label="Previous image" id="modalPrev">&#8249;</button>
           <button class="modal-arrow next" type="button" aria-label="Next image" id="modalNext">&#8250;</button>
@@ -1998,6 +2017,7 @@
     </div>
   </div>
 
+  <script src="scripts/image-manifest.js"></script>
   <script>
     // ===== PORTFOLIO GALLERIES =====
     // These are set to live in the /images folder.
@@ -2147,6 +2167,27 @@
       }
     });
 
+    // Deferred images receive a source only when they are about to be shown.
+    function loadImage(img, priority = 'auto') {
+      img.fetchPriority = priority;
+      if (!img.hasAttribute('src') || (img.complete && !img.naturalWidth)) {
+        // A failed request needs a fresh source assignment when the visitor retries.
+        img.removeAttribute('srcset');
+        img.removeAttribute('src');
+        if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+        img.src = img.dataset.src;
+      }
+      return img.decode().then(() => {
+        if (!img.naturalWidth) throw new Error('Image unavailable');
+      });
+    }
+
+    function galleryImageSize(source) {
+      const image = optimizedImages[source];
+      const height = window.innerHeight * (window.innerWidth <= 720 ? 0.62 : 0.68);
+      return Math.ceil(Math.min(900, window.innerWidth - 90, height * image.width / image.height)) + 'px';
+    }
+
     // ===== MODAL SLIDER (seamless loop forward, click arrows; no auto-rotation) =====
     const modal = document.getElementById('galleryModal');
     const sliderTrack = document.getElementById('modalSliderTrack');
@@ -2154,6 +2195,8 @@
     const prevBtn = document.getElementById('modalPrev');
     const nextBtn = document.getElementById('modalNext');
     const counterEl = document.getElementById('modalCounter');
+    const galleryLoadStatus = document.getElementById('galleryLoadStatus');
+    let gallerySession = 0;
 
     let currentGallery = [];
     let currentIndex = 0; // index within renderedSlides
@@ -2171,18 +2214,41 @@
 
     function renderSlides(images) {
       sliderTrack.innerHTML = '';
-      images.forEach((src) => {
+      images.forEach((source, index) => {
         const slide = document.createElement('div');
         slide.className = 'modal-slide';
-
         const img = document.createElement('img');
-        img.src = src;
-        img.alt = '';
-
+        const image = optimizedImages[source];
+        img.dataset.original = source;
+        img.dataset.src = image.variants[Math.min(1, image.variants.length - 1)].src;
+        img.dataset.srcset = image.variants.map(v => `${v.src} ${v.width}w`).join(', ');
+        img.sizes = galleryImageSize(source);
+        img.width = image.width;
+        img.height = image.height;
+        img.decoding = 'async';
+        const photoIndex = images.length > 1 ? (index - 1 + currentGallery.length) % currentGallery.length : 0;
+        img.alt = `Gallery photograph ${photoIndex + 1} of ${currentGallery.length}`;
         slide.appendChild(img);
         sliderTrack.appendChild(slide);
       });
     }
+
+    function loadGallerySlide(index, priority = 'auto') {
+      const img = sliderTrack.children[index]?.querySelector('img');
+      return img ? loadImage(img, priority) : Promise.reject(new Error('No slide'));
+    }
+
+    function preloadGalleryNeighbors() {
+      [currentIndex - 1, currentIndex + 1].forEach(index => {
+        if (index >= 0 && index < renderedSlides.length) loadGallerySlide(index, 'low').catch(() => {});
+      });
+    }
+
+    window.addEventListener('resize', () => {
+      sliderTrack.querySelectorAll('img').forEach(img => {
+        img.sizes = galleryImageSize(img.dataset.original);
+      });
+    });
 
     function realCount() {
       return currentGallery.length || 1;
@@ -2209,36 +2275,51 @@
       counterEl.textContent = `${displayIndex + 1} / ${total}`;
     }
 
-    function goToRenderedIndex(index) {
-      if (!renderedSlides.length) return;
+    async function goToRenderedIndex(index) {
+      if (!renderedSlides.length || isModalTransitioning) return;
+      const session = gallerySession;
       isModalTransitioning = true;
-      currentIndex = index;
-      sliderTrack.style.transition = 'transform 0.7s ease-in-out';
-      sliderTrack.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
-      updateCounter();
+      galleryLoadStatus.textContent = 'Loading photo…';
+      try {
+        await loadGallerySlide(index, 'high');
+        if (session !== gallerySession) return;
+        currentIndex = index;
+        sliderTrack.style.transition = 'transform 0.7s ease-in-out';
+        sliderTrack.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+        galleryLoadStatus.textContent = '';
+        updateCounter();
+        preloadGalleryNeighbors();
+      } catch {
+        if (session !== gallerySession) return;
+        isModalTransitioning = false;
+        galleryLoadStatus.textContent = 'This photo could not load. Please try the arrow again.';
+      }
     }
 
     function openGallery(key) {
+      const session = ++gallerySession;
       currentGallery = galleryImages[key] || [];
+      if (!currentGallery.length) return;
       renderedSlides = buildRenderedSlides(currentGallery);
-
+      currentIndex = currentGallery.length > 1 ? 1 : 0;
+      isModalTransitioning = false;
       renderSlides(renderedSlides);
       sliderTrack.style.transition = 'none';
-
-      if (currentGallery.length <= 1) {
-        currentIndex = 0;
-        sliderTrack.style.transform = 'translateX(0%)';
-      } else {
-        currentIndex = 1; // start on the first real slide
-        sliderTrack.style.transform = 'translateX(-100%)';
-      }
-
-      // force reflow then restore transition (prevents initial jank)
+      sliderTrack.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+      modal.classList.add('active');
       void sliderTrack.offsetWidth;
       sliderTrack.style.transition = 'transform 0.7s ease-in-out';
-
       updateCounter();
-      modal.classList.add('active');
+      galleryLoadStatus.textContent = 'Loading photo…';
+      const initialIndex = currentIndex;
+      loadGallerySlide(currentIndex, 'high').then(() => {
+        if (session !== gallerySession || currentIndex !== initialIndex) return;
+        galleryLoadStatus.textContent = '';
+        preloadGalleryNeighbors();
+      }).catch(() => {
+        if (session !== gallerySession || currentIndex !== initialIndex) return;
+        galleryLoadStatus.textContent = 'This photo could not load. Use the arrows to try another.';
+      });
     }
 
     // ===== QUICK LINKS TO PORTFOLIO GALLERIES (Hero pills + What I Shoot) =====
@@ -2271,10 +2352,13 @@
 
 
     function closeGallery() {
+      gallerySession++;
+      isModalTransitioning = false;
       modal.classList.remove('active');
     }
 
-    function handleModalTransitionEnd() {
+    function handleModalTransitionEnd(event) {
+      if (event.target !== sliderTrack || event.propertyName !== 'transform') return;
       isModalTransitioning = false;
       const total = currentGallery.length;
       if (total <= 1) return;
@@ -2300,6 +2384,12 @@
     }
 
     sliderTrack.addEventListener('transitionend', handleModalTransitionEnd);
+    sliderTrack.addEventListener('transitionend', event => {
+      if (event.target === sliderTrack && event.propertyName === 'transform') {
+        loadGallerySlide(currentIndex).catch(() => {});
+        preloadGalleryNeighbors();
+      }
+    });
 
     document.querySelectorAll('.collection-card').forEach(card => {
       card.addEventListener('click', () => {
@@ -2341,60 +2431,28 @@
       });
     });
 
-    // ===== WHAT I SHOOT CLICK / LINKING =====
-    // Portraits/Couples/Events: scroll to Portfolio then open the matching gallery.
-    // Brands: no link (stays visually consistent; does nothing).
-    document.querySelectorAll('.shoot-item').forEach(card => {
-      const key = card.getAttribute('data-shoot-link');
-
-      if (key === 'brands') {
-        card.addEventListener('click', () => {
-          // Do nothing (still allows existing hover styling).
-        });
-        return;
-      }
-
-      card.addEventListener('click', () => {
-        document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
-        window.setTimeout(() => openGallery(key), 450);
-      });
-    });
-
-    // ===== HERO PILLS (Portraits / Couples / Events / Brands) =====
-    document.querySelectorAll('.hero-meta span').forEach(pill => {
-      const key = pill.getAttribute('data-hero-pill');
-      pill.style.cursor = 'pointer';
-
-      pill.addEventListener('click', () => {
-        if (key === 'brands') return; // no link
-        document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
-        window.setTimeout(() => openGallery(key), 450);
-      });
-    });
-
-    // ===== HERO IMAGE CAROUSEL (looping, pause on hover) =====
+    // ===== HERO IMAGE CAROUSEL (load before advancing, pause on hover) =====
     document.addEventListener('DOMContentLoaded', function () {
       const track = document.querySelector('.hero-carousel-track');
       const heroCarousel = document.querySelector('.hero-carousel');
       if (!track || !heroCarousel) return;
-
-      let slides = Array.from(track.children);
-      const originalSlideCount = slides.length;
-
-      const firstClone = slides[0].cloneNode(true);
+      const originalSlideCount = track.children.length;
+      const firstClone = track.children[0].cloneNode(true);
+      firstClone.fetchPriority = 'low';
+      firstClone.alt = '';
       track.appendChild(firstClone);
-
+      const slides = Array.from(track.children);
       let currentIndex = 0;
       let carouselInterval = null;
       let isTransitioning = false;
+      let paused = false;
 
-      function goToHeroSlide(index) {
-        isTransitioning = true;
-        track.style.transition = 'transform 0.7s ease-in-out';
-        track.style.transform = 'translateX(-' + (index * 100) + '%)';
+      function preloadNext() {
+        loadImage(slides[currentIndex + 1], 'low').catch(() => {});
       }
 
-      function handleHeroTransitionEnd() {
+      track.addEventListener('transitionend', event => {
+        if (event.target !== track || event.propertyName !== 'transform') return;
         isTransitioning = false;
         if (currentIndex === originalSlideCount) {
           track.style.transition = 'none';
@@ -2403,29 +2461,42 @@
           void track.offsetWidth;
           track.style.transition = 'transform 0.7s ease-in-out';
         }
-      }
-
-      track.addEventListener('transitionend', handleHeroTransitionEnd);
+        preloadNext();
+      });
 
       function startCarousel() {
-        if (carouselInterval !== null || originalSlideCount <= 1) return;
-        carouselInterval = setInterval(function () {
-          if (isTransitioning) return;
-          currentIndex += 1;
-          goToHeroSlide(currentIndex);
+        if (carouselInterval !== null || originalSlideCount <= 1 || paused) return;
+        carouselInterval = setInterval(async function () {
+          if (isTransitioning || document.hidden) return;
+          const interval = carouselInterval;
+          isTransitioning = true;
+          try {
+            await loadImage(slides[currentIndex + 1]);
+            if (paused || document.hidden || interval !== carouselInterval) {
+              isTransitioning = false;
+              return;
+            }
+            currentIndex++;
+            track.style.transition = 'transform 0.7s ease-in-out';
+            track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+          } catch {
+            // Keep the current photograph visible if the connection fails.
+            isTransitioning = false;
+          }
         }, 5000);
       }
 
       function stopCarousel() {
-        if (carouselInterval !== null) {
-          clearInterval(carouselInterval);
-          carouselInterval = null;
-        }
+        clearInterval(carouselInterval);
+        carouselInterval = null;
       }
 
-      startCarousel();
-      heroCarousel.addEventListener('mouseenter', stopCarousel);
-      heroCarousel.addEventListener('mouseleave', startCarousel);
+      loadImage(slides[0], 'high').then(() => {
+        preloadNext();
+        startCarousel();
+      }).catch(startCarousel);
+      heroCarousel.addEventListener('mouseenter', () => { paused = true; stopCarousel(); });
+      heroCarousel.addEventListener('mouseleave', () => { paused = false; startCarousel(); });
     });
 
     // ===== DEEPLY CURIOUS POP-UP (added) =====
