@@ -34,7 +34,7 @@
     assert(d.documentElement.scrollWidth<=390,'horizontal overflow');w.closeGallery();
   });
   await test('All six named portraits have matched photo/video links and footer locations',async()=>{
-    const expected=[['Al Perkins','Da8Z5cmxQ5V','Fort Worth Stockyards'],['Sergeant Alex Shirley','DdSKHM8Rj_R','Bishop Arts District (Dallas)'],['Alena','Db05rxtR5fg','Downtown Dallas'],['Randy and Toni','Dc114KlRvy4','Downtown Dallas'],['Jacquelyn','DdUFl2oxqap','Dallas Zoo'],['Veronica and Teddy','DcSCElfNCTS','Downtown Dallas']];
+    const expected=[['Al','Da8Z5cmxQ5V','Fort Worth Stockyards'],['Sergeant Shirley','DdSKHM8Rj_R','Bishop Arts District (Dallas)'],['Alena','Db05rxtR5fg','Downtown Dallas'],['Randy and Toni','Dc114KlRvy4','Downtown Dallas'],['Jacquelyn','DdUFl2oxqap','Dallas Zoo'],['Veronica and Teddy','DcSCElfNCTS','Downtown Dallas']];
     await open('strangers');
     for(let i=0;i<expected.length;i++){
       const [name,video,location]=expected[i], slide=active(),caption=slide.querySelector('figcaption');

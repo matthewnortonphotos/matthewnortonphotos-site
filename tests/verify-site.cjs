@@ -42,7 +42,7 @@ check('Only partner landscapes move in an interleaved sequence', () => {
   assert.deepEqual(plain(groupGalleryPhotos(['l1','l2','l3'])), [['l1','l2'],['l3']]);
 });
 check('Stranger Portraits retain the supplied subject order and video mapping', () => {
-  const expected=[['Al Perkins','Da8Z5cmxQ5V'],['Sergeant Alex Shirley','DdSKHM8Rj_R'],['Alena','Db05rxtR5fg'],['Randy and Toni','Dc114KlRvy4'],['Jacquelyn','DdUFl2oxqap'],['Veronica and Teddy','DcSCElfNCTS']];
+  const expected=[['Al','Da8Z5cmxQ5V'],['Sergeant Shirley','DdSKHM8Rj_R'],['Alena','Db05rxtR5fg'],['Randy and Toni','Dc114KlRvy4'],['Jacquelyn','DdUFl2oxqap'],['Veronica and Teddy','DcSCElfNCTS']];
   assert.deepEqual(plain(galleryImages.strangers.map(source=>[strangerDetails[source].name,strangerDetails[source].video.split('/')[4]])),expected);
 });
 check('All script blocks parse and the form submits over HTTPS', () => {
