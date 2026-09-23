@@ -6,7 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Warm, honest, nostalgic photography based in Dallas, TX. Portraits, couples, brands, and events by Matthew Norton." />
   <!-- FAVICON -->
-  <link rel="icon" type="image/png" href="MNmono5.PNG" />
+  <link id="siteFavicon" rel="icon" type="image/png" sizes="32x32" href="assets/favicons/light-32.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicons/light-64.png" media="(prefers-color-scheme: light)" />
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicons/dark-64.png" media="(prefers-color-scheme: dark)" />
+  <script src="scripts/favicon.js"></script>
 
   <style>
     /* ===== FONTS ===== */
@@ -1463,6 +1466,7 @@
       .modal-arrow { width: 42px; height: 42px; }
     }
   </style>
+  <link rel="stylesheet" href="styles/audit-updates.css">
 </head>
 
 <body>
@@ -1558,6 +1562,7 @@
               <span data-hero-pill="events">Events</span>
               <span data-hero-pill="brands">Brands</span>
             </div>
+            <a class="btn-review hero-support" href="https://buymeacoffee.com/matthewnortonphotos" target="_blank" rel="noopener noreferrer">Buy me a coffee, leave a review ↗</a>
           </div>
 
           <aside class="hero-right image-hover">
@@ -1614,29 +1619,36 @@
           <div class="section-header">
             <div class="section-kicker">Portfolio</div>
             <h2 class="section-title">Collections</h2>
-            <p class="section-subtitle">Explore a few focused galleries. Each is an intentional slice of my work.</p>
+            <p class="section-subtitle">Select a collection to open its photo gallery.</p>
           </div>
 
           <div class="portfolio-collections">
             <div class="collection-wrap">
               <div class="collection-label">Portraits</div>
-              <div class="collection-card image-hover" data-gallery="portraits">
+              <button class="collection-card image-hover" data-gallery="portraits" type="button" aria-label="View Portraits gallery">
                 <img alt="Portraits collection preview" data-original="images/rachel-1.JPG" src="images/web/rachel-1.JPG-960.webp" srcset="images/web/rachel-1.JPG-480.webp 480w, images/web/rachel-1.JPG-960.webp 960w, images/web/rachel-1.JPG-1600.webp 1600w" sizes="(max-width: 720px) calc(100vw - 60px), (max-width: 960px) 44vw, 350px" width="3451" height="5177" decoding="async" loading="lazy">
-              </div>
+              <span class="collection-cta">View gallery <span aria-hidden="true">→</span></span></button>
             </div>
 
             <div class="collection-wrap">
               <div class="collection-label">Couples</div>
-              <div class="collection-card image-hover" data-gallery="couples">
+              <button class="collection-card image-hover" data-gallery="couples" type="button" aria-label="View Couples gallery">
                 <img alt="Couples collection preview" data-original="images/jo-sandy-1.jpg" src="images/web/jo-sandy-1.jpg-960.webp" srcset="images/web/jo-sandy-1.jpg-480.webp 480w, images/web/jo-sandy-1.jpg-960.webp 960w, images/web/jo-sandy-1.jpg-1600.webp 1600w" sizes="(max-width: 720px) calc(100vw - 60px), (max-width: 960px) 44vw, 350px" width="3089" height="4633" decoding="async" loading="lazy">
-              </div>
+              <span class="collection-cta">View gallery <span aria-hidden="true">→</span></span></button>
             </div>
 
             <div class="collection-wrap">
               <div class="collection-label">Events</div>
-              <div class="collection-card image-hover" data-gallery="events">
+              <button class="collection-card image-hover" data-gallery="events" type="button" aria-label="View Events gallery">
                 <img alt="Events collection preview" data-original="images/naomi-1.JPG" src="images/web/naomi-1.JPG-960.webp" srcset="images/web/naomi-1.JPG-480.webp 480w, images/web/naomi-1.JPG-960.webp 960w, images/web/naomi-1.JPG-1400.webp 1400w" sizes="(max-width: 720px) calc(100vw - 60px), (max-width: 960px) 44vw, 350px" width="1400" height="2100" decoding="async" loading="lazy">
-              </div>
+              <span class="collection-cta">View gallery <span aria-hidden="true">→</span></span></button>
+            </div>
+            <div class="collection-wrap">
+              <div class="collection-label">Stranger Portraits</div>
+              <button class="collection-card image-hover" data-gallery="strangers" type="button" aria-label="View Stranger Portraits gallery">
+                <img alt="Al Perkins — Stranger Portraits collection preview" data-original="images/strangers/al-perkins.jpg" src="images/web/al-perkins.jpg-960.webp" srcset="images/web/al-perkins.jpg-480.webp 480w, images/web/al-perkins.jpg-960.webp 960w, images/web/al-perkins.jpg-1600.webp 1600w" sizes="(max-width: 720px) calc(100vw - 60px), (max-width: 960px) 44vw, 350px" width="4000" height="6000" decoding="async" loading="lazy">
+                <span class="collection-cta">View gallery <span aria-hidden="true">→</span></span>
+              </button>
             </div>
           </div>
 
@@ -1864,6 +1876,10 @@
           </div>
 
           <div class="features-pills">
+            <a class="feature-pill" href="https://creativeharvestmag.substack.com/p/the-art-of-seeing-stories-within?utm_campaign=post&amp;utm_medium=web" target="_blank" rel="noopener noreferrer">
+              <span>The Art of Seeing Stories Within Strangers | Creative Harvest Magazine</span>
+            </a>
+
             <a class="feature-pill" href="https://shoutoutdfw.com/meet-matthew-norton-urban-portrait-photographer-content-creator/" target="_blank" rel="noreferrer">
               <span>Local Stories Article | SHOUTOUT DFW</span>
             </a>
@@ -1898,20 +1914,27 @@
 
           <div class="contact-layout">
             <div class="contact-card">
-              <form action="mailto:matthewnortonphotos@gmail.com?subject=New%20Photo%20Inquiry" method="POST" enctype="text/plain">
-                <label>Name</label>
-                <input type="text" name="Name" placeholder="Your name" required>
+              <form id="inquiryForm" action="https://script.google.com/macros/s/AKfycbzI2AyhnjrVNPthoygDF2OpL15u0lZHZn_GADuh-eU0YnWb4PlaWpyy-gZ2IBXoCi93/exec" method="POST">
+                <label for="inquiryName">Name</label>
+                <input id="inquiryName" type="text" name="Name" autocomplete="name" placeholder="Your name" maxlength="120" required>
 
-                <label>Email</label>
-                <input type="email" name="Email" placeholder="Your email" required>
+                <label for="inquiryEmail">Email</label>
+                <input id="inquiryEmail" type="email" name="Email" autocomplete="email" placeholder="Your email" maxlength="254" required>
 
-                <label>Session Type</label>
-                <input type="text" name="Type" placeholder="Portraits, couples, brand, event…" required>
+                <label for="inquiryType">Session Type</label>
+                <input id="inquiryType" type="text" name="Type" placeholder="Portraits, couples, brand, event…" maxlength="120" required>
 
-                <label>Message</label>
-                <textarea name="Message" placeholder="Tell me about what you're dreaming up…"></textarea>
+                <label for="inquiryMessage">Message</label>
+                <textarea id="inquiryMessage" name="Message" placeholder="Tell me about what you're dreaming up…" maxlength="5000"></textarea>
 
-                <button class="btn-primary" type="submit">Send Inquiry</button>
+                <div class="inquiry-honeypot" aria-hidden="true" inert>
+                  <label for="inquiryWebsite">Leave this field empty</label>
+                  <input id="inquiryWebsite" name="website" type="text" tabindex="-1" autocomplete="off">
+                </div>
+                <input type="hidden" name="submissionId" id="inquiryId">
+                <button class="btn-primary" type="submit" id="inquirySubmit">Send Inquiry</button>
+                <p id="inquiryStatus" class="inquiry-status" role="status" aria-live="polite" tabindex="-1"></p>
+                <noscript><p>Please enable JavaScript to send this form, or use the email link beside it.</p></noscript>
               </form>
             </div>
 
@@ -1926,10 +1949,16 @@
                 <div class="social-row-label">Elsewhere</div>
                 <div class="social-buttons">
                   <a class="chip-link" href="https://instagram.com/matthewnortonphotos" target="_blank" rel="noreferrer">
-                    Instagram
+                    <img src="assets/social/instagram.png" width="24" height="24" alt="" aria-hidden="true">Instagram
                   </a>
                   <a class="chip-link" href="https://www.tiktok.com/@matthewnortonphotos" target="_blank" rel="noreferrer">
-                    TikTok
+                    <img src="assets/social/tiktok.png" width="24" height="24" alt="" aria-hidden="true">TikTok
+                  </a>
+                  <a class="chip-link" href="https://www.facebook.com/share/1bNFntE4LK/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/social/facebook.png" width="24" height="24" alt="" aria-hidden="true">Facebook
+                  </a>
+                  <a class="chip-link" href="https://youtube.com/@matthewnortonphotos?si=IepGR7XtM0oeabZ1" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/social/youtube.png" width="24" height="24" alt="" aria-hidden="true">YouTube
                   </a>
                   <a class="chip-link" href="https://direct.me/matthewnortonphotos?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnbn9KBJOyedCfxzKtIRNumpg99BVoIryVqV7-0wZdE_QsSXYyT-GSsxLPDuk_aem_-GYXmgvz978KZYxcD0anPA#" target="_blank" rel="noreferrer">
                     My Links
@@ -1939,6 +1968,7 @@
 
 
 
+              </div>
               <div>
                 <div class="social-row-label">E-MAIL</div>
                 <a href="mailto:matthewnortonphotos@gmail.com" class="contact-email">matthewnortonphotos@gmail.com</a>
@@ -1959,7 +1989,7 @@
 
       <!-- ===== FOOTER ===== -->
       <footer>
-        <div>© 2025 Matthew Norton Photos. All rights reserved.</div>
+        <div>© 2026 Matthew Norton Photos. All rights reserved.</div>
         <div>Based in Dallas, Texas. Available for travel.</div>
       </footer>
 
@@ -1997,7 +2027,7 @@
     <div class="modal-gallery" role="dialog" aria-modal="true" aria-label="Gallery">
       <div class="modal-gallery-header">
         <div class="modal-header-left">
-          <span>Gallery</span>
+          <span id="galleryTitle">Gallery</span>
           <span class="modal-counter" id="modalCounter">1 / 1</span>
         </div>
         <button class="modal-close" type="button" aria-label="Close gallery">&times;</button>
@@ -2111,7 +2141,24 @@
         "images/events-33.jpg",
         "images/events-34.jpg",
         "images/events-35.jpg"
+      ],
+      strangers: [
+        "images/strangers/al-perkins.jpg",
+        "images/strangers/sergeant-alex-shirley.jpg",
+        "images/strangers/alena.jpg",
+        "images/strangers/randy-and-toni.jpg",
+        "images/strangers/jacquelyn.jpg",
+        "images/strangers/veronica-and-teddy.jpg"
       ]
+    };
+
+    const strangerDetails = {
+      "images/strangers/al-perkins.jpg": {name: 'Al Perkins', location: 'Fort Worth Stockyards', video: 'https://www.instagram.com/reel/Da8Z5cmxQ5V/'},
+      "images/strangers/sergeant-alex-shirley.jpg": {name: 'Sergeant Alex Shirley', location: 'Bishop Arts District (Dallas)', video: 'https://www.instagram.com/reel/DdSKHM8Rj_R/'},
+      "images/strangers/alena.jpg": {name: 'Alena', location: 'Downtown Dallas', video: 'https://www.instagram.com/reel/Db05rxtR5fg/'},
+      "images/strangers/randy-and-toni.jpg": {name: 'Randy and Toni', location: 'Downtown Dallas', video: 'https://www.instagram.com/reel/Dc114KlRvy4/'},
+      "images/strangers/jacquelyn.jpg": {name: 'Jacquelyn', location: 'Dallas Zoo', video: 'https://www.instagram.com/reel/DdUFl2oxqap/'},
+      "images/strangers/veronica-and-teddy.jpg": {name: 'Veronica and Teddy', location: 'Downtown Dallas', video: 'https://www.instagram.com/reel/DcSCElfNCTS/'},
     };
 
     // ===== MOBILE HEADER BEHAVIOR =====
@@ -2182,13 +2229,22 @@
       });
     }
 
-    function galleryImageSize(source) {
-      const image = optimizedImages[source];
-      const height = window.innerHeight * (window.innerWidth <= 720 ? 0.62 : 0.68);
-      return Math.ceil(Math.min(900, window.innerWidth - 90, height * image.width / image.height)) + 'px';
+    // Pair successive landscape photos at the first photo's position. Portraits
+    // retain their relative order; only the second landscape in each pair moves.
+    function groupGalleryPhotos(images) {
+      const landscape = source => optimizedImages[source].width > optimizedImages[source].height;
+      const partners = new Map();
+      const moved = new Set();
+      let first = null;
+      images.forEach((source, index) => {
+        if (!landscape(source)) return;
+        if (first === null) first = index;
+        else { partners.set(first, index); moved.add(index); first = null; }
+      });
+      return images.flatMap((source, index) => moved.has(index) ? [] :
+        [[source, ...(partners.has(index) ? [images[partners.get(index)]] : [])]]);
     }
 
-    // ===== MODAL SLIDER (seamless loop forward, click arrows; no auto-rotation) =====
     const modal = document.getElementById('galleryModal');
     const sliderTrack = document.getElementById('modalSliderTrack');
     const closeBtn = document.querySelector('.modal-close');
@@ -2197,45 +2253,86 @@
     const counterEl = document.getElementById('modalCounter');
     const galleryLoadStatus = document.getElementById('galleryLoadStatus');
     let gallerySession = 0;
-
     let currentGallery = [];
-    let currentIndex = 0; // index within renderedSlides
-    let renderedSlides = []; // includes clones
+    let currentIndex = 0;
+    let renderedSlides = [];
     let isModalTransitioning = false;
+    let galleryOpener = null;
+    let transitionTimer;
 
-    function buildRenderedSlides(images) {
-      const total = images.length;
-      if (total <= 1) return images.slice();
-      // clones for seamless looping
-      const first = images[0];
-      const last = images[total - 1];
-      return [last, ...images, first];
+    function galleryImageSize(img) {
+      const source = optimizedImages[img.dataset.original];
+      const page = img.closest('.gallery-page');
+      const availableWidth = page?.clientWidth || 320;
+      const imageArea = img.closest('.gallery-image-area');
+      const availableHeight = imageArea?.clientHeight || 480;
+      return Math.ceil(Math.min(availableWidth, availableHeight * source.width / source.height)) + 'px';
     }
 
-    function renderSlides(images) {
-      sliderTrack.innerHTML = '';
-      images.forEach((source, index) => {
+    function buildRenderedSlides(pages) {
+      return pages.length <= 1 ? pages.slice() : [pages[pages.length - 1], ...pages, pages[0]];
+    }
+
+    function renderSlides(pages) {
+      sliderTrack.replaceChildren();
+      pages.forEach(sources => {
         const slide = document.createElement('div');
         slide.className = 'modal-slide';
-        const img = document.createElement('img');
-        const image = optimizedImages[source];
-        img.dataset.original = source;
-        img.dataset.src = image.variants[Math.min(1, image.variants.length - 1)].src;
-        img.dataset.srcset = image.variants.map(v => `${v.src} ${v.width}w`).join(', ');
-        img.sizes = galleryImageSize(source);
-        img.width = image.width;
-        img.height = image.height;
-        img.decoding = 'async';
-        const photoIndex = images.length > 1 ? (index - 1 + currentGallery.length) % currentGallery.length : 0;
-        img.alt = `Gallery photograph ${photoIndex + 1} of ${currentGallery.length}`;
-        slide.appendChild(img);
+        const page = document.createElement('div');
+        page.className = 'gallery-page' + (sources.length === 2 ? ' gallery-page-pair' : '');
+        sources.forEach(source => {
+          const figure = document.createElement('figure');
+          figure.className = 'gallery-photo';
+          const detail = strangerDetails[source];
+          const area = document.createElement(detail ? 'a' : 'div');
+          area.className = 'gallery-image-area';
+          if (detail) {
+            area.href = detail.video;
+            area.target = '_blank';
+            area.rel = 'noopener noreferrer';
+            area.setAttribute('aria-label', 'Watch ' + detail.name + ' on Instagram (opens in a new tab)');
+          }
+          const img = document.createElement('img');
+          const image = optimizedImages[source];
+          img.dataset.original = source;
+          img.dataset.src = image.variants[Math.min(1, image.variants.length - 1)].src;
+          img.dataset.srcset = image.variants.map(v => `${v.src} ${v.width}w`).join(', ');
+          img.sizes = '320px';
+          img.width = image.width;
+          img.height = image.height;
+          img.decoding = 'async';
+          img.alt = detail ? detail.name + ' — ' + detail.location : 'Photograph by Matthew Norton';
+          area.appendChild(img);
+          figure.appendChild(area);
+          if (detail) {
+            const caption = document.createElement('figcaption');
+            caption.className = 'gallery-caption';
+            const name = document.createElement('strong');
+            name.textContent = detail.name;
+            const location = document.createElement('span');
+            location.textContent = '📍 ' + detail.location;
+            const link = document.createElement('a');
+            link.textContent = 'Watch on Instagram ↗';
+            link.href = detail.video;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            caption.append(name, location, link);
+            figure.appendChild(caption);
+          }
+          page.appendChild(figure);
+        });
+        slide.appendChild(page);
         sliderTrack.appendChild(slide);
       });
     }
 
     function loadGallerySlide(index, priority = 'auto') {
-      const img = sliderTrack.children[index]?.querySelector('img');
-      return img ? loadImage(img, priority) : Promise.reject(new Error('No slide'));
+      const images = Array.from(sliderTrack.children[index]?.querySelectorAll('img') || []);
+      if (!images.length) return Promise.reject(new Error('No slide'));
+      return Promise.all(images.map(img => {
+        img.sizes = galleryImageSize(img);
+        return loadImage(img, priority);
+      }));
     }
 
     function preloadGalleryNeighbors() {
@@ -2245,50 +2342,52 @@
     }
 
     window.addEventListener('resize', () => {
-      sliderTrack.querySelectorAll('img').forEach(img => {
-        img.sizes = galleryImageSize(img.dataset.original);
-      });
+      sliderTrack.querySelectorAll('img').forEach(img => { img.sizes = galleryImageSize(img); });
     });
 
-    function realCount() {
-      return currentGallery.length || 1;
-    }
-
-    function realIndexFromRendered() {
-      const total = currentGallery.length;
-      if (total <= 1) return 0;
-      return currentIndex - 1; // because index 0 is last-clone
-    }
-
     function updateCounter() {
-      const total = realCount();
-      let displayIndex = 0;
+      const total = currentGallery.length;
+      const index = total > 1 ? (currentIndex - 1 + total) % total : 0;
+      counterEl.textContent = `${index + 1} / ${total}`;
+      Array.from(sliderTrack.children).forEach((slide, i) => {
+        slide.inert = i !== currentIndex;
+        slide.setAttribute('aria-hidden', String(i !== currentIndex));
+      });
+    }
 
-      if (total <= 1) {
-        displayIndex = 0;
-      } else {
-        displayIndex = realIndexFromRendered();
-        if (displayIndex < 0) displayIndex = total - 1;
-        if (displayIndex >= total) displayIndex = 0;
+    function finishGalleryTransition() {
+      clearTimeout(transitionTimer);
+      const total = currentGallery.length;
+      isModalTransitioning = false;
+      if (total <= 1) return;
+      if (currentIndex === 0 || currentIndex === total + 1) {
+        currentIndex = currentIndex === 0 ? total : 1;
+        sliderTrack.style.transition = 'none';
+        sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+        void sliderTrack.offsetWidth;
+        updateCounter();
       }
-
-      counterEl.textContent = `${displayIndex + 1} / ${total}`;
+      loadGallerySlide(currentIndex).catch(() => {});
+      preloadGalleryNeighbors();
     }
 
     async function goToRenderedIndex(index) {
       if (!renderedSlides.length || isModalTransitioning) return;
       const session = gallerySession;
       isModalTransitioning = true;
-      galleryLoadStatus.textContent = 'Loading photo…';
+      galleryLoadStatus.textContent = 'Loading photos…';
       try {
         await loadGallerySlide(index, 'high');
         if (session !== gallerySession) return;
         currentIndex = index;
-        sliderTrack.style.transition = 'transform 0.7s ease-in-out';
-        sliderTrack.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        sliderTrack.style.transition = reducedMotion ? 'none' : 'transform 0.35s ease-in-out';
+        sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
         galleryLoadStatus.textContent = '';
         updateCounter();
         preloadGalleryNeighbors();
+        // Also release the lock if a browser does not deliver transitionend.
+        transitionTimer = setTimeout(finishGalleryTransition, reducedMotion ? 0 : 420);
       } catch {
         if (session !== gallerySession) return;
         isModalTransitioning = false;
@@ -2297,20 +2396,26 @@
     }
 
     function openGallery(key) {
+      const images = galleryImages[key];
+      if (!images?.length) return;
+      clearTimeout(transitionTimer);
       const session = ++gallerySession;
-      currentGallery = galleryImages[key] || [];
-      if (!currentGallery.length) return;
+      if (!modal.classList.contains('active')) galleryOpener = document.activeElement;
+      currentGallery = groupGalleryPhotos(images);
       renderedSlides = buildRenderedSlides(currentGallery);
       currentIndex = currentGallery.length > 1 ? 1 : 0;
       isModalTransitioning = false;
+      document.getElementById('galleryTitle').textContent = ({portraits:'Portraits',couples:'Couples',events:'Events',strangers:'Stranger Portraits'})[key];
       renderSlides(renderedSlides);
       sliderTrack.style.transition = 'none';
-      sliderTrack.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+      sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
       modal.classList.add('active');
-      void sliderTrack.offsetWidth;
-      sliderTrack.style.transition = 'transform 0.7s ease-in-out';
+      document.body.classList.add('gallery-open');
+      document.querySelector('.page').inert = true;
+      closeBtn.focus();
+      prevBtn.disabled = nextBtn.disabled = currentGallery.length <= 1;
       updateCounter();
-      galleryLoadStatus.textContent = 'Loading photo…';
+      galleryLoadStatus.textContent = 'Loading photos…';
       const initialIndex = currentIndex;
       loadGallerySlide(currentIndex, 'high').then(() => {
         if (session !== gallerySession || currentIndex !== initialIndex) return;
@@ -2321,6 +2426,51 @@
         galleryLoadStatus.textContent = 'This photo could not load. Use the arrows to try another.';
       });
     }
+
+    function closeGallery() {
+      gallerySession++;
+      clearTimeout(transitionTimer);
+      isModalTransitioning = false;
+      modal.classList.remove('active');
+      document.body.classList.remove('gallery-open');
+      document.querySelector('.page').inert = false;
+      galleryOpener?.focus();
+    }
+
+    sliderTrack.addEventListener('transitionend', event => {
+      if (event.target === sliderTrack && event.propertyName === 'transform') finishGalleryTransition();
+    });
+    document.querySelectorAll('.collection-card').forEach(card => {
+      card.addEventListener('click', () => openGallery(card.dataset.gallery));
+      // Warm the first page when someone signals interest; avoid eager full-gallery downloads.
+      const warm = () => {
+        groupGalleryPhotos(galleryImages[card.dataset.gallery])[0].forEach(source => {
+          const image = optimizedImages[source];
+          const preload = new Image();
+          preload.sizes = `${Math.min(440, window.innerWidth - 80)}px`;
+          preload.srcset = image.variants.map(v => `${v.src} ${v.width}w`).join(', ');
+          preload.src = image.variants[Math.min(1,image.variants.length-1)].src;
+        });
+      };
+      card.addEventListener('pointerenter', warm, {once:true});
+      card.addEventListener('focus', warm, {once:true});
+    });
+    prevBtn.addEventListener('click', () => { if (currentGallery.length > 1) goToRenderedIndex(currentIndex - 1); });
+    nextBtn.addEventListener('click', () => { if (currentGallery.length > 1) goToRenderedIndex(currentIndex + 1); });
+    closeBtn.addEventListener('click', closeGallery);
+    modal.addEventListener('click', event => { if (event.target === modal) closeGallery(); });
+    document.addEventListener('keydown', event => {
+      if (!modal.classList.contains('active')) return;
+      if (event.key === 'Escape') closeGallery();
+      if (event.key === 'ArrowLeft') { event.preventDefault(); prevBtn.click(); }
+      if (event.key === 'ArrowRight') { event.preventDefault(); nextBtn.click(); }
+      if (event.key === 'Tab') {
+        const focusable = Array.from(modal.querySelectorAll('button:not(:disabled), a[href]')).filter(el => !el.closest('[inert]'));
+        const first = focusable[0], last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      }
+    });
 
     // ===== QUICK LINKS TO PORTFOLIO GALLERIES (Hero pills + What I Shoot) =====
     function scrollToPortfolioAndOpen(key) {
@@ -2351,78 +2501,6 @@
     });
 
 
-    function closeGallery() {
-      gallerySession++;
-      isModalTransitioning = false;
-      modal.classList.remove('active');
-    }
-
-    function handleModalTransitionEnd(event) {
-      if (event.target !== sliderTrack || event.propertyName !== 'transform') return;
-      isModalTransitioning = false;
-      const total = currentGallery.length;
-      if (total <= 1) return;
-
-      // if we hit the clones, snap (no rewind visual)
-      if (currentIndex === 0) {
-        sliderTrack.style.transition = 'none';
-        currentIndex = total; // last real slide position within renderedSlides
-        sliderTrack.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
-        void sliderTrack.offsetWidth;
-        sliderTrack.style.transition = 'transform 0.7s ease-in-out';
-        updateCounter();
-      }
-
-      if (currentIndex === total + 1) {
-        sliderTrack.style.transition = 'none';
-        currentIndex = 1; // first real slide
-        sliderTrack.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
-        void sliderTrack.offsetWidth;
-        sliderTrack.style.transition = 'transform 0.7s ease-in-out';
-        updateCounter();
-      }
-    }
-
-    sliderTrack.addEventListener('transitionend', handleModalTransitionEnd);
-    sliderTrack.addEventListener('transitionend', event => {
-      if (event.target === sliderTrack && event.propertyName === 'transform') {
-        loadGallerySlide(currentIndex).catch(() => {});
-        preloadGalleryNeighbors();
-      }
-    });
-
-    document.querySelectorAll('.collection-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const key = card.dataset.gallery;
-        openGallery(key);
-      });
-    });
-
-    prevBtn.addEventListener('click', () => {
-      if (isModalTransitioning) return;
-      if (currentGallery.length <= 1) return;
-      goToRenderedIndex(currentIndex - 1);
-    });
-
-    nextBtn.addEventListener('click', () => {
-      if (isModalTransitioning) return;
-      if (currentGallery.length <= 1) return;
-      goToRenderedIndex(currentIndex + 1);
-    });
-
-    closeBtn.addEventListener('click', closeGallery);
-
-    modal.addEventListener('click', (event) => {
-      if (event.target === modal) closeGallery();
-    });
-
-    // Keyboard navigation: Esc / arrows
-    document.addEventListener('keydown', (e) => {
-      if (!modal.classList.contains('active')) return;
-      if (e.key === 'Escape') closeGallery();
-      if (e.key === 'ArrowLeft') prevBtn.click();
-      if (e.key === 'ArrowRight') nextBtn.click();
-    });
 
     // ===== TESTIMONIAL CLICK TOGGLE (bold on click as well as hover) =====
     document.querySelectorAll('.testimonial-card').forEach(card => {
@@ -2543,9 +2621,10 @@
       try { alreadySeen = sessionStorage.getItem(STORAGE_KEY) === '1'; } catch (e) { alreadySeen = false; }
 
       if (!alreadySeen) {
-        window.setTimeout(openPopup, DELAY_MS);
+        window.setTimeout(() => { if (!modal.classList.contains('active') && !document.querySelector('#inquiryForm:focus-within')) openPopup(); }, DELAY_MS);
       }
     })();
   </script>
+  <script src="scripts/inquiry-form.js"></script>
 </body>
 </html>

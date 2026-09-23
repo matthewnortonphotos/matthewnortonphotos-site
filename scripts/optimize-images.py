@@ -39,11 +39,12 @@ def main():
             targets = (80, 160) if "logo" in path.stem else (480, 960, 1600)
             variants = []
             for target in sorted(set(min(w, width) for w in targets)):
-                resized = photo.resize((target, round(height * target / width)), Image.Resampling.LANCZOS)
                 # Include original extension to avoid collisions between JPG/PNG stems.
                 filename = f"{path.name}-{target}.webp"
                 destination = OUTPUT / filename
-                resized.save(destination, "WEBP", quality=86, method=6)
+                if not destination.exists() or destination.stat().st_mtime < path.stat().st_mtime:
+                    resized = photo.resize((target, round(height * target / width)), Image.Resampling.LANCZOS)
+                    resized.save(destination, "WEBP", quality=86, method=6)
                 variants.append({"src": f"images/web/{filename}", "width": target})
                 total_web += destination.stat().st_size
             manifest[source] = {"width": width, "height": height, "variants": variants}

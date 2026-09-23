@@ -1,0 +1,9 @@
+# Keep the new full-resolution source portraits in Git, while Pages serves their
+# responsive copies from images/web. This avoids adding 57 MB to the deployment.
+exclude:
+  - images/strangers
+  - tests
+  - scripts/website-inquiries.gs
+  - scripts/optimize-images.py
+  - scripts/requirements-images.txt
+  - scripts/README.md

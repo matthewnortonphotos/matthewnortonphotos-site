@@ -1,0 +1,54 @@
+/* Collection covers make their action visible on touch screens as well as desktop. */
+.portfolio-collections { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.collection-card { position: relative; display: block; width: 100%; padding: 0; color: #fff; font: inherit; text-align: left; }
+.collection-card:focus-visible { outline: 3px solid var(--color-accent-deep); outline-offset: 4px; }
+.collection-cta { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; padding: 13px 15px; background: #302f2b; font-size: 13px; font-weight: 600; }
+.collection-cta span { font-size: 20px; }
+.hero-support { white-space: normal; text-align: center; line-height: 1.6; max-width: 100%; }
+.hero-left, .hero-right { min-width: 0; }
+.social-buttons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 440px; }
+.social-buttons .chip-link { gap: 10px; min-height: 48px; background: #e5c9b3; color: #302f2b; font-size: 11px; letter-spacing: .08em; padding: 10px; }
+.social-buttons .chip-link:hover { background: #dabda5; }
+.social-buttons .chip-link img { width: 24px; height: 24px; object-fit: contain; flex-shrink: 0; }
+.social-buttons .chip-link:last-child { grid-column: 1 / -1; background: transparent; }
+.contact-email { overflow-wrap: anywhere; }
+.contact-card input, .contact-card textarea { font-size: 16px; }
+.inquiry-honeypot { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.inquiry-status { font-size: 14px; line-height: 1.6; margin-top: 12px; }
+.inquiry-status:empty { display: none; }
+.inquiry-status[data-state="error"] { color: #942d1d; }
+.inquiry-status[data-state="success"] { color: #285340; }
+#inquirySubmit:disabled { opacity: .65; cursor: wait; }
+body.gallery-open { overflow: hidden; }
+.modal-gallery { --gallery-height: min(68vh, calc((100vw - 118px) * 1.5)); --gallery-height: min(68dvh, calc((100vw - 118px) * 1.5)); width: min(680px, calc(100% - 24px)); max-width: none; max-height: 94vh; max-height: 94dvh; padding: 12px; }
+.modal-slider { height: var(--gallery-height); flex: none; border: 0; border-radius: 10px; }
+.modal-slide { padding: 0 35px; }
+.gallery-page { width: min(100%, calc(var(--gallery-height) * 2 / 3)); height: 100%; display: grid; grid-template-rows: minmax(0, 1fr); gap: 10px; }
+.gallery-page-pair { grid-template-rows: repeat(2, minmax(0, 1fr)); }
+.gallery-photo { margin: 0; min-width: 0; min-height: 0; display: flex; flex-direction: column; justify-content: center; }
+.gallery-image-area { min-height: 0; flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.modal-slide .gallery-image-area img { width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 3px; }
+.gallery-caption { flex: none; display: flex; flex-direction: column; gap: 3px; padding: 10px 12px; background: #302f2b; color: #f6e1d0; font-size: 12px; line-height: 1.4; }
+.gallery-caption strong { font-size: 14px; }
+.gallery-caption a { text-decoration: underline; text-underline-offset: 3px; padding: 6px 0; min-height: 30px; }
+.modal-arrow { width: 34px; height: 48px; border-radius: 8px; background: #302f2b; }
+.modal-arrow.prev { left: 0; }
+.modal-arrow.next { right: 0; }
+.modal-close { min-width: 44px; min-height: 44px; }
+.gallery-load-status { bottom: 0; z-index: 3; }
+@media (max-width: 960px) { .portfolio-collections { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 720px) {
+  .portfolio-collections { grid-template-columns: 1fr; }
+  .modal-gallery-header { font-size: 10px; letter-spacing: .08em; }
+  .modal-counter { font-size: 10px; letter-spacing: 0; white-space: nowrap; }
+  .gallery-caption { padding: 8px; font-size: 11px; }
+  .gallery-caption strong { font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .collection-card img { transition: none; } }
+@media (max-width: 400px) {
+  .mobile-controls-row { gap: 6px; }
+  .btn-mobile-portfolio { min-width: 0; padding-inline: 8px; letter-spacing: .08em; }
+  .mobile-controls .btn-booking { padding-inline: 10px; letter-spacing: .08em; }
+  .hero-meta { gap: 4px; letter-spacing: .06em; }
+  .hero-meta span { padding-inline: 5px; }
+}
