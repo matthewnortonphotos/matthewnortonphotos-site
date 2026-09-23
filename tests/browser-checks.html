@@ -1,0 +1,132 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Website audit checks</title>
+<style>body{font:15px system-ui;background:#fafafa;color:#222}iframe{border:1px solid #888;display:block}li{margin:8px}.pass{color:#166534}.fail{color:#9f1239}</style>
+<h1>Website audit checks</h1><p id="state">Running local checks; form responses are simulated.</p><ol id="results"></ol>
+<iframe id="site" title="Website under test" width="390" height="844"></iframe>
+<script>
+(async()=>{
+  const frame=document.getElementById('site'), results=document.getElementById('results');
+  let passes=0, failures=0;
+  const assert=(condition,message)=>{if(!condition)throw Error(message);};
+  const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+  async function until(fn){const end=Date.now()+15000;while(!fn()){if(Date.now()>end)throw Error('Timed out');await sleep(40);}}
+  async function test(label,fn){const li=document.createElement('li');results.append(li);try{await fn();li.className='pass';li.textContent='PASS '+label;passes++;}catch(e){li.className='fail';li.textContent='FAIL '+label+': '+e.message;failures++;}}
+  sessionStorage.setItem('dc_popup_seen_v1','1');
+  async function load(width,height,path='/index.html'){
+    frame.width=width;frame.height=height;
+    await new Promise(resolve=>{frame.onload=resolve;frame.src=path+'?audit='+Date.now();});
+    await until(()=>frame.contentWindow.openGallery&&frame.contentDocument.querySelector('#inquiryId').value);
+  }
+  await load(390,844);
+  let w=frame.contentWindow,d=frame.contentDocument;
+  const active=()=>d.querySelector('.modal-slide[aria-hidden="false"]');
+  const loaded=()=>!d.getElementById('galleryLoadStatus').textContent && [...active().querySelectorAll('img')].every(im=>im.complete&&im.naturalWidth);
+  async function open(key){d.querySelector(`[data-gallery="${key}"]`).click();await until(loaded);}
+  async function next(){d.getElementById('modalNext').click();await sleep(500);await until(loaded);}
+  await test('All four collection covers are actionable, with visible gallery labels',async()=>{
+    const cards=[...d.querySelectorAll('button.collection-card')];assert(cards.length===4,'missing cover');assert(cards.every(c=>c.textContent.includes('View gallery')),'missing action');
+  });
+  await test('Mobile gallery stacks two landscapes without changing frame height',async()=>{
+    await open('portraits');assert(active().querySelectorAll('img').length===1,'opener not solo');
+    const opener=active().querySelector('img');assert(opener.naturalHeight>opener.naturalWidth,'opener not vertical');
+    const h=active().getBoundingClientRect().height;await next();assert(active().querySelectorAll('img').length===2,'not a pair');const photos=[...active().querySelectorAll('img')].map(i=>i.getBoundingClientRect());
+    assert(photos[0].bottom<=photos[1].top,'landscapes overlap');
+    assert(Math.abs(active().getBoundingClientRect().height-h)<1,'frame height changed');
+    assert(d.documentElement.scrollWidth<=390,'horizontal overflow');w.closeGallery();
+  });
+  await test('All six named portraits have matched photo/video links and footer locations',async()=>{
+    const expected=[['Al','Da8Z5cmxQ5V','Fort Worth Stockyards'],['Sergeant Shirley','DdSKHM8Rj_R','Bishop Arts District (Dallas)'],['Alena','Db05rxtR5fg','Downtown Dallas'],['Randy and Toni','Dc114KlRvy4','Downtown Dallas'],['Jacquelyn','DdUFl2oxqap','Dallas Zoo'],['Veronica and Teddy','DcSCElfNCTS','Downtown Dallas']];
+    await open('strangers');
+    for(let i=0;i<expected.length;i++){
+      const [name,video,location]=expected[i], slide=active(),caption=slide.querySelector('figcaption');
+      assert(caption.textContent.includes(name)&&caption.textContent.includes('📍 '+location),'wrong caption for '+name);
+      assert([...slide.querySelectorAll('a')].every(a=>a.href.includes(video)&&a.target==='_blank'),'wrong video for '+name);
+      assert(slide.querySelector('img').naturalWidth>0,'photo missing');
+      const photo=slide.querySelector('img').getBoundingClientRect(),text=caption.getBoundingClientRect();
+      assert(w.getComputedStyle(caption).backgroundColor==='rgba(0, 0, 0, 0)','caption has fill');
+      assert(text.top>=photo.top&&text.bottom<=photo.bottom+1,'caption not over photo');
+      if(i<5)await next();
+    }
+    await next();assert(d.getElementById('modalCounter').textContent==='1 / 6','forward wrap failed');
+    d.getElementById('modalPrev').click();await sleep(500);await until(loaded);assert(d.getElementById('modalCounter').textContent==='6 / 6','backward wrap failed');w.closeGallery();
+  });
+  await test('Gallery close restores focus and background interaction',async()=>{
+    const button=d.querySelector('[data-gallery="couples"]');button.focus();await open('couples');assert(d.querySelector('.page').inert,'background still active');
+    d.querySelector('.modal-close').click();assert(!d.querySelector('.page').inert,'background stayed inert');assert(d.activeElement===button,'focus not restored');
+  });
+  await test('First press link, coffee button, copyright, and four supplied social icons',async()=>{
+    assert(d.querySelector('.feature-pill').textContent.includes('Creative Harvest'),'press not first');
+    assert(d.querySelector('.hero-support').href==='https://buymeacoffee.com/matthewnortonphotos','coffee URL wrong');
+    assert(d.querySelector('footer').textContent.includes('2026'),'copyright');
+    const icons=[...d.querySelectorAll('.social-buttons img')];await Promise.all(icons.map(i=>i.decode()));assert(icons.length===4&&icons.every(i=>i.naturalWidth),'icons missing');
+    assert(icons.every(i=>i.parentElement.getAttribute('aria-label')&&!i.parentElement.textContent.trim()&&w.getComputedStyle(i.parentElement).backgroundColor==='rgba(0, 0, 0, 0)'),'icons not floating accessible links');
+    const first=icons[0].getBoundingClientRect(),last=icons[3].getBoundingClientRect(),pill=d.querySelector('.my-links').getBoundingClientRect();
+    assert(Math.abs(first.left-pill.left)<1&&Math.abs(last.right-pill.right)<1&&first.top===last.top,'pill and icon row misaligned');
+  });
+  await test('Form validates required fields, includes autofill labels, and uses HTTPS',async()=>{
+    assert(!d.getElementById('inquiryForm').checkValidity(),'empty form validates');
+    assert(d.getElementById('inquiryForm').action.startsWith('https://script.google.com/'),'endpoint');
+    assert(d.getElementById('inquiryName').autocomplete==='name'&&d.getElementById('inquiryEmail').autocomplete==='email','autocomplete');
+  });
+  const form=d.getElementById('inquiryForm');
+  function fill(message='Local automated test'){form.elements.Name.value='Test Visitor';form.elements.Email.value='visitor@example.com';form.elements.Type.value='Portraits';form.elements.Message.value=message;}
+  let requests=[];
+  await test('Unconfirmed form response preserves text and retry ID; double submits blocked',async()=>{
+    fill();w.fetch=async(url,options)=>{requests.push(options.body.toString());await sleep(100);throw Error('offline');};
+    form.requestSubmit();form.requestSubmit();await until(()=>!d.getElementById('inquirySubmit').disabled);
+    assert(requests.length===1,'duplicate request');assert(d.getElementById('inquiryStatus').dataset.state==='error','not error');assert(form.elements.Message.value==='Local automated test','message lost');
+    form.requestSubmit();await until(()=>!d.getElementById('inquirySubmit').disabled);assert(requests[0]===requests[1],'retry ID changed');
+  });
+  await test('Only confirmed saved response clears form and shows on-screen success',async()=>{
+    w.fetch=async(url,options)=>({ok:true,json:async()=>({ok:true,saved:true,submissionId:options.body.get('submissionId')})});
+    form.requestSubmit();await until(()=>!d.getElementById('inquirySubmit').disabled);assert(d.getElementById('inquiryStatus').dataset.state==='success','missing success');assert(form.elements.Name.value==='','form not cleared');
+  });
+  await test('A server failure cannot masquerade as success',async()=>{
+    fill('Keep this message');w.fetch=async()=>({ok:true,json:async()=>({ok:false,error:'SAVE_FAILED'})});
+    form.requestSubmit();await until(()=>!d.getElementById('inquirySubmit').disabled);assert(d.getElementById('inquiryStatus').dataset.state==='error','missing error');assert(form.elements.Message.value==='Keep this message','message lost');
+  });
+  await test('Edited retry uses a fresh ID and input remains locked during a request',async()=>{
+    const before=form.elements.submissionId.value;fill('Different inquiry');let finish;
+    w.fetch=()=>new Promise(resolve=>{finish=resolve;});form.requestSubmit();assert(form.elements.Message.readOnly,'message editable');assert(form.elements.submissionId.value!==before,'ID not regenerated');
+    finish({ok:true,json:async()=>({ok:false,error:'BUSY'})});await until(()=>!d.getElementById('inquirySubmit').disabled);assert(!form.elements.Message.readOnly,'field stayed locked');
+  });
+  await test('Desktop gallery has equal portrait/pair frames and no image overflow',async()=>{
+    frame.width=1440;frame.height=900;await sleep(120);await open('events');const first=active().getBoundingClientRect();assert(active().querySelectorAll('img').length===1,'opener not solo');assert(active().querySelector('img').naturalHeight>active().querySelector('img').naturalWidth,'opener not vertical');
+    for(const img of active().querySelectorAll('img')){const box=img.getBoundingClientRect();assert(box.left>=first.left&&box.right<=first.right,'image overflow');}
+    const height=first.height;await next();assert(active().querySelectorAll('img').length===2,'landscapes not paired');assert(Math.abs(active().getBoundingClientRect().height-height)<1,'height changed');w.closeGallery();
+  });
+  await test('Favicon changes to supplied dark and light files on preference events',async()=>{
+    const code=await(await fetch('/scripts/favicon.js')).text();let callback;const theme={matches:true,addEventListener:(event,fn)=>callback=fn};
+    const original=w.matchMedia;w.matchMedia=()=>theme;const script=d.createElement('script');script.textContent=code;d.head.append(script);
+    assert(d.getElementById('siteFavicon').href.includes('dark-32.png'),'dark favicon');theme.matches=false;callback();assert(d.getElementById('siteFavicon').href.includes('light-32.png'),'light favicon');w.matchMedia=original;
+  });
+  await test('At 320px, captions, controls and page remain within the viewport',async()=>{
+    frame.width=320;frame.height=640;await sleep(100);await open('strangers');await next();
+    assert(d.documentElement.scrollWidth<=320,'page overflow');const box=d.querySelector('.modal-gallery').getBoundingClientRect();assert(box.left>=0&&box.right<=320&&box.top>=0&&box.bottom<=640,'modal overflow');w.closeGallery();
+  });
+  await test('Prose flows within its section at phone, tablet and desktop widths',async()=>{
+    for(const width of [320,390,768,1440]){
+      frame.width=width;frame.height=900;await sleep(120);
+      assert(d.documentElement.scrollWidth<=width,'page overflow at '+width);
+      const note=d.querySelector('.portfolio-note').getBoundingClientRect(),covers=d.querySelector('.portfolio-collections').getBoundingClientRect();
+      assert(note.top>=covers.bottom&&Math.abs(note.width-covers.width)<1,'portfolio note constrained or overlapping at '+width);
+      for(const paragraph of d.querySelectorAll('.section-subtitle,.hero-tagline,.book-body,.partners-intro,.partners-disclosure')){
+        const box=paragraph.getBoundingClientRect(),parent=paragraph.parentElement.getBoundingClientRect();
+        assert(box.left>=parent.left-1&&box.right<=parent.right+1&&box.bottom<=parent.bottom+1,'prose outside column at '+width);
+      }
+      for(const label of d.querySelectorAll('.collection-cta')) assert(w.getComputedStyle(label).backgroundColor==='rgba(0, 0, 0, 0)','cover label has fill');
+    }
+  });
+  await test('Failed landscape in a pair keeps previous page visible',async()=>{
+    await load(320,640);w=frame.contentWindow;d=frame.contentDocument;
+    const originalLoad=w.loadImage;
+    w.loadImage=(image,priority)=>image.dataset.original==='images/events-2.jpg'
+      ? Promise.reject(new Error('Simulated image failure')) : originalLoad(image,priority);
+    await open('events');const before=d.getElementById('modalCounter').textContent;
+    d.getElementById('modalNext').click();
+    await until(()=>d.getElementById('galleryLoadStatus').textContent.includes('could not load'));
+    assert(d.getElementById('modalCounter').textContent===before,'failed slide replaced current');
+    assert([...active().querySelectorAll('img')].every(img=>img.naturalWidth),'visible pair incomplete');
+  });
+  document.getElementById('state').textContent=`${passes} passed; ${failures} failed. Form responses simulated; no emails sent.`;
+})();
+</script></html>
